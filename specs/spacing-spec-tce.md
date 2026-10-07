@@ -1,0 +1,138 @@
+# Spec de Espaçamento — Design System TCE Ceará (RASCUNHO)
+
+> **Para o Claude do dev:** este arquivo é a fonte de verdade para espaçamento de layout (gap, padding, margem). Os valores vêm da coleção **Spacing** do arquivo ⭐ Design System TCE (página Spacing). Itens marcados **A DECIDIR** ainda não foram aprovados pelo design: não implemente esses pontos por conta própria, pergunte.
+>
+> Índice geral: `design-system-index.md`. Grid e layout: `grid-layout-spec-tce.md`.
+>
+> Espaçamento **de texto** (letter-spacing, word-spacing, line-height, espaço entre parágrafos) é outro assunto e está na seção 8, com decisão pendente.
+
+Status: rascunho, atualizado em 2026-10-05. Grid e layout saíram desta spec e estão em `grid-layout-spec-tce.md`. Origem: variáveis criadas no Figma, CSS original do TCE (`variables_v1.css`, `components-form_v1.css`, `typography_v1.css`, `sections.css`, `main.css`, `grid.css`) e protótipos existentes. A aplicação em um produto específico fica no handoff do produto. Ver também `../referencias/espacamento-e-css-original-correcoes.md`. Revisão estrutural em 2026-10-07 (versão **ds-v1**).
+
+## 1. Regras obrigatórias
+
+1. **Nunca use valores soltos** de `gap`, `padding` ou `margin`. Use sempre um token da seção 2 (ou, para margem de página e gutter, os tokens de `grid-layout-spec-tce.md`). Nada de 10, 15, 18, 20, 28, 46.
+2. **Escolha o token pelo papel** (seção 3), não pelo valor que parece certo.
+3. **Espaço entre irmãos é `gap`; espaço interno é `padding`.** Use `margin` só quando o layout não permitir `gap` (ex.: elementos de fluxo de texto). Não use margin para resolver espaço entre linhas de um texto.
+4. **Altura mínima de alvo clicável: 44px no desktop e 48px no mobile** (NBR 17225). O padding do componente não pode reduzir isso.
+5. **Se nenhum token serve, pergunte ao design.** Não crie valor novo (seção 12).
+6. Ao terminar uma tela, rode o checklist da seção 11.
+
+## 2. Escala
+
+| Token Figma | Valor | rem (px ÷ 16) | Nome sugerido no código (A DECIDIR, E-5) |
+|---|---|---|---|
+| `spacing/4` | 4px | 0,25 | `--tcece-space-4` |
+| `spacing/8` | 8px | 0,5 | `--tcece-space-8` |
+| `spacing/12` | 12px | 0,75 | `--tcece-space-12` — **A DECIDIR** (o CSS original não usa) |
+| `spacing/16` | 16px | 1 | `--tcece-space-16` |
+| `spacing/24` | 24px | 1,5 | `--tcece-space-24` |
+| `spacing/32` | 32px | 2 | `--tcece-space-32` |
+| `spacing/48` | 48px | 3 | `--tcece-space-48` |
+
+**Atenção ao CSS legado.** O arquivo `variables_v1.css` já tem `--tcece-spacing-*` e `--tcece-margin-*` com **outros valores** (ex.: `--tcece-spacing-md` = 16px, `-lg` = 18px, `-xl` = 20px, `-2xl` = 24px). Por isso os tokens novos levam o valor no nome. Não mapeie `spacing/12` para `--tcece-spacing-md`.
+
+### Tokens semânticos (alias da escala)
+
+| Token Figma | Aponta para | Uso |
+|---|---|---|
+| `spacing/label-input` | 8 | Distância entre label e campo |
+| `spacing/title-body` | 16 | Distância entre título e texto de apoio |
+| `spacing/form-field-gap` | 16 | Distância entre campos de formulário |
+| `spacing/section-section` | 32 | Distância entre seções |
+| `spacing/card-padding` | 16 | Padding interno de cards — **A DECIDIR** (E-3) |
+
+## 3. Como escolher o token
+
+1. O espaço está **dentro** de um componente (entre a borda e o conteúdo)? → **padding**, valores da seção 4.
+2. O espaço está **entre elementos irmãos** do mesmo bloco? → **gap**: label→campo 8, campo→campo 16, título→texto 16, rótulo→valor 4, título→subtítulo 8.
+3. O espaço está **entre blocos da página** (seção→seção)? → 32. Respiro de página: 48.
+4. É a **margem lateral da página** ou o **espaço entre colunas**? → tokens de `grid-layout-spec-tce.md`.
+5. É distância entre **linhas ou parágrafos** de texto? → não é espaçamento de layout. Ver seção 8.
+
+## 4. Componentes
+
+A coluna "Fonte" diz de onde vem o valor: **CSS** (CSS original, confirmado), **Figma** (como está hoje no protótipo, ainda não validado contra a escala).
+
+| Componente | Padding | Outros | Fonte |
+|---|---|---|---|
+| Botão (primário, secundário, terciário, quaternário) | 8 vertical, 16 horizontal | altura mínima 44 (desktop), 48 (mobile), margem 4 | CSS |
+| Input, select | 8 vertical, 16 horizontal | altura mínima 44, margem 4 | CSS |
+| Botão do DS no Figma | 10 vertical, 20 horizontal | altura 44 | Figma — **fora da escala, alinhar ao CSS** |
+| Bloco de código (`pre`) | 8 | margem 16 acima e abaixo | CSS |
+| Card | 16 (`card-padding`) | gap interno a definir | Spec — **A DECIDIR** (E-3: protótipos usam 24) |
+| Modal | a definir | label→campo 8 | falta levantar |
+| Chip / badge | 12 horizontal, 3 vertical | altura 30 | Figma — 3 está fora da escala, **A DECIDIR** (E-6) |
+| Barra de ações fixa | a definir | a definir | falta levantar |
+| Linha de tabela, item de menu, breadcrumb | a documentar | — | falta levantar |
+
+## 5. Grid e layout de página
+
+Margem de página, gutter, colunas e menu lateral têm spec própria: **`grid-layout-spec-tce.md`** (coleções Grid e Layout; páginas 📏 Grid e 🧱 Layout no Figma). Esses valores (80, 112, 40 e outros) ficam fora da escala deste arquivo de propósito e não servem como padding de componente.
+
+Valores de página que continuam aqui:
+
+| Elemento | Valor | Fonte |
+|---|---|---|
+| Distância seção→seção | 32 | semântico `section-section` |
+| Respiro de página | 48 | escala |
+| Espaço do conteúdo até a barra fixa | a definir | falta levantar |
+
+Os valores 64, 80 e 96px de `div`, `main` e `section` em `main.css`, `grid.css` e `sections.css` são layout da página de documentação do guia de estilo. **Não** são regras para produtos.
+
+## 6. Alvos clicáveis
+
+- Altura e largura mínimas: 44px (desktop) e 48px (mobile) (NBR 17225).
+- Espaço mínimo entre alvos vizinhos: **A DECIDIR** (o CSS usa margem de 4px).
+- O foco visível (outline) não pode ser cortado pelo padding do container.
+
+## 7. Responsivo
+
+A escala de espaçamento (seção 2) é **a mesma em todos os breakpoints**. O que muda por breakpoint é margem, gutter e colunas, descritos em `grid-layout-spec-tce.md` (seções 3 e 7).
+
+## 8. Espaçamento de texto (separado do layout) — A DECIDIR
+
+| Propriedade | CSS original | Spec de tipografia atual |
+|---|---|---|
+| `letter-spacing` | 0,08 a 0,12 em (corpo 0,10; título 0,12; botão e input 0,12) | 0px |
+| `word-spacing` | 0,16 em | não existe |
+| `line-height` | display 1,2–1,3; título 1,2–1,5; corpo 1,5 | títulos 1,4; corpo 1,6 |
+| Entre parágrafos | 2× o corpo (32px) | 12px |
+| Recuo da primeira linha | 2× o corpo | não existe |
+| Largura máxima de linha | 70ch (blockquote 60ch) | 60–80 caracteres |
+
+Esses valores do CSS original coincidem com os mínimos de espaçamento de texto da WCAG 1.4.12 (0,12 em, 0,16 em, 1,5, 2×), e o CSS cita a NBR 17225. Os estilos de texto do Figma também têm letter-spacing de 4 a 12%. **Proposta do design system:** manter os valores do CSS original e corrigir a spec de tipografia (seções 3 e 5). Aguarda aprovação.
+
+## 9. Mapa Figma ↔ código
+
+| Figma | Código (proposta) | Observação |
+|---|---|---|
+| `spacing/8` | `--tcece-space-8` / `0.5rem` | Figma em px, código em rem (ver `design-system-index.md`, seção 5) |
+| `spacing/label-input` | `--tcece-space-label-input` | alias de `--tcece-space-8` |
+| coleção Spacing, modo Default | `:root` | um único modo, sem versão mobile |
+
+Tokens de grid e layout: ver `grid-layout-spec-tce.md`, seção 8. No código, use sempre rem (base 16px, definida em `reset.css`); a escala da seção 2 mostra o par px/rem de cada token.
+
+## 10. Exemplos e redlines
+
+As distâncias anotadas no protótipo, com o token de cada uma, ficam no handoff de cada produto.
+
+## 11. Checklist de revisão
+
+- [ ] Nenhum `gap`, `padding` ou `margin` literal fora da escala
+- [ ] Label → campo 8; campo → campo 16; título → texto 16; seção → seção 32
+- [ ] Alvos clicáveis com no mínimo 44px (desktop) ou 48px (mobile)
+- [ ] Espaço entre linhas e parágrafos resolvido pelo estilo de texto, não por margin
+- [ ] Margem de página e gutter conforme `grid-layout-spec-tce.md`
+- [ ] Nenhum valor de 18, 20, 28, 36 ou 42 usado como espaçamento (são tamanhos de fonte do CSS legado)
+- [ ] Foco visível não cortado pelo container
+
+## 12. Governança
+
+- Valor novo na escala só com aprovação do design system.
+- Todo valor fora da escala encontrado em tela deve virar um ajuste ao token mais próximo ou uma exceção registrada aqui, com motivo.
+- Mudança de valor de um token existente exige aviso aos devs e lista de usos afetados (a renumeração de `--tcece-measure-0` entre `variables.css` e `variables_v1.css` é o exemplo do que evitar).
+- Versionar este arquivo: data e resumo da mudança no topo.
+
+## 13. Pontos em aberto
+
+Todos os pontos em aberto de espaçamento estão em **`decisoes-em-aberto.md`** (E-1 a E-8). Os de grid e layout, no mesmo arquivo (G-1 a G-7).
