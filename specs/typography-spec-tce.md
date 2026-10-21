@@ -2,31 +2,49 @@
 
 > **Para o Claude do dev:** este arquivo é a fonte de verdade para **tipografia** do Design System TCE Ceará. Aplicações em produtos específicos ficam no handoff do produto, não aqui. Para espaçamento, use `spacing-spec-tce.md`; para grid e layout, `grid-layout-spec-tce.md`; o mapa completo está em `design-system-index.md`. Ao criar ou alterar qualquer UI, siga as regras da seção 1. Valores vêm do `tokens.json` do Design System; se houver conflito entre este arquivo e valores soltos no código, **este arquivo vence**.
 
-Status: em uso, com pendências em `decisoes-em-aberto.md` (T-1 a T-12). Revisão estrutural em 2026-10-07 (versão **ds-v1**).
+Status: em uso, com pendências em `decisoes-em-aberto.md` (T-2 a T-13). Revisão estrutural em 2026-10-07 (versão **ds-v1**). Atualizada em 2026-10-21: família tipográfica decidida (T-1 fechado), ver aviso abaixo.
 
-> **Atenção — pendência de decisão do design (T-1 em `decisoes-em-aberto.md`):** os frames do Figma auditados usam majoritariamente *Noto Sans*, com line-height de 150%, enquanto os tokens definem *Atkinson Hyperlegible Next* e line-heights 1.4/1.6. Até o design decidir qual lado vale, **implemente pelos tokens** (esta spec) e **não copie fonte/peso/line-height direto do Figma**; tamanhos e hierarquia coincidem na maior parte (a auditoria dos frames de cada produto fica no handoff do produto).
+> **Família tipográfica (decidido em 2026-10-21, fecha T-1):** a fonte principal do sistema é **Noto Sans**. **Atkinson Hyperlegible Next** é a fonte de **acento** e só entra em **números** e em **labels** (seções 2 e 2.1). Todo o resto da interface usa Noto Sans. Os frames do Figma já seguem essa direção; os tokens e o CSS antigos que punham Atkinson em toda a interface estão **errados** e devem ser corrigidos.
+>
+> **Ainda em aberto (T-2):** os frames do Figma usam line-height de 150%, enquanto os tokens definem 1.4/1.6. Até o design decidir, **implemente pelos tokens** (esta spec) e **não copie line-height direto do Figma**. Tamanhos e hierarquia coincidem na maior parte.
 
 ## 1. Regras obrigatórias
 
 1. **Nunca use valores soltos** de `font-size`, `font-weight`, `line-height`, cor ou espaçamento. Use sempre os tokens (CSS custom properties da seção 8 ou o objeto `designTokens`).
-2. **Fonte principal:** `Atkinson Hyperlegible Next` em toda a interface. Não introduza outras famílias sem aprovação do design.
-3. **Escolha o token pelo papel do elemento**, não pelo tamanho visual (tabela da seção 4). Se nenhum papel serve, pergunte ao design em vez de inventar um tamanho.
-4. **Títulos e rótulos usam peso 600; texto corrido usa 400.** O peso já faz parte do token: não acrescente `font-weight` por cima.
-5. **Responsivo:** tokens `title-*` e `display-*` têm valor desktop e mobile; os tokens `body-*`, `special` e de componente têm valor único. Mobile = viewport < 768px.
-6. **Espaçamento:** só a escala de `spacing-spec-tce.md` (o 12 está em avaliação, E-1). Nada de 10px, 20px, 15px.
-7. **Não use** `h1`–`h6`/`Typography variant` padrão do MUI com os tamanhos default. Mapeie para os tokens abaixo.
-8. Ao terminar uma tela, rode o checklist da seção 9 e aplique as recomendações da seção 7 para o tipo de página em que está trabalhando.
+2. **Fonte principal:** `Noto Sans`, em toda a interface. **Exceção única:** `Atkinson Hyperlegible Next` em **números** e **labels**, conforme a seção 2.1. Não introduza outras famílias sem aprovação do design.
+3. **Não declare `font-family` à mão.** A família vem do token do papel (Noto Sans por padrão; `--font-accent` só nos casos da seção 2.1). O erro mais comum é aplicar Atkinson no `body` ou no tema inteiro.
+4. **Escolha o token pelo papel do elemento**, não pelo tamanho visual (tabela da seção 4). Se nenhum papel serve, pergunte ao design em vez de inventar um tamanho.
+5. **Títulos e rótulos usam peso 600; texto corrido usa 400.** O peso já faz parte do token: não acrescente `font-weight` por cima.
+6. **Responsivo:** tokens `title-*` e `display-*` têm valor desktop e mobile; os tokens `body-*`, `special` e de componente têm valor único. Mobile = viewport < 768px.
+7. **Espaçamento:** só a escala de `spacing-spec-tce.md` (o 12 está em avaliação, E-1). Nada de 10px, 20px, 15px.
+8. **Não use** `h1`–`h6`/`Typography variant` padrão do MUI com os tamanhos default. Mapeie para os tokens abaixo.
+9. Ao terminar uma tela, rode o checklist da seção 9 e aplique as recomendações da seção 7 para o tipo de página em que está trabalhando.
 
 ## 2. Famílias
 
 | Token | Fonte | Uso |
 |---|---|---|
-| `--font-primary` | Atkinson Hyperlegible Next | Toda a interface |
-| `--font-secondary` | Noto Sans | Textos secundários (uso raro) |
+| `--font-primary` | Noto Sans | **Padrão de toda a interface**: títulos, corpo, botões, tabelas, menus, abas |
+| `--font-accent` | Atkinson Hyperlegible Next | **Só** números e labels (seção 2.1) |
 | `--font-display` | Noto Sans Display | Displays grandes |
 | `--font-mono` | Fira Code | Código |
 
+`--font-secondary` (antes Noto Sans) foi removido: Noto Sans agora é a fonte principal.
+
 Pesos usados: **400** (texto), **500** (apenas `blockquote`), **600** (títulos, rótulos, botões). O peso 700 existe em `designTokens.ts` mas não é usado em nenhum token da escala.
+
+### 2.1 Onde a Atkinson Hyperlegible Next entra
+
+| Caso | Regra |
+|---|---|
+| **Labels de formulário** | Token `form-label` (acima do campo). É o único token de texto que usa `--font-accent` por padrão |
+| **Números** | Elementos em que o conteúdo é **o número**: contadores ("(10)", totais por estado), identificadores (nº de ocorrência, protocolo, ID), valores numéricos de destaque, colunas numéricas de tabela, paginação (números de página), datas e prazos exibidos como valor. Sempre com `font-variant-numeric: tabular-nums` |
+
+Fora disso, **Noto Sans**. Em especial:
+
+- Número **dentro de frase** ("Você tem 3 dias para responder") fica em Noto Sans, junto com o resto do texto. Não troque a família no meio da linha.
+- Helper, placeholder, texto digitado no input, cabeçalho de tabela, botões, abas e badges ficam em Noto Sans (a decisão sobre cabeçalho de tabela, badges e abas como "labels" está em T-13).
+- A família muda; **tamanho, peso e line-height continuam os do token do papel**. Um número em `table-cell` continua 16 / 400 / 1.6, só que em Atkinson.
 
 ## 3. Escala tipográfica
 
@@ -66,15 +84,15 @@ Letter-spacing é `0px` em todos os tokens.
 
 ### Tipografia de componentes
 
-| Token | Tamanho | Peso | Line-height |
-|---|---|---|---|
-| `button-primary` | 16px (1 rem) | 600 | 1.4 |
-| `button-secondary` | 14px (0,875 rem) | 600 | 1.4 |
-| `form-label` | 16px (1 rem) | 600 | 1.4 |
-| `form-input` | 16px (1 rem) | 400 | 1.6 |
-| `form-helper` | 14px (0,875 rem) | 400 | 1.4 |
-| `table-header` | 16px (1 rem) | 600 | 1.4 |
-| `table-cell` | 16px (1 rem) | 400 | 1.6 |
+| Token | Tamanho | Peso | Line-height | Família |
+|---|---|---|---|---|
+| `button-primary` | 16px (1 rem) | 600 | 1.4 | Noto Sans |
+| `button-secondary` | 14px (0,875 rem) | 600 | 1.4 | Noto Sans |
+| `form-label` | 16px (1 rem) | 600 | 1.4 | **Atkinson** |
+| `form-input` | 16px (1 rem) | 400 | 1.6 | Noto Sans |
+| `form-helper` | 14px (0,875 rem) | 400 | 1.4 | Noto Sans |
+| `table-header` | 16px (1 rem) | 600 | 1.4 | Noto Sans (T-13) |
+| `table-cell` | 16px (1 rem) | 400 | 1.6 | Noto Sans; **Atkinson** nas células numéricas |
 
 ## 4. Qual token usar (mapa de papéis)
 
@@ -83,15 +101,16 @@ Letter-spacing é `0px` em todos os tokens.
 | Título da página (ex.: "Gerenciar destinatário") | `title-lg` |
 | Título de seção (ex.: "Ocorrências") | `title-md` |
 | Subseção / título de tabela (ex.: "Informações internas do TCE Ceará") | `title-sm` |
-| Label de campo de formulário | `form-label` (16 / 600 / 1.4) |
+| Label de campo de formulário | `form-label` (16 / 600 / 1.4, **Atkinson**) |
 | Texto digitado no input | `form-input` (16 / 400 / 1.6) |
 | Texto de ajuda (helper) | `form-helper` (14 / 400 / 1.4) |
 | Mensagem de erro / sucesso | `body-standard`, cor semântica |
 | Cabeçalho de coluna de tabela | `table-header` (16 / 600 / 1.4) |
-| Célula de tabela | `table-cell` (16 / 400 / 1.6) |
+| Célula de tabela | `table-cell` (16 / 400 / 1.6); célula numérica com `--font-accent` e `tabular-nums` |
+| Número isolado (contador, ID, protocolo, valor de destaque) | token do papel + `--font-accent` + `tabular-nums` (classe `.num`, seção 8) |
 | Botão principal (`.primary`) | `button-primary` (16 / 600) |
 | Botão secundário (`.secondary`), "Anterior/Próximo" | `button-secondary` (14 / 600) |
-| Paginação (rótulos e números) | `body-md` |
+| Paginação (rótulos e números) | `body-md`; números com `--font-accent` |
 | Breadcrumb | `body-md`, cor `text/secondary`; links em `link/default` |
 | Texto corrido, descrições | `body-md` |
 | Abas e itens de menu (ativo/inativo) | `title-sm` |
@@ -131,7 +150,7 @@ Esta seção diz **como aplicar a escala em qualquer tela** dos produtos do TCE 
 3. **Mesmo papel, mesmo token, em todos os perfis de usuário** (equipe do TCE Ceará e jurisdicionados): o que muda é o conteúdo, não o estilo.
 4. **Texto nunca abaixo de 14px** em conteúdo (`body-standard`); 12px (`caption`) só para metadado e legenda; 11px (`title-ss` mobile) só para rótulos curtos de apoio.
 5. **Não reduza a fonte para caber.** Se o texto não cabe, trunque com reticências + tooltip (tabelas) ou quebre a linha (formulários, cards).
-6. **Numerais:** colunas numéricas e identificadores com `font-variant-numeric: tabular-nums` (testar suporte da fonte antes de padronizar).
+6. **Numerais:** colunas numéricas e identificadores usam `--font-accent` (Atkinson) com `font-variant-numeric: tabular-nums` (seção 2.1). Testar o suporte a `tabular-nums` na Atkinson antes de padronizar.
 
 ### 7.2 Padrões compartilhados
 
@@ -148,9 +167,9 @@ As recomendações por página e fluxo de cada produto ficam no documento de han
 ```css
 :root {
   /* Famílias */
-  --font-primary: 'Atkinson Hyperlegible Next', 'Noto Sans', system-ui, sans-serif;
-  --font-secondary: 'Noto Sans', system-ui, sans-serif;
-  --font-display: 'Noto Sans Display', system-ui, sans-serif;
+  --font-primary: 'Noto Sans', system-ui, sans-serif;
+  --font-accent: 'Atkinson Hyperlegible Next', 'Noto Sans', system-ui, sans-serif; /* só números e labels */
+  --font-display: 'Noto Sans Display', 'Noto Sans', system-ui, sans-serif;
   --font-mono: 'Fira Code', ui-monospace, monospace;
 
   /* Desktop (padrão) */
@@ -185,6 +204,16 @@ As recomendações por página e fluxo de cada produto ficam no documento de han
     --title-ss-size: 0.6875rem;
   }
 }
+
+/* Noto Sans é o padrão de tudo; Atkinson só entra pelas duas regras abaixo */
+body { font-family: var(--font-primary); }
+
+.form-label { font-family: var(--font-accent); }
+
+.num {
+  font-family: var(--font-accent);
+  font-variant-numeric: tabular-nums;
+}
 ```
 
 Uso:
@@ -192,17 +221,24 @@ Uso:
 ```css
 .page-title   { font: var(--title-lg-weight) var(--title-lg-size)/var(--title-lg-lh) var(--font-primary); }
 .table-cell   { font: var(--body-md-weight) var(--body-md-size)/var(--body-md-lh) var(--font-primary); }
+.form-label   { font: var(--title-sm-weight) var(--title-sm-size)/var(--title-sm-lh) var(--font-accent); } /* 16 / 600 / 1.4 */
 ```
 
 ### TypeScript / MUI
 
-- `designTokens.ts` atual está **incompleto** (faltam `title-2xl/xs/ss`, variantes mobile e tokens `special`). Regenere a partir do `tokens.json`; não edite valores à mão.
+- `designTokens.ts` atual está **incompleto** (faltam `title-2xl/xs/ss`, variantes mobile e tokens `special`) e provavelmente ainda aponta Atkinson como família principal. Regenere a partir do `tokens.json` já corrigido; não edite valores à mão.
+- No `createTheme`, defina `typography.fontFamily` como **Noto Sans**. Atkinson entra só na variante do label e num utilitário de número (`.num` ou `sx`). Se o tema inteiro estiver com Atkinson, é o sintoma que gerou esta revisão.
 - No MUI, crie variantes customizadas no `createTheme` com os nomes dos tokens (`title-lg`, `body-md`…) em vez de reaproveitar `h1`–`h6`/`body1`.
-- Em `DataGrid`, aplique `table-header` no `columnHeader` e `table-cell` no `cell` via `sx`.
+- Para os labels, sobrescreva `fontFamily` em `MuiInputLabel`, `MuiFormLabel` e `MuiFormControlLabel` (se o label do checkbox/radio for considerado label, ver T-13).
+- Em `DataGrid`, aplique `table-header` no `columnHeader` e `table-cell` no `cell` via `sx`; nas colunas numéricas, use `cellClassName: 'num'`.
 
 ## 9. Checklist de revisão
 
 - [ ] Nenhum `font-size`, `font-weight` ou `line-height` literal no código novo
+- [ ] Nenhum `font-family` literal: a família vem de `--font-primary` (padrão) ou `--font-accent` (só números e labels)
+- [ ] `body` e o tema do MUI em **Noto Sans**; Atkinson só em labels e números
+- [ ] Labels de formulário em Atkinson; helper, input e cabeçalho de tabela em Noto Sans
+- [ ] Contadores, IDs, colunas numéricas e números de paginação em Atkinson com `tabular-nums`; números dentro de frase em Noto Sans
 - [ ] Título da página `title-lg`, seção `title-md`, subseção `title-sm`
 - [ ] Labels acima do input com 8px; campos com 16px entre si
 - [ ] Cabeçalho de tabela `table-header`, células `table-cell`, paginação `body-md`
@@ -222,4 +258,4 @@ Os contrastes de cada token de texto, link, botão e fundo estão em `color-spec
 
 ## 11. Pontos em aberto
 
-Todos os pontos em aberto de tipografia estão em **`decisoes-em-aberto.md`** (T-1 a T-12). Esta spec adota o valor do `tokens.json` até a decisão.
+Todos os pontos em aberto de tipografia estão em **`decisoes-em-aberto.md`** (T-2 a T-13; T-1 foi decidido em 2026-10-21). Esta spec adota o valor do `tokens.json` até a decisão.

@@ -2,6 +2,19 @@
 
 Mais recente primeiro.
 
+## ds-v2 — 2026-10-21 (a confirmar; a tag é decisão do design)
+
+**Decisão tomada: família tipográfica (fecha o T-1)**
+- **Noto Sans** passa a ser a fonte principal de toda a interface. **Atkinson Hyperlegible Next** vira fonte de acento e só entra em **números** e **labels** (`form-label`, contadores, identificadores, colunas numéricas, paginação). Antes, a spec mandava Atkinson em toda a interface, e foi isso que fez o código aplicar Atkinson na maior parte do sistema.
+- `typography-spec-tce.md`: novo token `--font-accent` (Atkinson) e `--font-primary` agora é Noto Sans; `--font-secondary` removido; nova seção 2.1 (onde a Atkinson entra); coluna "Família" nos tokens de componente; classe `.num`; orientação para `createTheme` do MUI (`fontFamily` em Noto Sans, Atkinson só no label e nos números); regra 3 (não declarar `font-family` à mão) e checklist atualizados.
+- `design-system-index.md`: regra 6 e estado da tipografia atualizados.
+- `padroes-de-interface.md`: famílias indicadas por padrão (formulários, tabelas, identificadores, paginação, contagem no título).
+- `decisoes-em-aberto.md`: T-1 removido; **T-13** incluído (o que mais conta como "label" para a Atkinson).
+
+**Impacto para os devs**
+- Quem copiou a família de `--font-primary` ou do tema do MUI precisa revisar: a família principal mudou de Atkinson para Noto Sans. Os usos de Atkinson devem ficar só em labels e números.
+- `tokens.json` e `designTokens.ts` precisam ser corrigidos na origem e regenerados (ainda não feito).
+
 ## ds-v1 — 2026-10-07
 
 Primeira versão neste repositório, com revisão estrutural das specs.

@@ -2,19 +2,20 @@
 
 > **Para o Claude do dev:** tudo o que está aqui **não foi decidido**. Não implemente nenhum desses pontos por conta própria; use a coluna "Enquanto isso" e pergunte ao design se precisar de mais. Cada decisão tomada atualiza a spec de origem e sai desta lista.
 
-Status: consolidado em 2026-10-05; **lista única** de pendências do DS desde 2026-10-07 (as specs apontam para os IDs daqui). Revisão estrutural em 2026-10-07 (versão **ds-v1**). Índice geral: `design-system-index.md`.
+Status: consolidado em 2026-10-05; **lista única** de pendências do DS desde 2026-10-07 (as specs apontam para os IDs daqui). Revisão estrutural em 2026-10-07 (versão **ds-v1**). Atualizado em 2026-10-21: T-1 decidido e removido; T-13 incluído. Índice geral: `design-system-index.md`.
 
 Legenda de impacto: **Bloqueante** = o dev não deve fechar a padronização sem a decisão. **Importante** = muda valor ou nome usado em várias telas. **Menor** = afeta poucos casos.
 
 ## Tipografia (`typography-spec-tce.md`)
 
+Decidido em 2026-10-21 (sai da lista): **T-1, família tipográfica.** A fonte principal é Noto Sans; Atkinson Hyperlegible Next só em números e labels.
+
 | ID | Decisão | Opções | Proposta / adotado hoje | Impacto | Enquanto isso |
 |---|---|---|---|---|---|
-| T-1 | Família tipográfica | (a) migrar Figma para Atkinson; (b) trocar a família principal nos tokens | Spec escrita para (a) | **Bloqueante** | Implementar pelos tokens (Atkinson); não copiar fonte do Figma |
 | T-2 | Line-height | 1,5 como padrão do corpo ou manter 1,4/1,6 | Tokens (1,4 e 1,6) | Importante | Usar os tokens |
 | T-3 | Peso | 600 como único peso de ênfase; botões em 600 ou Regular | Tokens (600) | Importante | Usar 600 |
 | T-4 | Tamanho 18px | Criar tokens `title` e `button` de 18 ou padronizar em 16/20 | Sem token | Importante | Não usar 18px fora de `body-lg` |
-| T-5 | Número da ocorrência em título | Token `title-lg-regular` ou peso 600 do título | Peso do título | Menor | `title-lg` com o peso do título |
+| T-5 | Número da ocorrência em título | Token `title-lg-regular` ou peso 600 do título | Peso do título | Menor | `title-lg` com o peso do título (família do título: Noto Sans, ver T-13) |
 | T-6 | Título de modal e de página | `title-lg` (24) em ambos | Adotado | Menor | `title-lg` |
 | T-7 | Escala mobile | Subir `title-sm` mobile de 14 para 16 | Tokens (14) | Importante | Usar os tokens |
 | T-8 | Texto de ajuda | 14 (token) ou 16 (guia antigo) | Adotado: 14 | Menor | 14 |
@@ -22,6 +23,7 @@ Legenda de impacto: **Bloqueante** = o dev não deve fechar a padronização sem
 | T-10 | Ponto de quebra mobile | 768px | Adotado | Importante | 768px (ver também G-1) |
 | T-11 | Negrito em texto corrido | Sem token | Adotado: 600 | Menor | 600 |
 | T-12 | Cores de texto | Resolvido em parte por `color-spec-tce.md` (abas inativas em `text/secondary`, placeholder em `text/placeholder`, texto verde com 7,1:1); resta o alerta amarelo (C-2) | Resolvido em parte | Menor | Usar os tokens de cor |
+| T-13 | O que conta como "label" para a Atkinson (além do `form-label`) | Incluir ou não: cabeçalho de tabela, abas e itens de menu, badges de status, rótulo de par rótulo–valor, labels de checkbox/radio, `caption` | Só `form-label` e números; o resto em Noto Sans | Importante | Atkinson só no `form-label` e em números (typography-spec, seção 2.1); perguntar antes de ampliar |
 
 ## Espaçamento (`spacing-spec-tce.md`)
 
@@ -83,6 +85,6 @@ Já feito em 05/10/2026: cabeçalho em `table/header` (novo token, alias de gray
 
 ## Tarefas de design pendentes (não são decisões)
 
-- Levar ao dono do DS as lacunas de tipografia: Atkinson, tamanhos 14/12, peso SemiBold, line-height e letter-spacing.
+- Alinhar o Figma e o `tokens.json` à decisão de família (2026-10-21): Noto Sans como principal; Atkinson só em `form-label` e números. Corrigir também as lacunas de tipografia: tamanhos 14/12, peso SemiBold, line-height e letter-spacing.
 - Spec de cor: faltam bordas, ícones, status e alertas, estados de campo, cor de ação genérica e elevação (`color-spec-tce.md`, seção 9).
 - Mapear Code Connect dos componentes de grid e layout.

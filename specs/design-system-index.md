@@ -2,13 +2,13 @@
 
 > **Para o Claude do dev:** leia este arquivo primeiro. Ele diz qual spec consultar para cada tarefa, o que vale para todas e o que ainda está pendente. Se duas specs divergirem, vale a ordem de precedência da seção 4. Itens **A DECIDIR** não devem ser implementados por conta própria: pergunte ao design.
 
-Status: rascunho de 2026-10-05. Revisão estrutural em 2026-10-07 (versão **ds-v1**). Origem: arquivo Figma ⭐ Design System TCE (fileKey `mn0wkryj2sBHmW412qD2o8`), protótipos existentes e CSS original do TCE. As specs são do design system; a aplicação em cada produto fica em um handoff próprio.
+Status: rascunho de 2026-10-05. Revisão estrutural em 2026-10-07 (versão **ds-v1**). Atualizado em 2026-10-21 (família tipográfica decidida). Origem: arquivo Figma ⭐ Design System TCE (fileKey `mn0wkryj2sBHmW412qD2o8`), protótipos existentes e CSS original do TCE. As specs são do design system; a aplicação em cada produto fica em um handoff próprio.
 
 ## 1. Mapa das specs
 
 | Spec | Arquivo | Cobre | Coleção / página no Figma | Estado |
 |---|---|---|---|---|
-| Tipografia | `typography-spec-tce.md` | Famílias, escala, pesos, line-height, mapa de papéis, padrões de uso, cores de texto, contraste | Estilos de texto do DS | Em uso, com 12 pendências (bloqueante: família tipográfica) |
+| Tipografia | `typography-spec-tce.md` | Famílias (Noto Sans principal; Atkinson só em números e labels), escala, pesos, line-height, mapa de papéis, padrões de uso, cores de texto, contraste | Estilos de texto do DS | Em uso, com 12 pendências (T-2 a T-13); família decidida em 2026-10-21 |
 | Cor (escopo parcial) | `color-spec-tce.md` | Primitivas e semânticos de texto, link, botão e fundo; contraste; regras de uso | Coleções Color / Primitives e Color / Semantic, página 🎨 Cores | Rascunho parcial |
 | Espaçamento | `spacing-spec-tce.md` | Escala 4–48, tokens semânticos, padding de componentes, alvos clicáveis, espaçamento de texto | Coleção Spacing, página Spacing | Rascunho |
 | Grid e layout | `grid-layout-spec-tce.md` | Colunas, margem, gutter, menu lateral, templates de página | Coleções Grid e Layout, páginas 📏 Grid e 🧱 Layout | Rascunho |
@@ -38,7 +38,7 @@ A spec de cor cobre só texto, link, botão e fundo; bordas, ícones e status ai
 3. **Valor novo só com aprovação do design system.** Se nenhum token serve, pergunte.
 4. **Alvo clicável: 44px no desktop e 48px no mobile** (NBR 17225).
 5. **Cor nunca é o único indicador** de erro, sucesso ou status (WCAG).
-6. **Não copie fonte, peso ou line-height direto do Figma** enquanto a divergência de tipografia estiver aberta; siga os tokens da spec (ver `typography-spec-tce.md`, aviso no topo).
+6. **Família tipográfica:** Noto Sans em toda a interface; Atkinson Hyperlegible Next só em números e labels (ver `typography-spec-tce.md`, seção 2.1). **Não copie line-height direto do Figma** enquanto T-2 estiver aberto; siga os tokens da spec.
 7. **O que está marcado A DECIDIR não se implementa.** Registre a dúvida e pergunte.
 8. Mudança de valor de um token existente exige aviso aos devs e lista dos usos afetados.
 
