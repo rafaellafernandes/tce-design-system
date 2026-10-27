@@ -2,7 +2,7 @@
 
 > **Para o Claude do dev:** tudo o que está aqui **não foi decidido**. Não implemente nenhum desses pontos por conta própria; use a coluna "Enquanto isso" e pergunte ao design se precisar de mais. Cada decisão tomada atualiza a spec de origem e sai desta lista.
 
-Status: consolidado em 2026-10-05; **lista única** de pendências do DS desde 2026-10-07 (as specs apontam para os IDs daqui). Revisão estrutural em 2026-10-07 (versão **ds-v1**). Atualizado em 2026-10-21: T-1 decidido e removido; T-13 incluído. Atualizado em 2026-10-27: piso de 16px decidido; T-7 e T-8 removidos; T-14 incluído. Índice geral: `design-system-index.md`.
+Status: consolidado em 2026-10-05; **lista única** de pendências do DS desde 2026-10-07 (as specs apontam para os IDs daqui). Revisão estrutural em 2026-10-07 (versão **ds-v1**). Atualizado em 2026-10-21: T-1 decidido e removido; T-13 incluído. Atualizado em 2026-10-27: piso de 16px decidido; T-7 e T-8 removidos; T-14 incluído (número de destaque decidido: `title-2xl`). Índice geral: `design-system-index.md`.
 
 Legenda de impacto: **Bloqueante** = o dev não deve fechar a padronização sem a decisão. **Importante** = muda valor ou nome usado em várias telas. **Menor** = afeta poucos casos.
 
@@ -24,7 +24,7 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 | T-11 | Negrito em texto corrido | Sem token | Adotado: 600 | Menor | 600 |
 | T-12 | Cores de texto | Resolvido em parte por `color-spec-tce.md` (abas inativas em `text/secondary`, placeholder em `text/placeholder`, texto verde com 7,1:1); resta o alerta amarelo (C-2) | Resolvido em parte | Menor | Usar os tokens de cor |
 | T-13 | O que conta como "label" para a Atkinson (além do `form-label`) | Incluir ou não: cabeçalho de tabela, abas e itens de menu, badges de status, rótulo de par rótulo–valor, labels de checkbox/radio, `caption` | Só `form-label` e números; o resto em Noto Sans | Importante | Atkinson só no `form-label` e em números (typography-spec, seção 2.1); perguntar antes de ampliar |
-| T-14 | Papéis sem token: número de destaque (indicador/KPI), `display-*` e `title-2xl` | Definir o token do número de destaque (sem repetir o `title-lg` da página) e o uso de `display-*`/`title-2xl` (`display-small` e `title-2xl` têm o mesmo tamanho), ou remover os que não têm uso | Sem token | Importante | Perguntar ao design; não usar `title-lg` para número de destaque |
+| T-14 | Papel dos tokens `display-*` | Definir o uso (páginas de marketing?) ou remover. `display-small` tem o mesmo tamanho de `title-2xl` | Sem papel nas telas de produto | Menor | Não usar sem aprovação do design |
 
 ## Espaçamento (`spacing-spec-tce.md`)
 

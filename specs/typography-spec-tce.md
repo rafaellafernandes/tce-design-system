@@ -119,13 +119,13 @@ Letter-spacing é `0px` em todos os tokens (E-2 em aberto). **Menor tamanho da e
 | Abas e itens de menu (ativo/inativo) | `title-sm` |
 | Título de modal | `title-lg` |
 | Metadado, legenda | `caption` (16 / 400 / 1.4), `text/secondary` |
-| Selo, status e chip (texto) | `title-sm` (16 / 600); o componente cresce para acomodar o texto |
+| Selo, status e chip (texto) | `title-sm` (16 / 600); o componente cresce para acomodar o texto. Exceção: chip de identificação ao lado de um nome (cargo ou perfil de usuário) usa `body-md` (16 / 400) em `text/secondary`, para não competir com o nome |
 | Rótulo de par rótulo–valor | `body-md` em `text/secondary` |
 | Tooltip | `body-md` |
 | Placeholder | `form-input` em itálico, `text/placeholder` |
 | Trecho de código | `code` (16 / 600 / 1.4, Fira Code) |
-| Número de destaque (indicador, KPI) | **A DECIDIR (T-14).** Não use `title-lg`, que é do título da página. Pergunte ao design |
-| `display-*` e `title-2xl` | Sem papel definido nas telas de produto (T-14). Não use sem aprovação do design |
+| Número de destaque (indicador, KPI) | `title-2xl` (32 / 600 / 1.2; mobile 24) com `--font-accent` e `tabular-nums` (`.num`). Texto de apoio abaixo: `body-md` em `text/secondary`. Não use `title-lg`, que é do título da página |
+| `display-*` | Sem papel definido nas telas de produto (T-14). Não use sem aprovação do design |
 
 Ênfase dentro de texto corrido (datas, status, valor principal de card): usar peso **600** sobre `body-md`/`body-lg`.
 

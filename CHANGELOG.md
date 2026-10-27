@@ -8,7 +8,9 @@ Mais recente primeiro.
 - Nenhum texto da interface fica abaixo de 16px (1 rem), em nenhum breakpoint. Abaixo de 18px, a hierarquia se faz com peso e cor.
 - **Tokens removidos** (sem alias): `title-xs`, `title-ss` e `body-standard`. Troca de uso: `title-xs` e `title-ss` → `title-sm`; `body-standard` → `body-md`.
 - **Tokens que subiram para 16px:** `caption` (era 12), `code` (era 14), `form-helper` (era 14), `button-secondary` (era 14). Mobile: `title-sm` passa de 14 para 16.
-- Resolve T-7 e T-8. Novo T-14 (número de destaque, `display-*` e `title-2xl` sem papel definido).
+- Resolve T-7 e T-8. Novo T-14 (`display-*` sem papel definido).
+- **Número de destaque (indicador, KPI):** `title-2xl` com Atkinson e `tabular-nums`; texto de apoio em `body-md` `text/secondary`.
+- **Chip de identificação ao lado de um nome** (cargo, perfil): `body-md` (16/400) em `text/secondary`; os demais chips e selos seguem em `title-sm`.
 - `typography-spec-tce.md`: afirmação errada sobre o Figma corrigida; `--font-display` removido (`display-*` em Noto Sans); `code` explícito em Fira Code; tokens de componente (`--button-*`, `--form-*`, `--table-*`) no CSS; carregamento das fontes; novos papéis no mapa (selo, tooltip, placeholder, código, rótulo do par rótulo–valor); checklist sem os valores de espaçamento (vale a `spacing-spec-tce.md`).
 - `padroes-de-interface.md`: badges em `title-sm`; toast em `body-md`; rótulo do par rótulo–valor em `body-md`.
 - **Impacto para os devs:** trocar os usos dos tokens removidos e regenerar `tokens.json` e `designTokens.ts`. Telas com chip, selo, helper ou legenda podem crescer em altura para acomodar 16px.
