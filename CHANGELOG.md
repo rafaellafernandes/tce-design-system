@@ -4,6 +4,15 @@ Mais recente primeiro.
 
 ## ds-v2 — 2026-10-21 (a confirmar; a tag é decisão do design)
 
+**Decisão tomada em 2026-10-27: piso de 16px para qualquer texto**
+- Nenhum texto da interface fica abaixo de 16px (1 rem), em nenhum breakpoint. Abaixo de 18px, a hierarquia se faz com peso e cor.
+- **Tokens removidos** (sem alias): `title-xs`, `title-ss` e `body-standard`. Troca de uso: `title-xs` e `title-ss` → `title-sm`; `body-standard` → `body-md`.
+- **Tokens que subiram para 16px:** `caption` (era 12), `code` (era 14), `form-helper` (era 14), `button-secondary` (era 14). Mobile: `title-sm` passa de 14 para 16.
+- Resolve T-7 e T-8. Novo T-14 (número de destaque, `display-*` e `title-2xl` sem papel definido).
+- `typography-spec-tce.md`: afirmação errada sobre o Figma corrigida; `--font-display` removido (`display-*` em Noto Sans); `code` explícito em Fira Code; tokens de componente (`--button-*`, `--form-*`, `--table-*`) no CSS; carregamento das fontes; novos papéis no mapa (selo, tooltip, placeholder, código, rótulo do par rótulo–valor); checklist sem os valores de espaçamento (vale a `spacing-spec-tce.md`).
+- `padroes-de-interface.md`: badges em `title-sm`; toast em `body-md`; rótulo do par rótulo–valor em `body-md`.
+- **Impacto para os devs:** trocar os usos dos tokens removidos e regenerar `tokens.json` e `designTokens.ts`. Telas com chip, selo, helper ou legenda podem crescer em altura para acomodar 16px.
+
 **Decisão tomada: família tipográfica (fecha o T-1)**
 - **Noto Sans** passa a ser a fonte principal de toda a interface. **Atkinson Hyperlegible Next** vira fonte de acento e só entra em **números** e **labels** (`form-label`, contadores, identificadores, colunas numéricas, paginação). Antes, a spec mandava Atkinson em toda a interface, e foi isso que fez o código aplicar Atkinson na maior parte do sistema.
 - `typography-spec-tce.md`: novo token `--font-accent` (Atkinson) e `--font-primary` agora é Noto Sans; `--font-secondary` removido; nova seção 2.1 (onde a Atkinson entra); coluna "Família" nos tokens de componente; classe `.num`; orientação para `createTheme` do MUI (`fontFamily` em Noto Sans, Atkinson só no label e nos números); regra 3 (não declarar `font-family` à mão) e checklist atualizados.

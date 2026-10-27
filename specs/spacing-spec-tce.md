@@ -61,7 +61,7 @@ A coluna "Fonte" diz de onde vem o valor: **CSS** (CSS original, confirmado), **
 | Bloco de código (`pre`) | 8 | margem 16 acima e abaixo | CSS |
 | Card | 16 (`card-padding`) | gap interno a definir | Spec — **A DECIDIR** (E-3: protótipos usam 24) |
 | Modal | a definir | label→campo 8 | falta levantar |
-| Chip / badge | 12 horizontal, 3 vertical | altura 30 | Figma — 3 está fora da escala, **A DECIDIR** (E-6) |
+| Chip / badge | 12 horizontal, 3 vertical | altura 30 | Figma — 3 está fora da escala, **A DECIDIR** (E-6). Com o piso de 16px de texto (`title-sm`, line-height 1.4 ≈ 22), proposta: 4 vertical (dentro da escala), altura mínima 30 |
 | Barra de ações fixa | a definir | a definir | falta levantar |
 | Linha de tabela, item de menu, breadcrumb | a documentar | — | falta levantar |
 

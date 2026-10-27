@@ -2,13 +2,15 @@
 
 > **Para o Claude do dev:** tudo o que está aqui **não foi decidido**. Não implemente nenhum desses pontos por conta própria; use a coluna "Enquanto isso" e pergunte ao design se precisar de mais. Cada decisão tomada atualiza a spec de origem e sai desta lista.
 
-Status: consolidado em 2026-10-05; **lista única** de pendências do DS desde 2026-10-07 (as specs apontam para os IDs daqui). Revisão estrutural em 2026-10-07 (versão **ds-v1**). Atualizado em 2026-10-21: T-1 decidido e removido; T-13 incluído. Índice geral: `design-system-index.md`.
+Status: consolidado em 2026-10-05; **lista única** de pendências do DS desde 2026-10-07 (as specs apontam para os IDs daqui). Revisão estrutural em 2026-10-07 (versão **ds-v1**). Atualizado em 2026-10-21: T-1 decidido e removido; T-13 incluído. Atualizado em 2026-10-27: piso de 16px decidido; T-7 e T-8 removidos; T-14 incluído. Índice geral: `design-system-index.md`.
 
 Legenda de impacto: **Bloqueante** = o dev não deve fechar a padronização sem a decisão. **Importante** = muda valor ou nome usado em várias telas. **Menor** = afeta poucos casos.
 
 ## Tipografia (`typography-spec-tce.md`)
 
 Decidido em 2026-10-21 (sai da lista): **T-1, família tipográfica.** A fonte principal é Noto Sans; Atkinson Hyperlegible Next só em números e labels.
+
+Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Resolve **T-7** (`title-sm` mobile = 16) e **T-8** (`form-helper` = 16). Os tokens `title-xs`, `title-ss` e `body-standard` foram removidos; `caption`, `code`, `form-helper` e `button-secondary` passaram a 16px.
 
 | ID | Decisão | Opções | Proposta / adotado hoje | Impacto | Enquanto isso |
 |---|---|---|---|---|---|
@@ -17,13 +19,12 @@ Decidido em 2026-10-21 (sai da lista): **T-1, família tipográfica.** A fonte p
 | T-4 | Tamanho 18px | Criar tokens `title` e `button` de 18 ou padronizar em 16/20 | Sem token | Importante | Não usar 18px fora de `body-lg` |
 | T-5 | Número da ocorrência em título | Token `title-lg-regular` ou peso 600 do título | Peso do título | Menor | `title-lg` com o peso do título (família do título: Noto Sans, ver T-13) |
 | T-6 | Título de modal e de página | `title-lg` (24) em ambos | Adotado | Menor | `title-lg` |
-| T-7 | Escala mobile | Subir `title-sm` mobile de 14 para 16 | Tokens (14) | Importante | Usar os tokens |
-| T-8 | Texto de ajuda | 14 (token) ou 16 (guia antigo) | Adotado: 14 | Menor | 14 |
 | T-9 | Line-height dos títulos | 1,2 (reset antigo) ou o do token | Adotado: o do token | Menor | Token |
 | T-10 | Ponto de quebra mobile | 768px | Adotado | Importante | 768px (ver também G-1) |
 | T-11 | Negrito em texto corrido | Sem token | Adotado: 600 | Menor | 600 |
 | T-12 | Cores de texto | Resolvido em parte por `color-spec-tce.md` (abas inativas em `text/secondary`, placeholder em `text/placeholder`, texto verde com 7,1:1); resta o alerta amarelo (C-2) | Resolvido em parte | Menor | Usar os tokens de cor |
 | T-13 | O que conta como "label" para a Atkinson (além do `form-label`) | Incluir ou não: cabeçalho de tabela, abas e itens de menu, badges de status, rótulo de par rótulo–valor, labels de checkbox/radio, `caption` | Só `form-label` e números; o resto em Noto Sans | Importante | Atkinson só no `form-label` e em números (typography-spec, seção 2.1); perguntar antes de ampliar |
+| T-14 | Papéis sem token: número de destaque (indicador/KPI), `display-*` e `title-2xl` | Definir o token do número de destaque (sem repetir o `title-lg` da página) e o uso de `display-*`/`title-2xl` (`display-small` e `title-2xl` têm o mesmo tamanho), ou remover os que não têm uso | Sem token | Importante | Perguntar ao design; não usar `title-lg` para número de destaque |
 
 ## Espaçamento (`spacing-spec-tce.md`)
 
@@ -85,6 +86,6 @@ Já feito em 05/10/2026: cabeçalho em `table/header` (novo token, alias de gray
 
 ## Tarefas de design pendentes (não são decisões)
 
-- Alinhar o Figma e o `tokens.json` à decisão de família (2026-10-21): Noto Sans como principal; Atkinson só em `form-label` e números. Corrigir também as lacunas de tipografia: tamanhos 14/12, peso SemiBold, line-height e letter-spacing.
+- Alinhar o Figma e o `tokens.json` à decisão de família (2026-10-21) e ao piso de 16px (2026-10-27): Noto Sans como principal; Atkinson só em `form-label` e números; nenhum texto abaixo de 16px. Corrigir também as lacunas de tipografia: peso SemiBold, line-height, letter-spacing e versões mobile.
 - Spec de cor: faltam bordas, ícones, status e alertas, estados de campo, cor de ação genérica e elevação (`color-spec-tce.md`, seção 9).
 - Mapear Code Connect dos componentes de grid e layout.
