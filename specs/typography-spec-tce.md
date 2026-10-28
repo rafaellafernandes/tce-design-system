@@ -4,11 +4,11 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **4.2.0** (em uso, com pendências) |
+| **Versão da spec** | **4.2.1** (em uso, com pendências) |
 | **Última atualização** | **2026-10-28** |
 | Versão do DS | em revisão, ainda sem tag (o `CHANGELOG.md` registra `ds-v3` como a confirmar; a tag é decisão do design) |
 | **Camada** | **1. Átomos (tokens)** |
-| **Depende de** (data da última atualização lida) | Tokens de mesma camada, lidas em 2026-10-28 (ainda sem cabeçalho padrão; última revisão registrada em cada uma): `color-spec-tce.md` (2.1.0, 2026-10-28; cores de texto), `spacing-spec-tce.md` (ds-v1, 2026-10-07; escala, E-1), `grid-layout-spec-tce.md` (ds-v1, 2026-10-07; breakpoints, G-1) |
+| **Depende de** (data da última atualização lida) | Tokens de mesma camada, lidas em 2026-10-28 (ainda sem cabeçalho padrão; última revisão registrada em cada uma): `color-spec-tce.md` (2.2.0, 2026-10-28; cores de texto), `spacing-spec-tce.md` (2.0.0, 2026-10-28; escala), `grid-layout-spec-tce.md` (1.1.0, 2026-10-28; breakpoints) |
 | **Usada por** | `button-spec-tce.md`, `padroes-de-interface.md` e, quando existirem, as specs de campo, label, tabela, modal, header, menu lateral e demais componentes com texto |
 | Arquivo e Figma | `specs/typography-spec-tce.md`; coleção `Typography` e estilos `Spec/*` do arquivo ⭐ Design System TCE (seção 12) |
 
@@ -28,7 +28,7 @@ Pendências abertas: T-3, T-4, T-5, T-12, T-13 e T-15 (`decisoes-em-aberto.md`).
 4. **Escolha o token pelo papel do elemento**, não pelo tamanho visual (tabela da seção 4). Se nenhum papel serve, pergunte ao design em vez de inventar um tamanho.
 5. **Títulos e rótulos usam peso 600; texto corrido usa 400.** O peso já faz parte do token: não acrescente `font-weight` por cima.
 6. **Responsivo:** tokens `title-*` e `display-*` têm valor desktop e mobile; os tokens `body-*` e `special` têm valor único. Mobile = viewport < 768px.
-7. **Espaçamento:** só a escala de `spacing-spec-tce.md` (o 12 está em avaliação, E-1). Nada de 10px, 20px, 15px.
+7. **Espaçamento:** só a escala de `spacing-spec-tce.md` (4, 8, 12, 16, 24, 32 e 48; 64 e 96 só em hero). Nada de 10px, 20px, 15px.
 8. **Não use** `h1`–`h6`/`Typography variant` padrão do MUI com os tamanhos default. Mapeie para os tokens abaixo.
 9. Ao terminar uma tela, rode o checklist da seção 9 e aplique as recomendações da seção 7 para o tipo de página em que está trabalhando.
 10. **Nenhum texto abaixo de 16px.** Se o conteúdo não cabe, mude o layout (quebra de linha, coluna mais larga, truncar com tooltip); não reduza a fonte.
@@ -114,6 +114,7 @@ Botão, label, input, helper, cabeçalho e célula de tabela usam tokens da esca
 ### 3.1 Regras dos tokens `display-*` (decidido em 2026-10-28)
 
 - **Uso:** hero e páginas institucionais, um `display-*` por página. Telas de produto continuam com `title-*`.
+- **Espaçamento do hero:** `spacing/hero-*` (`spacing-spec-tce.md`, seção 2.2).
 - **Composição do hero:** linha de apoio acima (`title-md`, por exemplo "Boas vindas ao"), nome em `display-2xl` ou `display-xl`, complemento abaixo em `body-lg`.
 - **Tamanho fluido (opcional):** entre o valor mobile e o desktop com `clamp()`. Os breakpoints continuam valendo.
 - **Letter-spacing:** `0`, sem exceção para o hero (seção 5.2). O espaçamento largo do hero antigo do Conecta (8%) não vale.
@@ -429,6 +430,7 @@ Valores de cada variante: os da seção 3, em `rem` e line-height sem unidade. A
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 4.2.1 | 2026-10-28 | Dependências conferidas (espaçamento 2.0.0, grid 1.1.0, cor 2.2.0); espaçamento do hero na seção 3.1 |
 | 4.2.0 | 2026-10-28 | Letter-spacing por token com teto 0 e regras de acessibilidade (seção 5.2, fecha T-16); 23 variáveis novas no Figma (102 no total); variáveis CSS `--tcece-<token>-letter-spacing` |
 | 4.1.0 | 2026-10-28 | `display-2xl` e `display-xl` adotados (peso 700) com regras da seção 3.1; seção 5.1 (reflow, quebra de palavras, idioma, listas); mapeamento para o MUI com variantes `tcece*` (T-15); T-6, T-9, T-10, T-11 e T-14 decididos; revisão do tracking aberta (T-16); Figma com 79 variáveis e 14 estilos |
 | 4.0.1 | 2026-10-28 | Nomes dos tokens de cor atualizados conforme `color-spec-tce.md` 2.0.0 (texto) |

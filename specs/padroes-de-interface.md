@@ -4,11 +4,11 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **2.0.0** (rascunho) |
+| **Versão da spec** | **2.0.1** (rascunho) |
 | **Última atualização** | **2026-10-28** |
 | Versão do DS | em revisão, ainda sem tag |
 | **Camada** | **2. Moléculas e 3. Organismos (mistura; cada padrão declara a sua)** |
-| **Depende de** (data da última atualização lida) | `typography-spec-tce.md` 4.1.0, `color-spec-tce.md` 2.1.0, `spacing-spec-tce.md` 1.1.0, `grid-layout-spec-tce.md` 1.0.0 e `button-spec-tce.md` 0.7.0 (todas lidas em 2026-10-28) |
+| **Depende de** (data da última atualização lida) | `typography-spec-tce.md` 4.2.1, `color-spec-tce.md` 2.2.0, `spacing-spec-tce.md` 2.0.0, `grid-layout-spec-tce.md` 1.1.0 e `button-spec-tce.md` 0.8.0 (todas lidas em 2026-10-28) |
 | **Usada por** | Telas dos produtos (Páginas, fora do DS); specs de componente que nascerem destes padrões (tabela, modal, formulário, paginação…) |
 | Arquivo e Figma | `specs/padroes-de-interface.md` |
 
@@ -40,6 +40,7 @@ Histórico na última seção. Formato do cabeçalho: `design-system-index.md`, 
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 2.0.1 | 2026-10-28 | Dependências conferidas contra as novas versões de espaçamento, grid, cor, tipografia e botão; sem mudança de regra |
 | 2.0.0 | 2026-10-28 | Tokens de cor com os nomes novos (`color-spec-tce.md` 2.0.0+); classe `.num` → `.tcece-num` (**quebra de nome**); ponteiro para a spec do botão nos modais |
 | 1.2.0 | 2026-10-28 | `ds-v3`: tokens de componente (`button-*`, `form-*`, `table-*`) removidos; padrões usam `title-sm`, `body-md` e `caption` |
 | 1.1.1 | 2026-10-27 | Piso de 16px (badges, toast e rótulo do par rótulo–valor trocam de token) |

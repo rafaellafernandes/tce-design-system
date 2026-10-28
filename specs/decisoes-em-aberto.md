@@ -10,6 +10,21 @@ Legenda de impacto: **Bloqueante** = o dev não deve fechar a padronização sem
 
 Decidido em 2026-10-21 (sai da lista): **T-1, família tipográfica.** A fonte principal é Noto Sans; Atkinson Hyperlegible Next só em números e labels.
 
+Decidido em 2026-10-28 (sai da lista), terceira rodada (espaçamento e grid):
+- **E-1** `spacing/12`: manter (usado no botão com ícone e no chip).
+- **E-3** `card-padding`: 24.
+- **E-5** nomes: `--tcece-space-*`.
+- **E-6** padding vertical do chip: 4 (Figma: `Selo` ajustado).
+- **E-7** entre alvos: 16 entre botões de um grupo; 8 é o mínimo absoluto.
+- **G-1** breakpoints: Mobile 0 a 767, iPad 768 a 1199, Desktop 12 de 1200 a 1919, Desktop 14 a partir de 1920 (`xs: 0`, `md: 768`, `lg: 1200`, `xl: 1920`).
+- **G-2** margem desktop: 80 (Figma).
+- **G-3** menu lateral no iPad e Mobile: drawer.
+- **G-4** margem com menu: 48.
+- **G-5** nomes: `--tcece-grid-*` e `--tcece-layout-*`.
+- **G-6** ocupação de colunas: formulário e texto longo em 8 de 12 (com menu), 6 de 14, largura total no iPad e no mobile; cards e tabelas conforme a tabela da seção 6 do grid.
+- **G-7** publicação da biblioteca: passo de processo, fora da lista.
+- Também decididos: foco com `outline` e folga de 5px (e `outline` transparente no botão para o modo de alto contraste), `scroll-padding` para foco não encoberto, áreas seguras no mobile, densidade única, `spacing/64` e `spacing/96` só para hero, `theme.spacing` com base 8, escala de ícone 20/24/32.
+
 Decidido em 2026-10-28 (sai da lista), segunda rodada:
 - **T-6** título de modal e de página: `title-lg` (24).
 - **T-9** line-height dos títulos: o do token.
@@ -39,11 +54,6 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 
 | ID | Decisão | Opções | Proposta / adotado hoje | Impacto | Enquanto isso |
 |---|---|---|---|---|---|
-| E-1 | `spacing/12` | Manter ou remover (o CSS original não usa) | Em avaliação | Menor | Evitar 12 em tela nova |
-| E-3 | `card-padding` | 16 (spec) ou 24 (uso atual em protótipos) | Token em 16 | Importante | Perguntar |
-| E-5 | Prefixo e nomes dos tokens de espaçamento | `--tcece-space-*` ou `--space-*`; alinhar com nomes de tipografia (`title-desk-md` no CSS, `title-md` na spec) | `--tcece-space-*` | Importante | `--tcece-space-*` |
-| E-6 | Padding vertical do chip | 3 está fora da escala | — | Menor | Perguntar |
-| E-7 | Espaço mínimo entre alvos clicáveis | O CSS usa margem de 4 | — | Menor | 4 |
 
 ## Botão (`button-spec-tce.md`)
 
@@ -61,13 +71,6 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 
 | ID | Decisão | Opções | Proposta / adotado hoje | Impacto | Enquanto isso |
 |---|---|---|---|---|---|
-| G-1 | Largura em que cada breakpoint começa (Desktop 14, divisão iPad/Mobile) | 1920 é suposição | — | **Bloqueante** para o responsivo do grid | Implementar só Desktop 12 e perguntar sobre os demais |
-| G-2 | Margem desktop | 80 (Figma) ou 24 com largura máxima de 1440 (CSS original) | Figma (80) | Importante | Perguntar |
-| G-3 | Menu lateral no iPad e Mobile | Drawer, só ícones ou barra inferior | — | **Bloqueante** para telas com menu abaixo do desktop | Não implementar comportamento abaixo do desktop |
-| G-4 | Margem lateral com menu | 48 (token) ou 46 (valor usado em protótipos existentes) | 48 | Menor | 48 |
-| G-5 | Nomes dos tokens de grid e layout no código | `--tcece-grid-*`, `--tcece-layout-*` | Proposta | Menor | Proposta |
-| G-6 | Ocupação de colunas por tipo de conteúdo | Ex.: formulário em 8 de 12 colunas; empilhamento abaixo do desktop | Não definido | Importante | Perguntar |
-| G-7 | Publicação da biblioteca | Variáveis, grid styles e componentes só chegam aos protótipos depois de publicados | — | Importante | Aguardar publicação |
 
 ## Cor (`color-spec-tce.md`)
 
@@ -85,6 +88,10 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 
 | ID | Decisão | Opções | Proposta / adotado hoje | Impacto | Enquanto isso |
 |---|---|---|---|---|---|
+| E-9 | Altura do cabeçalho fixo e da barra de ações fixa | Necessárias para o `scroll-padding` do foco não encoberto (espaçamento, seção 6.3) | Usar a altura real do componente + 16 | Importante | Definir quando as specs de cabeçalho e barra existirem |
+| E-10 | Padding de avatar, accordion, menu suspenso, seletor de data e paginação | Ainda não levantados | — | Menor | Perguntar |
+| E-11 | Conferir no Context7 (MUI 9.1.1) os valores padrão citados na seção 4 da spec de espaçamento | Os valores vieram de memória | — | Menor | Tratar como referência, não como regra |
+| G-8 | Detalhes do drawer do menu no iPad e Mobile | Animação, gesto de deslizar, ponto exato de abertura | Comportamento básico da seção 7 do grid | Importante | Implementar só o básico |
 | N-1 | Convenção de nomes no código (consolida C-4, E-5 e G-5) | **Prefixo `tcece` decidido em 2026-10-28** (índice, seção 5). Resta o padrão de nomes por assunto: tipografia, cor, espaçamento, grid e layout | `--tcece-<assunto>-*` em todas as specs | Importante | Seguir a proposta de cada spec; tipografia usa os nomes da seção 8 da spec |
 
 ## Tabela (componente `Table` e `Cell Content`, Figma do DS, página 🧩 Componentes)

@@ -8,11 +8,11 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **0.7.0** (rascunho) |
+| **Versão da spec** | **0.8.0** (rascunho) |
 | **Última atualização** | **2026-10-28** |
 | Versão do DS | em revisão, ainda sem tag (o `CHANGELOG.md` registra `ds-v3` como a confirmar; a tag é decisão do design) |
 | **Camada** | **1. Átomos (componente)** |
-| **Depende de** (data da última atualização lida) | Tokens: `typography-spec-tce.md` (4.1.0, 2026-10-28), `color-spec-tce.md` (2.1.0, 2026-10-28), `spacing-spec-tce.md` (2026-10-28), `grid-layout-spec-tce.md` (2026-10-21, só os breakpoints). Detalhe na seção 11 |
+| **Depende de** (data da última atualização lida) | Tokens: `typography-spec-tce.md` (4.2.1, 2026-10-28), `color-spec-tce.md` (2.2.0, 2026-10-28), `spacing-spec-tce.md` (2.0.0, 2026-10-28), `grid-layout-spec-tce.md` (2026-10-21, só os breakpoints). Detalhe na seção 11 |
 | **Usada por** | `padroes-de-interface.md` (modais, paginação, estado vazio, formulários) e, quando existirem, as specs de campo de busca, paginação, banner, modal, tabela, menu lateral e header. Detalhe na seção 11 |
 | Arquivo | `specs/button-spec-tce.md` |
 
@@ -27,7 +27,7 @@ Origem: componente `Button` (antes `btn`) do arquivo ⭐ Design System TCE (file
 1. **Use o `Button` do MUI.** Variação visual vem de `variant`, `color` e do tema, nunca de CSS solto no botão.
 2. **Nunca use cor, medida ou fonte solta.** Cores vêm dos tokens `primary/*`, `tcece/button/*` e `tcece/focus/*` (spec de cor), medidas da escala de espaçamento e texto do token `title-sm`.
 3. **Altura mínima de 44px no desktop e 48px no mobile** (NBR 17225), por `min-height`, **nunca `height` fixa**: o botão cresce com o texto (WCAG 1.4.12).
-4. **O foco visível é sempre amarelo e preto**, em todos os `variant` e `color`, com ou sem hover. Não troque por outro anel.
+4. **O foco visível é sempre amarelo e preto**, em todos os `variant` e `color`, com ou sem hover. Não troque por outro anel. Acrescente `outline: 2px solid transparent` ao foco: no modo de alto contraste do Windows (`forced-colors: active`) o fundo e a sombra são removidos e só o `outline` aparece (`spacing-spec-tce.md`, seção 6.2).
 5. **Cor nunca é o único indicador** de estado: desabilitado usa também `disabled`/`aria-disabled`; selecionado usa também `aria-pressed` ou `aria-current`.
 6. **O rótulo diz a ação** ("Salvar", "Enviar para o TCE Ceará"), em até uma linha sempre que possível. Texto em `title-sm`, sem caixa alta (`textTransform: 'none'`).
 7. Ao terminar uma tela, rode o checklist da seção 10.
@@ -118,7 +118,7 @@ Estados comuns a todos:
 
 ## 6. Acessibilidade
 
-- **Alvo clicável:** 44 (desktop) e 48 (mobile) de altura mínima; largura mínima de 64. Espaço entre botões vizinhos: `spacing/8` (E-7).
+- **Alvo clicável:** 44 (desktop) e 48 (mobile) de altura mínima; largura mínima de 64. Entre botões de um grupo: `spacing/16`; mínimo absoluto entre alvos vizinhos: `spacing/8` (decidido, E-7).
 - **Texto:** `min-height`, nunca altura fixa; o botão não corta o texto com line-height 1,5, letter-spacing 0,12 em e word-spacing 0,16 em (WCAG 1.4.12).
 - **Foco visível:** WCAG 2.4.7 e 2.4.11. O amarelo (#FFDD00) sozinho dá 1,35:1 sobre branco, por isso sempre com a borda preta.
 - **Contraste:** rótulo e fundo em todos os estados com pelo menos 4,5:1; `primary/main` contra o branco dá 7,0:1 como componente de UI (1.4.11). O desabilitado é isento, mas precisa do atributo.
@@ -137,7 +137,7 @@ Estados comuns a todos:
 | Ação discreta, menu, ações em linha | `text` |
 | Item selecionado no menu lateral | `text` ou `outlined` com `tceceSelected` |
 
-No máximo um botão `contained` + `primary` por área de ação. A posição dos botões em um grupo de ações é definida pela spec de cima, `padroes-de-interface.md` (que usa esta): no modal, confirmação (`contained` + `primary`) à direita e cancelar (`outlined`) à esquerda dela; paginação com "Anterior" e "Próximo" em `outlined`. Fora desses casos a ordem não está definida: pergunte ao design.
+No máximo um botão `contained` + `primary` por área de ação. Entre botões de um grupo: 16 (mínimo absoluto entre alvos vizinhos: 8, `spacing-spec-tce.md`, seção 6.1). A posição dos botões em um grupo de ações é definida pela spec de cima, `padroes-de-interface.md` (que usa esta): no modal, confirmação (`contained` + `primary`) à direita e cancelar (`outlined`) à esquerda dela; paginação com "Anterior" e "Próximo" em `outlined`. Fora desses casos a ordem não está definida: pergunte ao design.
 
 ## 8. Tema MUI (referência para o front)
 
@@ -184,6 +184,7 @@ export const theme = createTheme({
             { props: { variant: 'outlined' }, style: { backgroundColor: '#FFFFFF' } },
           ],
           '&.Mui-focusVisible': {
+            outline: '2px solid transparent',   // alto contraste (forced-colors)
             backgroundColor: focus.bg, color: focus.fg,
             boxShadow: `inset 0 -4px 0 ${focus.fg}`,
           },
@@ -250,9 +251,9 @@ O botão é um **átomo** (camada 1): depende só de tokens e **nunca** de molé
 |---|---|---|---|
 | `typography-spec-tce.md` | `title-sm` (16 / 600 / 1,4), Noto Sans, piso de 16px; espaçamento de texto da seção 5 (letter-spacing 0, word-spacing 0) e teste WCAG 1.4.12 | Regra 6, seção 3, seção 6, tema (seção 8) | `title-sm`, line-height, letter-spacing, teste 1.4.12 |
 | `color-spec-tce.md` | Tokens `primary/*`, `tcece/button/*` e `tcece/focus/*` (seção 5 da cor), contraste mínimo (regra 4), foco amarelo e preto (regra 5) | Seção 4, seção 6, tema | Qualquer token `button/*` ou `focus/*`, regra de contraste, tokens de criação (B-2) |
-| `spacing-spec-tce.md` | Escala (`spacing/8`, `spacing/16`), padding do botão, alvos clicáveis de 44 e 48 (seção 6), espaço entre alvos (E-7). O padding de 12 no lado do ícone usa `spacing/12`, que está em avaliação (E-1) | Seção 3, seção 6 | Escala, linha do botão na seção 4, alvos clicáveis, E-1 e E-7 |
-| `grid-layout-spec-tce.md` | Breakpoint do mobile (768px, decidido em T-10; conflito em G-1) que define `tceceDevice`; largura do botão nas colunas (G-6, não definido) | Seção 2, seção 8 | Breakpoints, ocupação de colunas |
-| `decisoes-em-aberto.md` | Pendências B-1 a B-7, G-1, E-1, E-7, N-1 | Seção 12 | Toda decisão tomada que toque o botão |
+| `spacing-spec-tce.md` | Escala (`spacing/8`, `spacing/16`), padding do botão, alvos clicáveis de 44 e 48 (seção 6), espaço entre alvos e folga do foco (seções 6.1 e 6.2). O padding de 12 no lado do ícone usa `spacing/12` (mantido, E-1 decidida) | Seção 3, seção 6 | Escala, linha do botão na seção 4, alvos clicáveis, foco |
+| `grid-layout-spec-tce.md` | Breakpoint do mobile (768px, decidido em T-10 e G-1) que define `tceceDevice`; ocupação de colunas (G-6, decidida; o botão não tem largura de coluna própria) | Seção 2, seção 8 | Breakpoints, ocupação de colunas |
+| `decisoes-em-aberto.md` | Pendências B-1 a B-7, N-1; E-1, E-7, G-1 e G-6 decididas | Seção 12 | Toda decisão tomada que toque o botão |
 | `design-system-index.md` e `CHANGELOG.md` | Precedência, estrutura em camadas, prefixo `tcece`, cabeçalho e versionamento | Seção 2.1 e cabeçalho | Convenções de nome, de camada e de versão |
 
 ### 11.2 Usada por (camadas acima)
@@ -277,6 +278,7 @@ Todos em **`decisoes-em-aberto.md`** (B-1 a B-7).
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 0.8.0 | 2026-10-28 | Foco com `outline` transparente para o modo de alto contraste; 16 entre botões de um grupo; dependências conferidas (espaçamento 2.0.0, cor 2.2.0, tipografia 4.2.1) |
 | 0.7.0 | 2026-10-28 | MUI 9.1.1 registrado (B-8 decidida); tema ajustado à v9 (as chaves `containedPrimary`, `containedSuccess` e `outlined` de `styleOverrides` foram removidas na v9; viraram `variants` no `root`); regra do `nativeButton`; foco: botão com preenchimento e demais com anel (C-5 decidida); cor 2.1.0 e tipografia 4.1.0 conferidas |
 | 0.6.0 | 2026-10-28 | Tokens de cor renomeados conforme `color-spec-tce.md` 2.0.0 (`primary/main`, `primary/dark`, `tcece/primary/pressed`, `tcece/focus/*`, `tcece/button/*`); tipografia 4.0.1 conferida |
 | 0.5.2 | 2026-10-28 | Verificação das specs relacionadas (índice, seção 7): data lida da spec de cor atualizada para 2026-10-28 (a spec de cor só ganhou um ponteiro para esta, sem mudança de valor); tipografia, espaçamento, grid-layout e padrões conferidos |
