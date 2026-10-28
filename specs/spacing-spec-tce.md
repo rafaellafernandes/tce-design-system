@@ -8,11 +8,11 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **1.1.0** (rascunho) |
+| **Versão da spec** | **2.0.0** (rascunho) |
 | **Última atualização** | **2026-10-28** |
 | Versão do DS | em revisão, ainda sem tag |
 | **Camada** | **1. Átomos (tokens)** |
-| **Depende de** (data da última atualização lida) | Nenhuma (é base). Remete a `grid-layout-spec-tce.md` 1.0.0 (2026-10-28, margem de página e gutter) e a `typography-spec-tce.md` 4.1.0 (2026-10-28, espaçamento de texto) |
+| **Depende de** (data da última atualização lida) | Nenhuma (é base). Remete a `grid-layout-spec-tce.md` 1.1.0 (2026-10-28, margem de página e gutter) e a `typography-spec-tce.md` 4.2.1 (2026-10-28, espaçamento de texto) |
 | **Usada por** | `typography-spec-tce.md`, `grid-layout-spec-tce.md`, `button-spec-tce.md`, `padroes-de-interface.md` e todas as specs de componente |
 | Arquivo e Figma | `specs/spacing-spec-tce.md`; coleção Spacing do ⭐ Design System TCE |
 
@@ -31,15 +31,17 @@ Origem: variáveis criadas no Figma, CSS original do TCE (`variables_v1.css`, `c
 
 ## 2. Escala
 
-| Token Figma | Valor | rem (px ÷ 16) | Nome sugerido no código (A DECIDIR, E-5) |
+| Token Figma | Valor | rem (px ÷ 16) | Nome no código (decidido, E-5) |
 |---|---|---|---|
 | `spacing/4` | 4px | 0,25 | `--tcece-space-4` |
 | `spacing/8` | 8px | 0,5 | `--tcece-space-8` |
-| `spacing/12` | 12px | 0,75 | `--tcece-space-12` — **A DECIDIR** (o CSS original não usa) |
+| `spacing/12` | 12px | 0,75 | `--tcece-space-12` (padding lateral do botão com ícone e do chip; E-1 decidida: manter) |
 | `spacing/16` | 16px | 1 | `--tcece-space-16` |
 | `spacing/24` | 24px | 1,5 | `--tcece-space-24` |
 | `spacing/32` | 32px | 2 | `--tcece-space-32` |
 | `spacing/48` | 48px | 3 | `--tcece-space-48` |
+| `spacing/64` | 64px | 4 | `--tcece-space-64` (**só hero e páginas institucionais**) |
+| `spacing/96` | 96px | 6 | `--tcece-space-96` (**só hero e páginas institucionais**) |
 
 **Atenção ao CSS legado.** O arquivo `variables_v1.css` já tem `--tcece-spacing-*` e `--tcece-margin-*` com **outros valores** (ex.: `--tcece-spacing-md` = 16px, `-lg` = 18px, `-xl` = 20px, `-2xl` = 24px). Por isso os tokens novos levam o valor no nome. Não mapeie `spacing/12` para `--tcece-spacing-md`.
 
@@ -51,7 +53,39 @@ Origem: variáveis criadas no Figma, CSS original do TCE (`variables_v1.css`, `c
 | `spacing/title-body` | 16 | Distância entre título e texto de apoio |
 | `spacing/form-field-gap` | 16 | Distância entre campos de formulário |
 | `spacing/section-section` | 32 | Distância entre seções |
-| `spacing/card-padding` | 16 | Padding interno de cards — **A DECIDIR** (E-3) |
+| `spacing/card-padding` | 24 | Padding interno de cards (decidido em 2026-10-28, E-3; antes 16) |
+| `spacing/hero-eyebrow-title` | 16 | Hero: linha de apoio → título |
+| `spacing/hero-title-body` | 24 | Hero: título → complemento |
+| `spacing/hero-section` | 64 | Hero → conteúdo (48 no mobile) |
+| `spacing/hero-padding-block` | 96 | Padding vertical do hero (64 no mobile) |
+
+### 2.1 Tipos de espaçamento
+
+| Tipo | Onde está definido |
+|---|---|
+| Padding interno de componente | Seção 4 |
+| Espaço entre irmãos (gap, vertical e horizontal) | Seções 3 e 4 |
+| Espaço entre blocos e respiro de página | Seção 5 |
+| Margem de página, gutter e colunas | `grid-layout-spec-tce.md` |
+| Layout com menu lateral | `grid-layout-spec-tce.md` |
+| Espaço de texto (entrelinha, parágrafo, letter e word-spacing) | `typography-spec-tce.md`, seção 5 |
+| Espaço entre alvos clicáveis | Seção 6.1 |
+| Folga do foco | Seção 6.2 |
+| Foco não encoberto por elementos fixos | Seção 6.3 |
+| Áreas seguras no mobile | Seção 6.4 |
+| Hero e páginas institucionais | Seção 2.2 |
+| Densidade | Seção 7 |
+| Tamanhos mínimos e de ícone | Seção 6.1 |
+| Divisores | Seção 4 |
+| Raio, borda, elevação, movimento | Fora desta spec (B-7) |
+
+### 2.2 Hero e páginas institucionais
+
+`spacing/64` e `spacing/96` existem **só** para hero e páginas institucionais (os que usam `display-*`, ver `typography-spec-tce.md`, seção 3.1). Em telas de produto o teto continua 48. Valores: linha de apoio → título 16, título → complemento 24, hero → conteúdo 64 (48 no mobile), padding vertical do hero 96 (64 no mobile). Os 64, 80 e 96 do CSS original eram da página de documentação do guia de estilo e não valem para produto.
+
+### 2.3 Ligação com o MUI
+
+O MUI calcula espaçamento com `theme.spacing(n)`, que multiplica uma base (padrão 8). Com a base 8, a escala é: 4 = `spacing(0.5)`, 8 = `spacing(1)`, 12 = `spacing(1.5)`, 16 = `spacing(2)`, 24 = `spacing(3)`, 32 = `spacing(4)`, 48 = `spacing(6)`, 64 = `spacing(8)`, 96 = `spacing(12)`. No código do MUI use `theme.spacing(n)` (ou `sx={{ p: 3 }}`) em vez de número solto. Os valores padrão do MUI citados na seção 4 são os da versão 9.1.1 do front, a conferir no Context7 (`design-system-index.md`, seção 6.1).
 
 ## 3. Como escolher o token
 
@@ -65,17 +99,25 @@ Origem: variáveis criadas no Figma, CSS original do TCE (`variables_v1.css`, `c
 
 A coluna "Fonte" diz de onde vem o valor: **CSS** (CSS original, confirmado), **Figma** (como está hoje no protótipo, ainda não validado contra a escala).
 
-| Componente | Padding | Outros | Fonte |
-|---|---|---|---|
-| Botão (`contained`, `outlined`, `elevated`, `text`) | 8 vertical, 16 horizontal | altura mínima 44 (desktop), 48 (mobile), margem 4. Detalhe em `button-spec-tce.md` | CSS |
-| Input, select | 8 vertical, 16 horizontal | altura mínima 44, margem 4 | CSS |
-| Botão do DS no Figma | 8 vertical, 16 horizontal (12 no lado do ícone) | altura mínima 44 (desktop) e 48 (mobile), largura mínima 64, ícone 20, gap 8 | Figma, alinhado ao CSS em 2026-10-28 (ver `button-spec-tce.md`) |
-| Bloco de código (`pre`) | 8 | margem 16 acima e abaixo | CSS |
-| Card | 16 (`card-padding`) | gap interno a definir | Spec — **A DECIDIR** (E-3: protótipos usam 24) |
-| Modal | a definir | label→campo 8 | falta levantar |
-| Chip / badge | 12 horizontal, 3 vertical | altura 30 | Figma — 3 está fora da escala, **A DECIDIR** (E-6). Com o piso de 16px de texto (`title-sm`, line-height 1.4 ≈ 22), proposta: 4 vertical (dentro da escala), altura mínima 30 |
-| Barra de ações fixa | a definir | a definir | falta levantar |
-| Linha de tabela, item de menu, breadcrumb | a documentar | — | falta levantar |
+| Componente | Padding | Outros | Referência MUI (a conferir) | Fonte |
+|---|---|---|---|---|
+| Botão (`contained`, `outlined`, `tceceElevated`, `text`) | 8 vertical, 16 horizontal (12 no lado do ícone) | altura mínima 44 (desktop) e 48 (mobile), largura mínima 64, ícone 20, gap 8. Detalhe em `button-spec-tce.md` | altura 36,5; padding `6 16` | CSS e Figma, 2026-10-28 |
+| Botão só com ícone | 10 (alvo de 44); 12 no mobile (48) | ícone 24 | `IconButton` com padding 8 (alvo de 40, abaixo do mínimo) | Spec, 2026-10-28 |
+| Input, select | 8 vertical, 16 horizontal | altura mínima 44/48; espaço até o alvo vizinho: 8 (seção 6.1) | padding `16.5 14` | CSS |
+| Bloco de código (`pre`) | 8 | margem 16 acima e abaixo | — | CSS |
+| Card | 24 (`card-padding`) | 16 entre título e conteúdo; 16 entre conteúdo e ações | `CardContent` 16 | Spec, E-3 |
+| Modal | título `16 24`, conteúdo `16 24`, ações `16 24` | 16 entre botões | título `16 24`, conteúdo `20 24`, ações 8 | Spec, 2026-10-28 |
+| Chip, selo | 4 vertical, 12 horizontal | altura mínima 32; se clicável ou removível, área de toque de 44 | altura 32; pequeno 24 | Spec e Figma (`Selo`), E-6 |
+| Tabela (célula) | 12 vertical, 16 horizontal | altura mínima da linha 48 | `16`; compacta `6 16` | Spec, 2026-10-28 |
+| Item de menu e de lista | 8 vertical, 16 horizontal | altura mínima 44/48; 16 entre ícone e texto | `8 16`; ícone com largura mínima 36 | Spec, 2026-10-28 |
+| Breadcrumb | item com altura mínima 44 | separador com 8 de cada lado | separador com margem 8 | Spec, 2026-10-28 |
+| Alerta (banner) | 16 | ícone 24; 12 entre ícone e texto; 16 até a ação | `6 16`; ícone com margem 12 | Spec, 2026-10-28 |
+| Tooltip | 8 vertical, 12 horizontal | distância do gatilho 8 | `4 8` | Spec, 2026-10-28 |
+| Toast | 16 | 24 das bordas no desktop e 16 no mobile; 8 entre toasts | `6 16`; 24 das bordas | Spec, 2026-10-28 |
+| Aba | 12 vertical, 16 horizontal | altura mínima 48; 8 entre ícone e texto | altura mínima 48, `12 16` | Spec, 2026-10-28 |
+| Barra de ações fixa | 16 vertical, 24 horizontal (16 no mobile) | 16 entre botões; o conteúdo da página ganha `padding-bottom` = altura da barra + 24 | — | Spec, 2026-10-28 |
+| Divisor | — | 16 de cada lado | `Divider` 1px | Spec, 2026-10-28 |
+| Avatar, accordion, menu suspenso, seletor de data, paginação | a levantar | — | — | E-10 |
 
 ## 5. Grid e layout de página
 
@@ -87,19 +129,38 @@ Valores de página que continuam aqui:
 |---|---|---|
 | Distância seção→seção | 32 | semântico `section-section` |
 | Respiro de página | 48 | escala |
-| Espaço do conteúdo até a barra fixa | a definir | falta levantar |
+| Espaço do conteúdo até a barra fixa | altura da barra + 24 | Spec, 2026-10-28 |
 
 Os valores 64, 80 e 96px de `div`, `main` e `section` em `main.css`, `grid.css` e `sections.css` são layout da página de documentação do guia de estilo. **Não** são regras para produtos.
 
-## 6. Alvos clicáveis
+## 6. Alvos clicáveis, foco e áreas fixas
+
+### 6.1 Alvos clicáveis
 
 - Altura e largura mínimas: 44px (desktop) e 48px (mobile) (NBR 17225).
-- Espaço mínimo entre alvos vizinhos: **A DECIDIR** (o CSS usa margem de 4px).
-- O foco visível (outline) não pode ser cortado pelo padding do container.
+- **Entre botões de um grupo: 16.** **Mínimo absoluto entre quaisquer alvos vizinhos: 8** (por exemplo, ícones soltos). Decidido em 2026-10-28 (E-7); o 4 do CSS original não vale.
+- Botão só com ícone: padding 10 (44) e 12 no mobile (48), ícone de 24.
+- Escala de ícone: **20** (pequeno: botão, chip, texto), **24** (padrão: alerta, menu, cabeçalho) e **32** (grande: estado vazio).
+
+### 6.2 Folga do foco
+
+- Anel de 3px em `tcece/focus/ring` (`outline`, `outline-offset: 1px`) com contorno preto de 1px por fora (`box-shadow: 0 0 0 5px` em `tcece/focus/border`); folga total de **5px** reservada ao redor do elemento.
+- Nenhum `overflow: hidden` no ancestral próximo e nenhum padding de contêiner que corte o anel.
+- Use `outline`, não só `box-shadow`: no modo de alto contraste do Windows (`forced-colors: active`) o `box-shadow` desaparece e o `outline` permanece. O botão tem foco próprio (fundo amarelo, `button-spec-tce.md`) e acrescenta `outline: 2px solid transparent`.
+
+### 6.3 Foco não encoberto (WCAG 2.2, 2.4.11)
+
+Cabeçalho e barra de ações fixos não podem cobrir o elemento focado. Defina `scroll-padding-top` = altura do cabeçalho fixo + 16 e `scroll-padding-bottom` = altura da barra fixa + 16 (e `scroll-margin` nas âncoras). As alturas do cabeçalho e da barra ainda não estão definidas (E-9).
+
+### 6.4 Áreas seguras no mobile
+
+Use `<meta name="viewport" content="..., viewport-fit=cover">` e, em barra fixa na base, `padding-bottom: calc(16px + env(safe-area-inset-bottom))`; na lateral, `padding-inline: max(<margem>, env(safe-area-inset-left))`.
 
 ## 7. Responsivo
 
-A escala de espaçamento (seção 2) é **a mesma em todos os breakpoints**. O que muda por breakpoint é margem, gutter e colunas, descritos em `grid-layout-spec-tce.md` (seções 3 e 7).
+A escala de espaçamento (seção 2) é **a mesma em todos os breakpoints**; a única diferença é o hero (seção 2.2: 48 e 64 no mobile). O que muda por breakpoint é margem, gutter e colunas, descritos em `grid-layout-spec-tce.md` (seções 3 e 7).
+
+**Densidade:** o DS tem uma só (confortável). Não há tamanho compacto: os alvos de 44/48 e o piso de 16px de texto já limitam. Se uma tabela de dados exigir densidade maior, a propriedade seria `tceceDensity` (`size` é palavra do MUI); decidir caso a caso.
 
 ## 8. Espaçamento de texto (definido na spec de tipografia)
 
@@ -111,6 +172,8 @@ Line-height, letter-spacing, word-spacing e espaço entre parágrafos **não sã
 |---|---|---|
 | `spacing/8` | `--tcece-space-8` / `0.5rem` | Figma em px, código em rem (ver `design-system-index.md`, seção 5) |
 | `spacing/label-input` | `--tcece-space-label-input` | alias de `--tcece-space-8` |
+| `spacing/N` no MUI | `theme.spacing(N ÷ 8)` | Ver seção 2.3 |
+| Sintaxe de código no Figma | `var(--tcece-space-N)` em todas as variáveis da coleção | Já preenchida |
 | coleção Spacing, modo Default | `:root` | um único modo, sem versão mobile |
 
 Tokens de grid e layout: ver `grid-layout-spec-tce.md`, seção 8. No código, use sempre rem (base 16px, definida em `reset.css`); a escala da seção 2 mostra o par px/rem de cada token.
@@ -127,7 +190,11 @@ As distâncias anotadas no protótipo, com o token de cada uma, ficam no handoff
 - [ ] Espaço entre linhas e parágrafos resolvido pelo estilo de texto, não por margin
 - [ ] Margem de página e gutter conforme `grid-layout-spec-tce.md`
 - [ ] Nenhum valor de 18, 20, 28, 36 ou 42 usado como espaçamento (são tamanhos de fonte do CSS legado)
-- [ ] Foco visível não cortado pelo container
+- [ ] Foco visível não cortado pelo container (folga de 5px, `outline`)
+- [ ] Entre botões de um grupo 16; entre alvos vizinhos nunca menos de 8
+- [ ] Cabeçalho e barra fixos com `scroll-padding` (foco não encoberto)
+- [ ] Barra fixa no mobile com `env(safe-area-inset-bottom)`
+- [ ] `spacing/64` e `spacing/96` só em hero e páginas institucionais
 
 ## 12. Governança
 
@@ -138,11 +205,12 @@ As distâncias anotadas no protótipo, com o token de cada uma, ficam no handoff
 
 ## 13. Pontos em aberto
 
-Todos os pontos em aberto de espaçamento estão em **`decisoes-em-aberto.md`** (E-1 a E-7; E-8 foi resolvido em `button-spec-tce.md`). Os de grid e layout, no mesmo arquivo (G-1 a G-7).
+Os pontos em aberto de espaçamento estão em **`decisoes-em-aberto.md`** (E-9 a E-11); E-1 a E-8 estão decididas. Os de grid e layout, no mesmo arquivo (G-8).
 
 ## Histórico de versões
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 2.0.0 | 2026-10-28 | Seção 2.1 (tipos de espaçamento), 2.2 (hero), 2.3 (`theme.spacing`); `spacing/64`, `spacing/96` e semânticos de hero; `card-padding` 16 → 24; padding de modal, tabela, menu, breadcrumb, alerta, tooltip, toast, aba, chip, barra fixa e divisor; seção 6 (alvos, folga do foco, foco não encoberto, áreas seguras); densidade única; E-1, E-3, E-5, E-6, E-7 decididas; sintaxe de código no Figma. **Mudança de valor de token (`card-padding`)** |
 | 1.1.0 | 2026-10-28 | Botão com padding 8/16, altura mínima 44/48, largura mínima 64, ícone 20 e gap 8 (fecha E-8); espaçamento de texto remetido à tipografia |
 | 1.0.0 | 2026-10-07 | Rascunho de 2026-10-05; grid e layout separados em `grid-layout-spec-tce.md`; revisão estrutural (`ds-v1`) |

@@ -6,11 +6,11 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **1.0.0** (rascunho) |
+| **Versão da spec** | **1.1.0** (rascunho) |
 | **Última atualização** | **2026-10-07** |
 | Versão do DS | em revisão, ainda sem tag |
 | **Camada** | **1. Átomos (tokens de grid) e 4. Templates (posição das regiões da página)** |
-| **Depende de** (data da última atualização lida) | `spacing-spec-tce.md` 1.1.0 (2026-10-28, escala) |
+| **Depende de** (data da última atualização lida) | `spacing-spec-tce.md` 2.0.0 (2026-10-28, escala) |
 | **Usada por** | `button-spec-tce.md` (breakpoint do mobile), `padroes-de-interface.md` (colunas de tabela) e os templates de página |
 | Arquivo e Figma | `specs/grid-layout-spec-tce.md`; variáveis de grid do ⭐ Design System TCE |
 
@@ -37,20 +37,31 @@ Container (margem lateral) › Row (gap = gutter) › Column.
 .row { display: grid; grid-template-columns: repeat(var(--tcece-grid-columns), 1fr); column-gap: var(--tcece-grid-gutter); }
 ```
 
-Os nomes das custom properties são proposta (G-5).
+Nomes decididos (G-5): `--tcece-grid-*` e `--tcece-layout-*`.
 
 ## 3. Breakpoints e tokens (coleção Grid)
 
 | Modo Figma | Largura de referência | `grid/columns` | `grid/margin` | `grid/gutter` | Coluna (calculada)* | Grid style |
 |---|---|---|---|---|---|---|
 | Desktop 12 | 1440 | 12 | 80 | 32 (→ `spacing/32`) | 77,3 | Desktop/12 colunas |
-| Desktop 14 | 1920 (**assumida, a confirmar**) | 14 | 112 | 32 (→ `spacing/32`) | 91,4 | Desktop/14 colunas |
+| Desktop 14 | 1920 | 14 | 112 | 32 (→ `spacing/32`) | 91,4 | Desktop/14 colunas |
 | iPad | 834 | 8 | 40 | 32 (→ `spacing/32`) | 66,3 | Ipad/8 colunas |
 | Mobile | 390 | 6 | 24 (→ `spacing/24`) | 24 (→ `spacing/24`) | 37 | Mobile/6 colunas |
 
+**Onde cada modo começa (decidido, G-1):** as larguras da tabela são de **referência** (tamanho do quadro no Figma). No código:
+
+| Modo | Começa em | Chave no MUI (`theme.breakpoints.values`) |
+|---|---|---|
+| Mobile | 0 a 767 | `xs: 0` |
+| iPad | 768 a 1199 | `md: 768` |
+| Desktop 12 | 1200 a 1919 | `lg: 1200` |
+| Desktop 14 | 1920 em diante | `xl: 1920` |
+
+`sm: 600` fica definido, mas o grid não o usa. Um monitor de 1366px cai em Desktop 12. O ponto de quebra de 768 é o da tipografia e do botão (T-10).
+
 \* (largura − 2 × margem − (colunas − 1) × gutter) ÷ colunas.
 
-O CSS original (`grid.css`) usa container com largura máxima de 1440 e padding lateral de 24 (1,5rem). Isso diverge do Figma (margem 80 no desktop). **A DECIDIR** (G-2).
+O CSS original (`grid.css`) usa container com largura máxima de 1440 e padding lateral de 24 (1,5rem). Isso diverge do Figma. **Decidido (G-2): vale o Figma, margem 80 no desktop.** Telas largas usam o Desktop 14 (margem 112).
 
 Unidades: os valores acima estão em px (Figma). No código, converta para rem (`px ÷ 16`): margem 80 = 5 rem, 112 = 7 rem, 40 = 2,5 rem, 24 = 1,5 rem; gutter 32 = 2 rem. Tabela completa em `design-system-index.md`, seção 5.
 
@@ -60,7 +71,7 @@ Telas com menu fixo à esquerda (como nos produtos com menu fixo) usam este mode
 
 | Token | Desktop 12 | Desktop 14 | iPad | Mobile | Uso |
 |---|---|---|---|---|---|
-| `layout/sidebar-width` | 255 | 255 | 0 | 0 | Largura do menu lateral. Comportamento no iPad e Mobile **A DECIDIR** |
+| `layout/sidebar-width` | 255 | 255 | 0 | 0 | Largura do menu lateral. No iPad e no Mobile vira drawer (seção 7, G-3) |
 | `layout/margin-with-sidebar` | 48 (→ `spacing/48`) | 48 | = `grid/margin` (40) | = `grid/margin` (24) | Margem lateral da área de conteúdo quando há menu |
 
 Grid styles: "Desktop/12 colunas com menu" e "Desktop/14 colunas com menu" (offset 48, gutter 32).
@@ -68,7 +79,7 @@ Grid styles: "Desktop/12 colunas com menu" e "Desktop/14 colunas com menu" (offs
 | Variante | Largura | Menu | Conteúdo | Área do grid | Coluna |
 |---|---|---|---|---|---|
 | Desktop 12 | 1440 | 255 | 1185 | 1089 | ≈ 61,4 |
-| Desktop 14 | 1920 (assumida) | 255 | 1665 | 1569 | ≈ 82,4 |
+| Desktop 14 | 1920 | 255 | 1665 | 1569 | ≈ 82,4 |
 
 Área do grid = conteúdo − 2 × 48. Coluna = (área do grid − (colunas − 1) × 32) ÷ colunas.
 
@@ -79,7 +90,7 @@ Grid styles: "Desktop/12 colunas com menu" e "Desktop/14 colunas com menu" (offs
 /* dentro de .content, o mesmo .row da seção 2 */
 ```
 
-O token adotado é 48 (dentro da escala). Valores diferentes em protótipos existentes (por exemplo, 46) seriam exceção registrada (G-4).
+O token adotado é 48 (dentro da escala). Valores diferentes em protótipos existentes (por exemplo, 46) seriam exceção registrada (G-4 decidida: vale 48).
 
 ## 5. Componentes e templates no Figma
 
@@ -93,15 +104,24 @@ O token adotado é 48 (dentro da escala). Valores diferentes em protótipos exis
 
 O Figma ainda não tem o menu real dentro do template (só um placeholder) nem as regiões de cabeçalho e barra de ações fixa.
 
-## 6. Como o conteúdo ocupa as colunas — LACUNA
+## 6. Como o conteúdo ocupa as colunas (decidido em 2026-10-28, G-6)
 
-Nenhuma regra define quantas colunas cada tipo de conteúdo ocupa (formulário, tabela, card, modal). Hoje só a estrutura de colunas existe. **A DECIDIR:** padrões de ocupação por tipo de tela (por exemplo, formulário em 8 de 12 colunas) e, abaixo do desktop, empilhamento (colunas em 100%). Até lá, o dev deve perguntar ao design em vez de inferir.
+Larguras com menu lateral no Desktop 12 (coluna ≈ 61,4, gutter 32): 8 colunas ≈ 715px, que bate com a largura máxima de linha da tipografia (640 a 720px).
+
+| Conteúdo | Desktop 12 (com menu) | Desktop 14 (com menu) | iPad (8) | Mobile (6) |
+|---|---|---|---|---|
+| Formulário e texto longo | 8 de 12 | 6 de 14 | 8 de 8 | 6 de 6 |
+| Tabela | 12 de 12 | 14 de 14 | 8 de 8 (rolagem horizontal só na tabela) | 6 de 6 (idem) |
+| Cards | 4 colunas cada (3 por linha) | 7 colunas cada (2 por linha); 3 ou 4 por linha não alinham com 14 colunas | 4 colunas cada (2 por linha) | 6 (1 por linha) |
+| Modal | Largura fixa, centralizada, fora do grid | idem | idem | A largura toda menos a margem |
+
+No MUI: `<Grid container columns={{ xs: 6, md: 8, lg: 12, xl: 14 }}>` com `size={{ xs: 6, md: 8, lg: 8, xl: 6 }}` no formulário.
 
 ## 7. Responsivo
 
-- Os breakpoints são os 4 modos da seção 3. A largura em que cada modo começa (principalmente o Desktop 14, e a divisão iPad/Mobile) está **A DECIDIR**. A spec de tipografia usa 768px como ponto de quebra; `mediaqueries.css` do CSS original não define nenhum.
+- Os breakpoints são os 4 modos da seção 3, com as larguras de início decididas (G-1): 0, 768, 1200 e 1920.
 - A escala de espaçamento é a mesma em todos os breakpoints; o que muda são os tokens de Grid e de Layout.
-- Menu lateral no iPad e Mobile: **A DECIDIR** (drawer, só ícones ou barra inferior).
+- **Menu lateral no iPad e no Mobile (decidido, G-3): drawer** (`Drawer` temporário do MUI) aberto por um botão de menu no cabeçalho; largura `layout/sidebar-width` (255), rótulos visíveis, itens com 44/48 de altura, foco preso enquanto aberto, `Esc` fecha e devolve o foco ao botão. Detalhes de animação e gesto: G-8.
 
 ## 8. Mapa Figma ↔ código
 
@@ -125,10 +145,11 @@ Mudança de nomes no Figma (2026-10-05): `layout/columns`, `layout/margin` e `la
 
 ## 10. Pontos em aberto
 
-Todos os pontos em aberto de grid e layout estão em **`decisoes-em-aberto.md`** (G-1 a G-7).
+Os pontos em aberto de grid e layout estão em **`decisoes-em-aberto.md`** (G-8); G-1 a G-7 estão decididas.
 
 ## Histórico de versões
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 1.1.0 | 2026-10-28 | Larguras de início dos breakpoints e chaves do MUI (G-1), margem desktop 80 (G-2), drawer no iPad e Mobile (G-3), margem com menu 48 (G-4), nomes (G-5), ocupação de colunas por conteúdo (G-6); G-7 fechada |
 | 1.0.0 | 2026-10-07 | Separada da spec de espaçamento (rascunho de 2026-10-05); revisão estrutural (`ds-v1`) |
