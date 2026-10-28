@@ -12,7 +12,7 @@ Status: rascunho de 2026-10-05. Revisão estrutural em 2026-10-07 (versão **ds-
 | Cor (escopo parcial) | `color-spec-tce.md` | Primitivas e semânticos de texto, link, botão e fundo; contraste; regras de uso | Coleções Color / Primitives e Color / Semantic, página 🎨 Cores | Rascunho parcial |
 | Espaçamento | `spacing-spec-tce.md` | Escala 4–48, tokens semânticos, padding de componentes, alvos clicáveis, espaçamento de texto | Coleção Spacing, página Spacing | Rascunho |
 | Grid e layout | `grid-layout-spec-tce.md` | Colunas, margem, gutter, menu lateral, templates de página | Coleções Grid e Layout, páginas 📏 Grid e 🧱 Layout | Rascunho |
-| Botão | `button-spec-tce.md` | Componente `Button` (MUI): propriedades Figma ↔ props do MUI, medidas, estados (hover, ripple, foco amarelo e preto, desabilitado, selecionado), acessibilidade e referência de tema | Página 🧩 Componentes, conjunto `Button` | Rascunho, 6 pendências (B-1 a B-6) |
+| Botão | `button-spec-tce.md` | Componente `Button` (MUI): propriedades Figma ↔ props do MUI, medidas, estados (hover, ripple, foco amarelo e preto, desabilitado, selecionado), acessibilidade e referência de tema | Página 🧩 Componentes, conjunto `Button` | Rascunho, 7 pendências (B-1 a B-7) |
 | Padrões de interface | `padroes-de-interface.md` | Blocos recorrentes das telas: cabeçalho, seções, abas, tabelas, formulários, modais, feedback, status, estado vazio, texto longo | — | Rascunho |
 | Decisões em aberto | `decisoes-em-aberto.md` | Todos os "A DECIDIR" consolidados, com spec de origem | — | Em andamento |
 | Correções do CSS original | `../referencias/espacamento-e-css-original-correcoes.md` | Defeitos do CSS legado e comparação com o Figma | — | Referência (arquivo, não spec viva) |
