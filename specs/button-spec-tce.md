@@ -8,7 +8,7 @@
 |---|---|
 | **Versão da spec** | **0.2.0** (rascunho) |
 | **Última atualização** | **2026-10-28** |
-| Versão do DS | em revisão para a próxima tag `ds-vN` (última tag: `ds-v2`; ver `CHANGELOG.md`) |
+| Versão do DS | em revisão, ainda sem tag (o `CHANGELOG.md` registra `ds-v3` como a confirmar; a tag é decisão do design) |
 | Arquivo | `specs/button-spec-tce.md` |
 
 **Quem lê (pessoa ou agente):** anote a **versão** e a **data** acima no PR ou no handoff que usar esta spec. Se a versão que você leu for menor que a do repositório, releia antes de implementar. Versões `0.x` são rascunho e podem mudar. Regra de numeração: o primeiro número muda quando um nome de propriedade ou token muda (quebra); o segundo, quando entra regra ou estado novo; o terceiro, em correção de texto. O histórico está na seção 12.
