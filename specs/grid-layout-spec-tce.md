@@ -4,7 +4,19 @@
 >
 > Escala de espaçamento (gap e padding de componentes) está em `spacing-spec-tce.md`. Tipografia está em `typography-spec-tce.md`. Índice geral: `design-system-index.md`.
 
-Status: rascunho de 2026-10-05. Separada da spec de espaçamento, onde estava na seção 5. Revisão estrutural em 2026-10-07 (versão **ds-v1**).
+| Campo | Valor |
+|---|---|
+| **Versão da spec** | **1.0.0** (rascunho) |
+| **Última atualização** | **2026-10-07** |
+| Versão do DS | em revisão, ainda sem tag |
+| **Camada** | **1. Átomos (tokens de grid) e 4. Templates (posição das regiões da página)** |
+| **Depende de** (data da última atualização lida) | `spacing-spec-tce.md` 1.1.0 (2026-10-28, escala) |
+| **Usada por** | `button-spec-tce.md` (breakpoint do mobile), `padroes-de-interface.md` (colunas de tabela) e os templates de página |
+| Arquivo e Figma | `specs/grid-layout-spec-tce.md`; variáveis de grid do ⭐ Design System TCE |
+
+Histórico na última seção. Formato do cabeçalho: `design-system-index.md`, seção 4.1.
+
+O que é token (margem, gutter, largura do menu) é Átomo; o posicionamento do menu lateral e da área de conteúdo é Template.
 
 ## 1. Regras obrigatórias
 
@@ -114,3 +126,9 @@ Mudança de nomes no Figma (2026-10-05): `layout/columns`, `layout/margin` e `la
 ## 10. Pontos em aberto
 
 Todos os pontos em aberto de grid e layout estão em **`decisoes-em-aberto.md`** (G-1 a G-7).
+
+## Histórico de versões
+
+| Versão | Data | O que mudou |
+|---|---|---|
+| 1.0.0 | 2026-10-07 | Separada da spec de espaçamento (rascunho de 2026-10-05); revisão estrutural (`ds-v1`) |

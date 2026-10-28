@@ -6,7 +6,19 @@
 >
 > Espaçamento **de texto** (letter-spacing, word-spacing, line-height, espaço entre parágrafos) é outro assunto: está definido na `typography-spec-tce.md`, seção 5 (decidido em 2026-10-28). A seção 8 abaixo só aponta para lá.
 
-Status: rascunho, atualizado em 2026-10-05. Grid e layout saíram desta spec e estão em `grid-layout-spec-tce.md`. Origem: variáveis criadas no Figma, CSS original do TCE (`variables_v1.css`, `components-form_v1.css`, `typography_v1.css`, `sections.css`, `main.css`, `grid.css`) e protótipos existentes. A aplicação em um produto específico fica no handoff do produto. Ver também `../referencias/espacamento-e-css-original-correcoes.md`. Revisão estrutural em 2026-10-07 (versão **ds-v1**).
+| Campo | Valor |
+|---|---|
+| **Versão da spec** | **1.1.0** (rascunho) |
+| **Última atualização** | **2026-10-28** |
+| Versão do DS | em revisão, ainda sem tag |
+| **Camada** | **1. Átomos (tokens)** |
+| **Depende de** (data da última atualização lida) | Nenhuma (é base). Remete a `grid-layout-spec-tce.md` 1.0.0 (2026-10-28, margem de página e gutter) e a `typography-spec-tce.md` 4.1.0 (2026-10-28, espaçamento de texto) |
+| **Usada por** | `typography-spec-tce.md`, `grid-layout-spec-tce.md`, `button-spec-tce.md`, `padroes-de-interface.md` e todas as specs de componente |
+| Arquivo e Figma | `specs/spacing-spec-tce.md`; coleção Spacing do ⭐ Design System TCE |
+
+Histórico na última seção. Formato do cabeçalho: `design-system-index.md`, seção 4.1.
+
+Origem: variáveis criadas no Figma, CSS original do TCE (`variables_v1.css`, `components-form_v1.css`, `typography_v1.css`, `sections.css`, `main.css`, `grid.css`) e protótipos existentes. A aplicação em um produto específico fica no handoff do produto. Ver também `../referencias/espacamento-e-css-original-correcoes.md`.
 
 ## 1. Regras obrigatórias
 
@@ -127,3 +139,10 @@ As distâncias anotadas no protótipo, com o token de cada uma, ficam no handoff
 ## 13. Pontos em aberto
 
 Todos os pontos em aberto de espaçamento estão em **`decisoes-em-aberto.md`** (E-1 a E-7; E-8 foi resolvido em `button-spec-tce.md`). Os de grid e layout, no mesmo arquivo (G-1 a G-7).
+
+## Histórico de versões
+
+| Versão | Data | O que mudou |
+|---|---|---|
+| 1.1.0 | 2026-10-28 | Botão com padding 8/16, altura mínima 44/48, largura mínima 64, ícone 20 e gap 8 (fecha E-8); espaçamento de texto remetido à tipografia |
+| 1.0.0 | 2026-10-07 | Rascunho de 2026-10-05; grid e layout separados em `grid-layout-spec-tce.md`; revisão estrutural (`ds-v1`) |
