@@ -4,7 +4,16 @@
 >
 > Índice geral: `design-system-index.md`. Cores: `color-spec-tce.md` (seção 5). Tipografia: `typography-spec-tce.md`. Espaçamento: `spacing-spec-tce.md`.
 
-Status: rascunho, 2026-10-28. Origem: componente `Button` (antes `btn`) do arquivo ⭐ Design System TCE (fileKey `mn0wkryj2sBHmW412qD2o8`, página 🧩 Componentes, conjunto `106:3174`), com 216 variantes. Os nomes das propriedades no Figma são os mesmos das props do MUI.
+| Campo | Valor |
+|---|---|
+| **Versão da spec** | **0.2.0** (rascunho) |
+| **Última atualização** | **2026-10-28** |
+| Versão do DS | em revisão para a próxima tag `ds-vN` (última tag: `ds-v2`; ver `CHANGELOG.md`) |
+| Arquivo | `specs/button-spec-tce.md` |
+
+**Quem lê (pessoa ou agente):** anote a **versão** e a **data** acima no PR ou no handoff que usar esta spec. Se a versão que você leu for menor que a do repositório, releia antes de implementar. Versões `0.x` são rascunho e podem mudar. Regra de numeração: o primeiro número muda quando um nome de propriedade ou token muda (quebra); o segundo, quando entra regra ou estado novo; o terceiro, em correção de texto. O histórico está na seção 12.
+
+Origem: componente `Button` (antes `btn`) do arquivo ⭐ Design System TCE (fileKey `mn0wkryj2sBHmW412qD2o8`, página 🧩 Componentes, conjunto `106:3174`), com 216 variantes. Os nomes das propriedades no Figma são os mesmos das props do MUI.
 
 ## 1. Regras obrigatórias
 
@@ -224,3 +233,10 @@ Code Connect ainda não está mapeado para o `Button` (B-6).
 ## 11. Pontos em aberto
 
 Todos em **`decisoes-em-aberto.md`** (B-1 a B-6).
+
+## 12. Histórico de versões
+
+| Versão | Data | O que mudou |
+|---|---|---|
+| 0.2.0 | 2026-10-28 | Prefixo `tcece` (seção 2.1): `tceceElevated`, `tceceDevice`, `tceceSelected`, `tceceStartIcon`, `tceceEndIcon`, `tcece-hover-overlay`, `theme.tcece`. Cabeçalho com versão e data |
+| 0.1.0 | 2026-10-28 | Criação: mapa Figma ↔ MUI, medidas, estados, ripple por contraste, foco amarelo e preto, acessibilidade, tema MUI, pendências B-1 a B-6 |
