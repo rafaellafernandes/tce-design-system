@@ -8,7 +8,7 @@ Status: rascunho de 2026-10-05. Revisão estrutural em 2026-10-07 (versão **ds-
 
 | Spec | Arquivo | Cobre | Coleção / página no Figma | Estado |
 |---|---|---|---|---|
-| Tipografia | `typography-spec-tce.md` | Famílias (Noto Sans principal; Atkinson só em números e labels), escala única, pesos, espaçamento de texto (line-height, letter-spacing, parágrafos), mapa de papéis, padrões de uso, cores de texto, contraste | Estilos de texto do DS | Em uso, com 7 pendências (T-3, T-4, T-5, T-12, T-13, T-15, T-16); família decidida em 2026-10-21; piso de 16px decidido em 2026-10-27; escala única e espaçamento de texto decididos em 2026-10-28 |
+| Tipografia | `typography-spec-tce.md` | Famílias (Noto Sans principal; Atkinson só em números e labels), escala única, pesos, espaçamento de texto (line-height, letter-spacing, parágrafos), mapa de papéis, padrões de uso, cores de texto, contraste | Estilos de texto do DS | Em uso, com 6 pendências (T-3, T-4, T-5, T-12, T-13, T-15); família decidida em 2026-10-21; piso de 16px decidido em 2026-10-27; escala única e espaçamento de texto decididos em 2026-10-28 |
 | Cor (escopo parcial) | `color-spec-tce.md` | Primitivas e semânticos de texto, link, botão e fundo; contraste; regras de uso | Coleções Color / Primitives e Color / Semantic, página 🎨 Cores | Rascunho parcial |
 | Espaçamento | `spacing-spec-tce.md` | Escala 4–48, tokens semânticos, padding de componentes, alvos clicáveis, espaçamento de texto | Coleção Spacing, página Spacing | Rascunho |
 | Grid e layout | `grid-layout-spec-tce.md` | Colunas, margem, gutter, menu lateral, templates de página | Coleções Grid e Layout, páginas 📏 Grid e 🧱 Layout | Rascunho |

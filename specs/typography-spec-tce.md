@@ -4,7 +4,7 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **4.1.0** (em uso, com pendências) |
+| **Versão da spec** | **4.2.0** (em uso, com pendências) |
 | **Última atualização** | **2026-10-28** |
 | Versão do DS | em revisão, ainda sem tag (o `CHANGELOG.md` registra `ds-v3` como a confirmar; a tag é decisão do design) |
 | **Camada** | **1. Átomos (tokens)** |
@@ -12,7 +12,7 @@
 | **Usada por** | `button-spec-tce.md`, `padroes-de-interface.md` e, quando existirem, as specs de campo, label, tabela, modal, header, menu lateral e demais componentes com texto |
 | Arquivo e Figma | `specs/typography-spec-tce.md`; coleção `Typography` e estilos `Spec/*` do arquivo ⭐ Design System TCE (seção 12) |
 
-Pendências abertas: T-3, T-4, T-5, T-12, T-13, T-15 e T-16 (`decisoes-em-aberto.md`). O histórico de versões está na seção 13; o formato do cabeçalho é o padrão do DS (`design-system-index.md`, seção 4.1).
+Pendências abertas: T-3, T-4, T-5, T-12, T-13 e T-15 (`decisoes-em-aberto.md`). O histórico de versões está na seção 13; o formato do cabeçalho é o padrão do DS (`design-system-index.md`, seção 4.1).
 
 > **Família tipográfica (decidido em 2026-10-21, fecha T-1):** a fonte principal do sistema é **Noto Sans**. **Atkinson Hyperlegible Next** é a fonte de **acento** e só entra em **números** e em **labels** (seções 2 e 2.1). Todo o resto da interface usa Noto Sans. Os tokens e o CSS antigos que punham Atkinson em toda a interface estão **errados** e devem ser corrigidos. No Figma, os estilos antigos (nomeados por px, em Plus Jakarta Sans ou Atkinson) **não seguem** esta spec e estão sendo migrados: a referência são os estilos `Spec/*`, que são a **única escala** (os valores do Figma e desta spec devem ser os mesmos; se divergirem, vale esta spec).
 >
@@ -116,7 +116,7 @@ Botão, label, input, helper, cabeçalho e célula de tabela usam tokens da esca
 - **Uso:** hero e páginas institucionais, um `display-*` por página. Telas de produto continuam com `title-*`.
 - **Composição do hero:** linha de apoio acima (`title-md`, por exemplo "Boas vindas ao"), nome em `display-2xl` ou `display-xl`, complemento abaixo em `body-lg`.
 - **Tamanho fluido (opcional):** entre o valor mobile e o desktop com `clamp()`. Os breakpoints continuam valendo.
-- **Letter-spacing:** vale `0` (seção 5). O hero atual do Conecta usa espaçamento largo; o tracking de todo o DS será revisto em T-16.
+- **Letter-spacing:** `0`, sem exceção para o hero (seção 5.2). O espaçamento largo do hero antigo do Conecta (8%) não vale.
 - **Acessibilidade:** sem altura fixa, no máximo 2 linhas por bloco, `text-wrap: balance`, funcionar em zoom de 400% sem corte nem rolagem horizontal.
 - **Peso:** 700 em `display-2xl` e `display-xl`; 600 nos demais.
 
@@ -163,7 +163,7 @@ Espaçamento **de layout** (gap, padding, margem) está em **`spacing-spec-tce.m
 | Propriedade | Valor | Observação |
 |---|---|---|
 | `line-height` | o do token (seção 3): 1.2 em `display-*` e `title-2xl`; 1.4 em `title-lg`, `title-md`, `title-sm`, `code` e `caption`; 1.6 em `body-*`; 1.8 em `blockquote` | Unitless. Não copie o line-height dos frames antigos do Figma (150%) |
-| `letter-spacing` | `0` em todos os tokens (revisão de todo o DS em T-16) | Os 0,08 a 0,12 em do CSS original e os 4 a 12% dos estilos antigos do Figma **não valem** mais |
+| `letter-spacing` | `0` em todos os tokens, com uma variável por token (seção 5.2) | Os 0,08 a 0,12 em do CSS original e os 4 a 12% dos estilos antigos do Figma **não valem** mais |
 | `word-spacing` | `0` | |
 | Espaço entre parágrafos (texto corrido) | **24px** (`1.5rem`), via `margin-block-end`/`gap` entre parágrafos | Só texto corrido: justificativas, respostas, conteúdo de comunicações. Vale a escala de `spacing-spec-tce.md` |
 | Recuo da primeira linha | não usa | |
@@ -196,6 +196,26 @@ Consequências para o código e o Figma:
 6. **Listas:** use `ul`/`ol` reais. Texto da lista em `body-md`, espaço de 8px entre itens e recuo padrão do navegador; o marcador não depende só de cor.
 7. **Títulos e hero:** `text-wrap: balance` em `title-*` e `display-*`; `text-wrap: pretty` em parágrafos longos.
 8. **Números:** colunas e valores comparáveis usam Atkinson com `font-variant-numeric: tabular-nums`. Teste de aceitação: numa coluna com 1111 e 8888 os dígitos se alinham.
+
+### 5.2 Letter-spacing por token e acessibilidade (decidido em 2026-10-28, fecha T-16)
+
+Cada token tem a sua variável de letter-spacing (`--tcece-<token>-letter-spacing`; no Figma, `<grupo>/<token>/<desktop|mobile>/letterSpacing`). Todas valem `0` e apontam para a base `--tcece-text-letter-spacing` (`special/letterSpacing`). A variável por token existe para qualquer ajuste futuro ficar restrito a um token, mas **hoje nenhum token tem valor diferente de 0**.
+
+| Grupo | Valor | Antes (estilos antigos do Figma) |
+|---|---|---|
+| `display-*` | 0 | 8% (hero do Conecta) |
+| `title-*` | 0 | 12% |
+| `body-*`, `blockquote`, `code`, `caption` | 0 | 4% |
+| `title-sm` (botão, label, cabeçalho de tabela) e números em Atkinson | 0 | 4% (`Btn`), de 0% a 5% no mobile |
+
+**Regras para garantir a acessibilidade:**
+
+1. **Teto 0 em todos os tokens; nunca negativo.** Valor positivo estreita a margem da WCAG 1.4.12 e piora texto corrido; valor negativo piora a legibilidade para quem tem dislexia. Para o hero, a presença vem do tamanho e do peso 700.
+2. **Mudar um valor exige registro.** Qualquer token com valor diferente de 0 só entra com aprovação do design, numa tabela nesta seção com token, valor em `em`, motivo e resultado do teste de aceitação da seção 5 (WCAG 1.4.12).
+3. **O usuário sempre vence.** Sem `!important` e sem `letter-spacing` inline: a folha de estilo ou a extensão do usuário precisa sobrescrever o tracking. A regra `avoid-inline-spacing` do axe-core confere isso.
+4. **Teste automático.** Em cada componente novo, aplicar os quatro valores da WCAG 1.4.12 (por exemplo, com Playwright) e conferir que nada é cortado nem sobreposto.
+5. **Lint.** `letter-spacing` só aceita `0` ou `var(--tcece-*-letter-spacing)`; valor solto em `px`, `em` ou `%` é erro.
+6. **Unidade.** No código, `em` (acompanha o zoom). O Figma guarda `px`; a conversão fica no registro da regra 2.
 
 ## 6. Cores de texto e estados
 
@@ -261,8 +281,22 @@ As recomendações por página e fluxo de cada produto ficam no documento de han
   --tcece-code-size: 1rem; --tcece-code-weight: 600; --tcece-code-lh: 1.4;
   --tcece-caption-size: 1rem; --tcece-caption-weight: 400; --tcece-caption-lh: 1.4;
 
-  /* Espaçamento de texto (seção 5): valor único para todos os tokens */
+  /* Espaçamento de texto (seção 5): base 0; cada token herda a base e pode ser ajustado só nele (seção 5.2) */
   --tcece-text-letter-spacing: 0;
+  --tcece-display-2xl-letter-spacing: var(--tcece-text-letter-spacing);
+  --tcece-display-xl-letter-spacing: var(--tcece-text-letter-spacing);
+  --tcece-display-large-letter-spacing: var(--tcece-text-letter-spacing);
+  --tcece-display-medium-letter-spacing: var(--tcece-text-letter-spacing);
+  --tcece-display-small-letter-spacing: var(--tcece-text-letter-spacing);
+  --tcece-title-2xl-letter-spacing: var(--tcece-text-letter-spacing);
+  --tcece-title-lg-letter-spacing: var(--tcece-text-letter-spacing);
+  --tcece-title-md-letter-spacing: var(--tcece-text-letter-spacing);
+  --tcece-title-sm-letter-spacing: var(--tcece-text-letter-spacing);
+  --tcece-body-lg-letter-spacing: var(--tcece-text-letter-spacing);
+  --tcece-body-md-letter-spacing: var(--tcece-text-letter-spacing);
+  --tcece-blockquote-letter-spacing: var(--tcece-text-letter-spacing);
+  --tcece-code-letter-spacing: var(--tcece-text-letter-spacing);
+  --tcece-caption-letter-spacing: var(--tcece-text-letter-spacing);
   --tcece-text-word-spacing: 0;
   --tcece-paragraph-gap: 1.5rem; /* 24px, só texto corrido */
 }
@@ -281,7 +315,7 @@ As recomendações por página e fluxo de cada produto ficam no documento de han
 }
 
 /* Noto Sans é o padrão de tudo; Atkinson só entra pelas duas regras abaixo */
-body { font-family: var(--tcece-font-primary); font-size: var(--tcece-body-md-size); letter-spacing: var(--tcece-text-letter-spacing); word-spacing: var(--tcece-text-word-spacing); }
+body { font-family: var(--tcece-font-primary); font-size: var(--tcece-body-md-size); letter-spacing: var(--tcece-body-md-letter-spacing); word-spacing: var(--tcece-text-word-spacing); }
 
 /* Texto corrido: espaço entre parágrafos */
 .tcece-prose p + p { margin-block-start: var(--tcece-paragraph-gap); }
@@ -345,15 +379,16 @@ Os contrastes de cada token de texto, link, botão e fundo estão em `color-spec
 
 ## 11. Pontos em aberto
 
-Todos os pontos em aberto de tipografia estão em **`decisoes-em-aberto.md`** (T-3, T-4, T-5, T-12, T-13, T-15 e T-16; T-1 foi decidido em 2026-10-21; T-7 e T-8 foram resolvidos em 2026-10-27 pelo piso de 16px; T-2 foi resolvido em 2026-10-28 pela seção 5; T-6, T-9, T-10, T-11 e T-14 foram decididos em 2026-10-28). Até a decisão, vale o valor desta spec.
+Todos os pontos em aberto de tipografia estão em **`decisoes-em-aberto.md`** (T-3, T-4, T-5, T-12, T-13 e T-15; T-1 foi decidido em 2026-10-21; T-7 e T-8 foram resolvidos em 2026-10-27 pelo piso de 16px; T-2 foi resolvido em 2026-10-28 pela seção 5; T-6, T-9, T-10, T-11, T-14 e T-16 foram decididos em 2026-10-28). Até a decisão, vale o valor desta spec.
 
 ## 12. Mapa Figma ↔ código
 
 | Figma | Código | Observação |
 |---|---|---|
-| Coleção `Typography` (79 variáveis, modo único) | Variáveis `--tcece-*` da seção 8 | Nomes no Figma: `title/lg/desktop/fontSize`, `title/lg/mobile/fontSize`, `body/md/fontSize`, `special/code/fontWeight`… Os `display` e `title` têm desktop e mobile; `body` e `special` têm valor único |
+| Coleção `Typography` (102 variáveis, modo único) | Variáveis `--tcece-*` da seção 8 | Nomes no Figma: `title/lg/desktop/fontSize`, `title/lg/mobile/fontSize`, `body/md/fontSize`, `special/code/fontWeight`… Os `display` e `title` têm desktop e mobile; `body` e `special` têm valor único |
 | Variável `…/lineHeight` | `--tcece-<token>-lh` | No Figma o line-height está em **px** (o estilo de texto só aceita px quando ligado a variável); a razão da spec (1.2, 1.4, 1.6, 1.8) está na descrição da variável. No código use sempre o número sem unidade |
-| `special/letterSpacing` | `--tcece-text-letter-spacing` | `0` em todos os tokens (seção 5) |
+| `special/letterSpacing` | `--tcece-text-letter-spacing` | Base `0`; as variáveis por token apontam para ela (seção 5.2) |
+| Variáveis `…/letterSpacing` (23: `display` e `title` em desktop e mobile, `body-lg`, `body-md`, `blockquote`, `code`, `caption`) | `--tcece-<token>-letter-spacing` | Alias da base, valor `0`; os 14 estilos `Spec/*` usam a do próprio token (desktop) |
 | `font/primary` e `font/accent` | `--tcece-font-primary` e `--tcece-font-accent` | A Atkinson se aplica ligando a variável `font/accent` à família do texto, **mantendo** o estilo `Spec/*`. Trocar a família à mão desliga o estilo |
 | Estilos `Spec/display-2xl`, `-xl`, `-large`, `-medium`, `-small`, `Spec/title-2xl`, `-lg`, `-md`, `-sm`, `Spec/body-lg`, `-md`, `Spec/blockquote`, `Spec/code`, `Spec/caption` (14) | Tokens de mesmo nome da seção 3 | Os estilos usam as variáveis acima. Só existem para desktop; os estilos mobile ainda não foram criados (pendência) |
 | 51 estilos antigos (`Desktop/…`, `Mobile/…`) e coleção `Tipografia Responsiva` | Não usar | Em migração: serão apagados depois de migrar as outras páginas do arquivo |
@@ -394,6 +429,7 @@ Valores de cada variante: os da seção 3, em `rem` e line-height sem unidade. A
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 4.2.0 | 2026-10-28 | Letter-spacing por token com teto 0 e regras de acessibilidade (seção 5.2, fecha T-16); 23 variáveis novas no Figma (102 no total); variáveis CSS `--tcece-<token>-letter-spacing` |
 | 4.1.0 | 2026-10-28 | `display-2xl` e `display-xl` adotados (peso 700) com regras da seção 3.1; seção 5.1 (reflow, quebra de palavras, idioma, listas); mapeamento para o MUI com variantes `tcece*` (T-15); T-6, T-9, T-10, T-11 e T-14 decididos; revisão do tracking aberta (T-16); Figma com 79 variáveis e 14 estilos |
 | 4.0.1 | 2026-10-28 | Nomes dos tokens de cor atualizados conforme `color-spec-tce.md` 2.0.0 (texto) |
 | 4.0.0 | 2026-10-28 | Proposta `display-2xl`/`display-xl` e seção 3.1 (a aprovar, T-14); prefixo `tcece` nas variáveis CSS e classes (`--tcece-font-primary`, `--tcece-title-lg-size`, `.tcece-num`…); cabeçalho padrão (camada, depende de, usada por); seção 12 (mapa Figma ↔ código); botão aponta para `button-spec-tce.md` |
