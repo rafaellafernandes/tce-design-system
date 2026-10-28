@@ -2,6 +2,22 @@
 
 Mais recente primeiro.
 
+## Em revisão — 2026-10-28: spec do botão
+
+- **Nova spec `button-spec-tce.md`**: o componente `btn` do Figma virou `Button`, com propriedades de mesmo nome das props do `Button` do MUI (`variant`, `color`, `size`, `state`, `startIcon`, `endIcon`, `children`). Terciário = `elevated` (variante customizada), Criação = `contained` + `success`, `Active` = `selected`, `Dispositive` = `size`.
+- **Layout do botão** alinhado ao CSS e ao MUI: padding 8/16 (12 no lado do ícone), altura mínima 44 (desktop) e 48 (mobile) em vez de altura fixa, largura mínima 64, ícone de 20px. Fecha E-8.
+- **Hover e pressed no padrão do MUI**: tint de 4% e `TouchRipple`. Opacidade do ripple por variante (30%, 18% e 27%) para manter o rótulo com pelo menos 4,5:1.
+- **Foco visível** mantém o amarelo e o preto também com hover e clique.
+- **Prefixo `tcece` decidido**: tudo o que o DS inventa leva o prefixo e nada nosso usa palavras reservadas do MUI. No Figma, `size` virou `tceceDevice` (desktop e mobile), `selected` virou `tceceSelected`, `elevated` virou `tceceElevated`, as trocas de ícone viraram `tceceStartIcon` e `tceceEndIcon` e a camada `hover-overlay` virou `tcece-hover-overlay`. `button-spec-tce.md` ganhou a seção 2.1.
+- **Tipografia 4.0.0:** prefixo `tcece` nas variáveis CSS e classes (`--font-primary` → `--tcece-font-primary`, `--title-lg-size` → `--tcece-title-lg-size`, `.num` → `.tcece-num`, `--text-letter-spacing`, `--text-word-spacing` e `--paragraph-gap` também levam o prefixo; as entradas antigas deste CHANGELOG mantêm os nomes da época), cabeçalho padrão, mapa Figma ↔ código (seção 12) e histórico de versões. Proposta de `display-2xl` e `display-xl` e regras `display-*` (seção 3.1, T-14, a aprovar). Novas pendências T-15 (mapeamento para o `theme.typography` do MUI) e C-5 (foco: anel ou preenchimento). **Impacto para os devs:** renomear as variáveis e classes da tipografia.
+- **Regra de verificação das specs relacionadas** (índice, seção 7): toda atualização de spec confere as listadas em "Depende de" e "Usada por", atualiza versão, data e histórico de cada uma tocada e lista no PR as specs verificadas.
+- **Context7 no contexto do projeto** (índice, seção 6.1): o agente de código consulta a documentação do MUI da versão do front pelo Context7; a spec do DS vence a documentação nas decisões de design. Nova pendência B-8 (versão do MUI do front).
+- **Estrutura das specs em Atomic Design** (índice, seção 4.1): cinco camadas (átomos, moléculas, organismos, templates, páginas), regra de que a dependência só desce, ordem de criação, mapa das specs que existem e das que faltam e **cabeçalho padrão** (versão, data, versão do DS, camada, depende de, usada por). `button-spec-tce.md` (0.4.0) é o modelo.
+- **Dependências entre specs:** `button-spec-tce.md` (0.3.0) ganha a seção 11 com as specs de que depende (tipografia, cor, espaçamento, grid-layout, padrões de interface), o que herda de cada uma e quando revisar; o índice ganha a seção 4.1; nova pendência B-7 (fundações ausentes: elevação, ícones, raio e borda, movimento).
+- **Versionamento por spec:** `button-spec-tce.md` (0.2.0) passa a ter no topo versão, data e versão do DS, e o histórico de versões no fim. Convenção descrita no índice, seção 5.
+- Novas decisões em aberto B-1 a B-6.
+- **Impacto para os devs:** usar o `Button` do MUI com o tema da seção 8 da spec; registrar a variante `elevated`; regenerar `tokens.json` e `designTokens.ts`. No Figma, republicar a biblioteca e reapontar instâncias do botão que usem os nomes antigos de propriedade.
+
 ## ds-v3 — 2026-10-28 (a confirmar; a tag é decisão do design)
 
 **Decisão tomada: escala tipográfica única**
