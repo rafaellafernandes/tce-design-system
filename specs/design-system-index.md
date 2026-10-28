@@ -123,5 +123,16 @@ O front usa o MUI (`@mui/material`). Para o agente de código não implementar c
 
 ## 7. Governança
 
+### Verificação das specs relacionadas (sempre que uma spec mudar)
+
+Toda atualização de spec inclui conferir as specs relacionadas, nas duas direções:
+
+1. Abra os campos **Depende de** e **Usada por** da spec alterada.
+2. **Para cima e para baixo:** em cada spec listada, confira se os valores e as referências ainda batem com a mudança. Se a spec de baixo (da qual ela depende) mudou depois da "data lida", revise e atualize a data lida.
+3. Atualize os campos **Usada por** e **Depende de** das duas pontas, se a relação mudou.
+4. Em **cada spec tocada**: nova versão, nova data e linha no histórico de versões.
+5. Registre no `CHANGELOG.md` e, se a mudança resolver ou abrir pendência, em `decisoes-em-aberto.md`.
+6. No PR, liste as specs verificadas, **inclusive as que não precisaram mudar**, com a data lida de cada uma. PR sem essa lista não está pronto para mesclar.
+
 - O time de design do design system aprova valores novos e resolve as decisões em aberto.
 - Cada decisão tomada atualiza a spec de origem e sai de `decisoes-em-aberto.md`.

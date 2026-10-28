@@ -8,11 +8,11 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **0.5.1** (rascunho) |
+| **Versão da spec** | **0.5.2** (rascunho) |
 | **Última atualização** | **2026-10-28** |
 | Versão do DS | em revisão, ainda sem tag (o `CHANGELOG.md` registra `ds-v3` como a confirmar; a tag é decisão do design) |
 | **Camada** | **1. Átomos (componente)** |
-| **Depende de** (data da última atualização lida) | Tokens: `typography-spec-tce.md` (2026-10-28), `color-spec-tce.md` (2026-10-21), `spacing-spec-tce.md` (2026-10-28), `grid-layout-spec-tce.md` (2026-10-21, só os breakpoints). Detalhe na seção 11 |
+| **Depende de** (data da última atualização lida) | Tokens: `typography-spec-tce.md` (2026-10-28), `color-spec-tce.md` (2026-10-28), `spacing-spec-tce.md` (2026-10-28), `grid-layout-spec-tce.md` (2026-10-21, só os breakpoints). Detalhe na seção 11 |
 | **Usada por** | `padroes-de-interface.md` (modais, paginação, estado vazio, formulários) e, quando existirem, as specs de campo de busca, paginação, banner, modal, tabela, menu lateral e header. Detalhe na seção 11 |
 | Arquivo | `specs/button-spec-tce.md` |
 
@@ -272,6 +272,7 @@ Todos em **`decisoes-em-aberto.md`** (B-1 a B-8).
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 0.5.2 | 2026-10-28 | Verificação das specs relacionadas (índice, seção 7): data lida da spec de cor atualizada para 2026-10-28 (a spec de cor só ganhou um ponteiro para esta, sem mudança de valor); tipografia, espaçamento, grid-layout e padrões conferidos |
 | 0.5.1 | 2026-10-28 | Campo "Camada" encurtado (a metodologia fica só no índice) |
 | 0.5.0 | 2026-10-28 | Consulta à documentação do MUI pelo Context7 (índice, seção 6.1); pendência B-8 (versão do MUI do front) |
 | 0.4.0 | 2026-10-28 | Camada 1 (átomo) segundo o Atomic Design; cabeçalho padrão com "Camada", "Depende de" e "Usada por"; seção 11 dividida em 11.1 (depende de) e 11.2 (usada por); `padroes-de-interface.md` deixa de ser dependência (é spec de cima) |
