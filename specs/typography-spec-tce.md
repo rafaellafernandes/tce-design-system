@@ -335,7 +335,7 @@ Todos os pontos em aberto de tipografia estão em **`decisoes-em-aberto.md`** (T
 
 | Versão | Data | O que mudou |
 |---|---|---|
-| 4.0.0 | 2026-10-28 | Prefixo `tcece` nas variáveis CSS e classes (`--tcece-font-primary`, `--tcece-title-lg-size`, `.tcece-num`…); cabeçalho padrão (camada, depende de, usada por); seção 12 (mapa Figma ↔ código); botão aponta para `button-spec-tce.md` |
+| 4.0.0 | 2026-10-28 | Proposta `display-2xl`/`display-xl` e seção 3.1 (a aprovar, T-14); prefixo `tcece` nas variáveis CSS e classes (`--tcece-font-primary`, `--tcece-title-lg-size`, `.tcece-num`…); cabeçalho padrão (camada, depende de, usada por); seção 12 (mapa Figma ↔ código); botão aponta para `button-spec-tce.md` |
 | 3.0.0 | 2026-10-28 | Escala única: tokens `button-*`, `form-*` e `table-*` removidos; espaçamento de texto definido (seção 5, fecha T-2 e E-2). Marcada como `ds-v3` (a confirmar) |
 | 2.0.0 | 2026-10-27 | Piso de 16px; tokens `title-xs`, `title-ss` e `body-standard` removidos; `caption`, `code`, `form-helper` e `button-secondary` sobem para 16px. Marcada como `ds-v2` (a confirmar) |
 | 1.1.0 | 2026-10-21 | Família tipográfica decidida: Noto Sans, com Atkinson só em números e labels (fecha T-1) |
