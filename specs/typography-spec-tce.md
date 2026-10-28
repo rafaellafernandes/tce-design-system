@@ -49,6 +49,7 @@ Fora disso, **Noto Sans**. Em especial:
 - Número **dentro de frase** ("Você tem 3 dias para responder") fica em Noto Sans, junto com o resto do texto. Não troque a família no meio da linha.
 - Helper, placeholder, texto digitado no input, cabeçalho de tabela, botões, abas e badges ficam em Noto Sans (a decisão sobre cabeçalho de tabela, badges e abas como "labels" está em T-13).
 - A família muda; **tamanho, peso e line-height continuam os do token do papel**. Um número em célula de tabela (`body-md`) continua 16 / 400 / 1.6, só que em Atkinson.
+- **No Figma**, a troca de família é feita pela variável `font/accent` (Atkinson) ligada ao texto, mantendo o estilo `Spec/*` aplicado; o padrão é `font/primary` (Noto Sans). Não troque a fonte direto no texto: isso solta o estilo da escala. No código, equivale ao `--font-accent` sobre o token do papel.
 
 ## 3. Escala tipográfica
 
