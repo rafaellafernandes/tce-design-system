@@ -9,6 +9,7 @@ Mais recente primeiro.
 - **Hover e pressed no padrão do MUI**: tint de 4% e `TouchRipple`. Opacidade do ripple por variante (30%, 18% e 27%) para manter o rótulo com pelo menos 4,5:1.
 - **Foco visível** mantém o amarelo e o preto também com hover e clique.
 - **Prefixo `tcece` decidido**: tudo o que o DS inventa leva o prefixo e nada nosso usa palavras reservadas do MUI. No Figma, `size` virou `tceceDevice` (desktop e mobile), `selected` virou `tceceSelected`, `elevated` virou `tceceElevated`, as trocas de ícone viraram `tceceStartIcon` e `tceceEndIcon` e a camada `hover-overlay` virou `tcece-hover-overlay`. `button-spec-tce.md` ganhou a seção 2.1.
+- **Estrutura das specs em Atomic Design** (índice, seção 4.1): cinco camadas (átomos, moléculas, organismos, templates, páginas), regra de que a dependência só desce, ordem de criação, mapa das specs que existem e das que faltam e **cabeçalho padrão** (versão, data, versão do DS, camada, depende de, usada por). `button-spec-tce.md` (0.4.0) é o modelo.
 - **Dependências entre specs:** `button-spec-tce.md` (0.3.0) ganha a seção 11 com as specs de que depende (tipografia, cor, espaçamento, grid-layout, padrões de interface), o que herda de cada uma e quando revisar; o índice ganha a seção 4.1; nova pendência B-7 (fundações ausentes: elevação, ícones, raio e borda, movimento).
 - **Versionamento por spec:** `button-spec-tce.md` (0.2.0) passa a ter no topo versão, data e versão do DS, e o histórico de versões no fim. Convenção descrita no índice, seção 5.
 - Novas decisões em aberto B-1 a B-6.

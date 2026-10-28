@@ -6,13 +6,15 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **0.3.0** (rascunho) |
+| **Versão da spec** | **0.4.0** (rascunho) |
 | **Última atualização** | **2026-10-28** |
 | Versão do DS | em revisão, ainda sem tag (o `CHANGELOG.md` registra `ds-v3` como a confirmar; a tag é decisão do design) |
-| **Depende destas specs** (data da última atualização que esta versão considera) | `typography-spec-tce.md` (2026-10-28), `color-spec-tce.md` (2026-10-21), `spacing-spec-tce.md` (2026-10-28), `grid-layout-spec-tce.md` (2026-10-21), `padroes-de-interface.md` (2026-10-28). Detalhe na seção 11 |
+| **Camada** | **1. Átomos (componente)**, Atomic Design (ver `design-system-index.md`, seção 4.1) |
+| **Depende de** (data da última atualização lida) | Tokens: `typography-spec-tce.md` (2026-10-28), `color-spec-tce.md` (2026-10-21), `spacing-spec-tce.md` (2026-10-28), `grid-layout-spec-tce.md` (2026-10-21, só os breakpoints). Detalhe na seção 11 |
+| **Usada por** | `padroes-de-interface.md` (modais, paginação, estado vazio, formulários) e, quando existirem, as specs de campo de busca, paginação, banner, modal, tabela, menu lateral e header. Detalhe na seção 11 |
 | Arquivo | `specs/button-spec-tce.md` |
 
-**Quem lê (pessoa ou agente):** anote a **versão** e a **data** acima no PR ou no handoff que usar esta spec. Se a versão que você leu for menor que a do repositório, releia antes de implementar. Versões `0.x` são rascunho e podem mudar. Regra de numeração: o primeiro número muda quando um nome de propriedade ou token muda (quebra); o segundo, quando entra regra ou estado novo; o terceiro, em correção de texto. O histórico está na seção 13.
+**Quem lê (pessoa ou agente):** anote a **versão** e a **data** acima no PR ou no handoff que usar esta spec. Se a versão que você leu for menor que a do repositório, releia antes de implementar. Versões `0.x` são rascunho e podem mudar. Regra de numeração: o primeiro número muda quando um nome de propriedade ou token muda (quebra); o segundo, quando entra regra ou estado novo; o terceiro, em correção de texto. O histórico está na seção 13. O formato do cabeçalho é o padrão do DS (índice, seção 4.1).
 
 Origem: componente `Button` (antes `btn`) do arquivo ⭐ Design System TCE (fileKey `mn0wkryj2sBHmW412qD2o8`, página 🧩 Componentes, conjunto `106:3174`), com 216 variantes. Os nomes das propriedades no Figma são os mesmos das props do MUI.
 
@@ -131,7 +133,7 @@ Estados comuns a todos:
 | Ação discreta, menu, ações em linha | `text` |
 | Item selecionado no menu lateral | `text` ou `outlined` com `tceceSelected` |
 
-No máximo um botão `contained` + `primary` por área de ação. A posição dos botões em um grupo de ações segue `padroes-de-interface.md`: no modal, confirmação (`contained` + `primary`) à direita e cancelar (`outlined`) à esquerda dela; paginação com "Anterior" e "Próximo" em `outlined`. Fora desses casos a ordem não está definida: pergunte ao design.
+No máximo um botão `contained` + `primary` por área de ação. A posição dos botões em um grupo de ações é definida pela spec de cima, `padroes-de-interface.md` (que usa esta): no modal, confirmação (`contained` + `primary`) à direita e cancelar (`outlined`) à esquerda dela; paginação com "Anterior" e "Próximo" em `outlined`. Fora desses casos a ordem não está definida: pergunte ao design.
 
 ## 8. Tema MUI (referência para o front)
 
@@ -233,7 +235,9 @@ Code Connect ainda não está mapeado para o `Button` (B-6).
 
 ## 11. Specs relacionadas (manter sincronizadas)
 
-Esta spec **não repete** valores de outras specs: ela os referencia. Em caso de divergência vale a spec do assunto (`design-system-index.md`, seção 4), exceto no que for específico do botão. **Quando uma spec da tabela mudar, revise esta e atualize a versão e o histórico; quando uma mudança no botão afetar outra spec, atualize a outra.**
+O botão é um **átomo** (camada 1): depende só de tokens e **nunca** de moléculas ou organismos (índice, seção 4.1). Esta spec **não repete** valores de outras specs: ela os referencia. Em caso de divergência vale a spec do assunto (índice, seção 4), exceto no que for específico do botão. **Quando uma spec de que ela depende mudar, revise esta e atualize a versão e o histórico; quando uma mudança no botão afetar uma spec que o usa, atualize a outra.**
+
+### 11.1 Depende de (camada 1, tokens)
 
 | Spec | O que o botão herda | Onde nesta spec | Revisar quando mudar |
 |---|---|---|---|
@@ -241,9 +245,20 @@ Esta spec **não repete** valores de outras specs: ela os referencia. Em caso de
 | `color-spec-tce.md` | Tokens `button/*` e `focus/*` (seção 5 da cor), contraste mínimo (regra 4), foco amarelo e preto (regra 5) | Seção 4, seção 6, tema | Qualquer token `button/*` ou `focus/*`, regra de contraste, tokens de criação (B-2) |
 | `spacing-spec-tce.md` | Escala (`spacing/8`, `spacing/16`), padding do botão, alvos clicáveis de 44 e 48 (seção 6), espaço entre alvos (E-7). O padding de 12 no lado do ícone usa `spacing/12`, que está em avaliação (E-1) | Seção 3, seção 6 | Escala, linha do botão na seção 4, alvos clicáveis, E-1 e E-7 |
 | `grid-layout-spec-tce.md` | Breakpoint do mobile (768px, G-1 e T-10) que define `tceceDevice`; largura do botão nas colunas (G-6, não definido) | Seção 2, seção 8 | Breakpoints, ocupação de colunas |
-| `padroes-de-interface.md` | Onde o botão aparece e em que ordem: modais, estado vazio, paginação, formulários | Seção 7 | Padrão de ações, modais, paginação |
 | `decisoes-em-aberto.md` | Pendências B-1 a B-7, T-10, G-1, E-1, E-7, N-1 | Seção 12 | Toda decisão tomada que toque o botão |
-| `design-system-index.md` e `CHANGELOG.md` | Precedência, prefixo `tcece`, versionamento | Seção 2.1 e cabeçalho | Convenções de nome e de versão |
+| `design-system-index.md` e `CHANGELOG.md` | Precedência, estrutura em camadas, prefixo `tcece`, cabeçalho e versionamento | Seção 2.1 e cabeçalho | Convenções de nome, de camada e de versão |
+
+### 11.2 Usada por (camadas acima)
+
+Ao usar o botão, essas specs referenciam esta e não redefinem variante, estado, medida nem cor. Se o botão mudar, revise cada uma.
+
+| Camada | Spec ou componente | Como usa o botão |
+|---|---|---|
+| 2. Moléculas e 3. Organismos | `padroes-de-interface.md` | Modais (confirmação `contained` + `primary` à direita, cancelar `outlined` à esquerda), paginação ("Anterior" e "Próximo" em `outlined`), estado vazio (botão primário), formulários (ações) |
+| 2. Moléculas (a criar) | Campo de busca, paginação, banner e snackbar, célula de tabela com ação | Botões em linha: `text`, `outlined` |
+| 3. Organismos (a criar) | Modal, tabela, header, filtros de busca ("Buscar" e "Limpar filtros"), menu lateral | Menu lateral usa `text` com `tceceSelected`; filtros usam `contained` e `text` |
+
+As specs marcadas "a criar" aparecem em `design-system-index.md`, seção 4.1.
 
 **Specs que o botão precisa e ainda não existem** (por isso os valores estão aqui, provisórios): elevação e sombra (`tceceElevated`), ícones (tamanho 20, biblioteca `Icons_TCE`), raio e borda (raio 8, contorno 1px), movimento (ripple, `prefers-reduced-motion`) e botão só com ícone (`IconButton`). Quando cada uma existir, o valor passa a ser referência a ela (B-7).
 
@@ -255,6 +270,7 @@ Todos em **`decisoes-em-aberto.md`** (B-1 a B-7).
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 0.4.0 | 2026-10-28 | Camada 1 (átomo) segundo o Atomic Design; cabeçalho padrão com "Camada", "Depende de" e "Usada por"; seção 11 dividida em 11.1 (depende de) e 11.2 (usada por); `padroes-de-interface.md` deixa de ser dependência (é spec de cima) |
 | 0.3.0 | 2026-10-28 | Seção 11 (specs relacionadas e dependências), campo "Depende destas specs" no cabeçalho, ordem dos botões em grupos (referência a `padroes-de-interface.md`), pendência B-7 |
 | 0.2.0 | 2026-10-28 | Prefixo `tcece` (seção 2.1): `tceceElevated`, `tceceDevice`, `tceceSelected`, `tceceStartIcon`, `tceceEndIcon`, `tcece-hover-overlay`, `theme.tcece`. Cabeçalho com versão e data |
 | 0.1.0 | 2026-10-28 | Criação: mapa Figma ↔ MUI, medidas, estados, ripple por contraste, foco amarelo e preto, acessibilidade, tema MUI, pendências B-1 a B-6 |
