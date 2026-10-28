@@ -2,6 +2,18 @@
 
 Mais recente primeiro.
 
+## ds-v3 — 2026-10-28 (a confirmar; a tag é decisão do design)
+
+**Decisão tomada: escala tipográfica única**
+- Os tokens de componente `button-primary`, `button-secondary`, `form-label`, `form-input`, `form-helper`, `table-header` e `table-cell` foram **removidos**: repetiam valores da escala. Troca de uso: botões e cabeçalho de tabela → `title-sm`; label de formulário → `title-sm` com Atkinson; input e célula de tabela → `body-md`; helper e mensagem de erro → `caption`.
+- No Figma, a escala de referência são as variáveis da coleção Typography e os estilos `Spec/*`. Os 55 estilos antigos (`Desktop/…`, `Mobile/…`) e a coleção Tipografia Responsiva serão migrados e apagados.
+
+**Decisão tomada: espaçamento de texto (fecha T-2 e E-2)**
+- `letter-spacing: 0` e `word-spacing: 0` em todos os tokens. Line-height pelo token (1.2 / 1.4 / 1.6 / 1.8). Espaço entre parágrafos de texto corrido: **24px**.
+- Nova regra de acessibilidade (WCAG 1.4.12): componentes com texto usam `min-height` (nunca altura fixa) e não podem cortar texto com line-height 1,5, parágrafo 2×, letter-spacing 0,12 em e word-spacing 0,16 em. Esses valores passam a ser o teste de aceitação, não o padrão visual.
+- `typography-spec-tce.md`: seção 5 reescrita como única definição; CSS sem tokens de componente e com `--text-letter-spacing`, `--text-word-spacing` e `--paragraph-gap`; checklist atualizado. `spacing-spec-tce.md` seção 8 passa a apontar para ela.
+- **Impacto para os devs:** trocar os usos dos tokens removidos; letter-spacing deixa de ser 0,08–0,12 em (texto fica mais justo); revisar alturas fixas de componentes; regenerar `tokens.json` e `designTokens.ts`.
+
 ## ds-v2 — 2026-10-21 (a confirmar; a tag é decisão do design)
 
 **Decisão tomada em 2026-10-27: piso de 16px para qualquer texto**

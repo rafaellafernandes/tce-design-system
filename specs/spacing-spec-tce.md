@@ -4,7 +4,7 @@
 >
 > Índice geral: `design-system-index.md`. Grid e layout: `grid-layout-spec-tce.md`.
 >
-> Espaçamento **de texto** (letter-spacing, word-spacing, line-height, espaço entre parágrafos) é outro assunto e está na seção 8, com decisão pendente.
+> Espaçamento **de texto** (letter-spacing, word-spacing, line-height, espaço entre parágrafos) é outro assunto: está definido na `typography-spec-tce.md`, seção 5 (decidido em 2026-10-28). A seção 8 abaixo só aponta para lá.
 
 Status: rascunho, atualizado em 2026-10-05. Grid e layout saíram desta spec e estão em `grid-layout-spec-tce.md`. Origem: variáveis criadas no Figma, CSS original do TCE (`variables_v1.css`, `components-form_v1.css`, `typography_v1.css`, `sections.css`, `main.css`, `grid.css`) e protótipos existentes. A aplicação em um produto específico fica no handoff do produto. Ver também `../referencias/espacamento-e-css-original-correcoes.md`. Revisão estrutural em 2026-10-07 (versão **ds-v1**).
 
@@ -89,18 +89,9 @@ Os valores 64, 80 e 96px de `div`, `main` e `section` em `main.css`, `grid.css` 
 
 A escala de espaçamento (seção 2) é **a mesma em todos os breakpoints**. O que muda por breakpoint é margem, gutter e colunas, descritos em `grid-layout-spec-tce.md` (seções 3 e 7).
 
-## 8. Espaçamento de texto (separado do layout) — A DECIDIR
+## 8. Espaçamento de texto (definido na spec de tipografia)
 
-| Propriedade | CSS original | Spec de tipografia atual |
-|---|---|---|
-| `letter-spacing` | 0,08 a 0,12 em (corpo 0,10; título 0,12; botão e input 0,12) | 0px |
-| `word-spacing` | 0,16 em | não existe |
-| `line-height` | display 1,2–1,3; título 1,2–1,5; corpo 1,5 | títulos 1,4; corpo 1,6 |
-| Entre parágrafos | 2× o corpo (32px) | 12px |
-| Recuo da primeira linha | 2× o corpo | não existe |
-| Largura máxima de linha | 70ch (blockquote 60ch) | 60–80 caracteres |
-
-Esses valores do CSS original coincidem com os mínimos de espaçamento de texto da WCAG 1.4.12 (0,12 em, 0,16 em, 1,5, 2×), e o CSS cita a NBR 17225. Os estilos de texto do Figma também têm letter-spacing de 4 a 12%. **Proposta do design system:** manter os valores do CSS original e corrigir a spec de tipografia (seções 3 e 5). Aguarda aprovação.
+Line-height, letter-spacing, word-spacing e espaço entre parágrafos **não são definidos aqui**: a única definição está em **`typography-spec-tce.md`, seção 5** (decidido em 2026-10-28: letter-spacing e word-spacing `0`, parágrafo 24px, line-height do token, e exigência de que os componentes aguentem os valores da WCAG 1.4.12 sem cortar texto). Os valores do CSS original (letter-spacing 0,08 a 0,12 em, word-spacing 0,16 em, parágrafo 32px) deixam de valer como padrão e passam a ser o **teste de aceitação** de acessibilidade.
 
 ## 9. Mapa Figma ↔ código
 

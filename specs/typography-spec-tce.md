@@ -2,22 +2,22 @@
 
 > **Para o Claude do dev:** este arquivo é a fonte de verdade para **tipografia** do Design System TCE Ceará. Aplicações em produtos específicos ficam no handoff do produto, não aqui. Para espaçamento, use `spacing-spec-tce.md`; para grid e layout, `grid-layout-spec-tce.md`; o mapa completo está em `design-system-index.md`. Ao criar ou alterar qualquer UI, siga as regras da seção 1. Se houver conflito entre este arquivo e valores soltos no código, no `tokens.json` ou no `designTokens.ts`, **este arquivo vence**; os dois devem ser regenerados a partir daqui.
 
-Status: em uso, com pendências em `decisoes-em-aberto.md` (T-2 a T-6, T-9 a T-14). Revisão estrutural em 2026-10-07 (versão **ds-v1**). Atualizada em 2026-10-21: família tipográfica decidida (T-1 fechado). Atualizada em 2026-10-27 (**ds-v2**, a confirmar): **piso de 16px** para qualquer texto; tokens `title-xs`, `title-ss` e `body-standard` removidos; `caption`, `code`, `form-helper` e `button-secondary` sobem para 16px; tokens de componente no CSS; papéis novos no mapa.
+Status: em uso, com pendências em `decisoes-em-aberto.md` (T-3 a T-6, T-9 a T-14). Revisão estrutural em 2026-10-07 (versão **ds-v1**). Atualizada em 2026-10-21: família tipográfica decidida (T-1 fechado). Atualizada em 2026-10-27 (**ds-v2**, a confirmar): **piso de 16px** para qualquer texto; tokens `title-xs`, `title-ss` e `body-standard` removidos; `caption`, `code`, `form-helper` e `button-secondary` sobem para 16px; papéis novos no mapa. Atualizada em 2026-10-28 (**ds-v3**, a confirmar): **escala única** (os tokens de componente `button-*`, `form-*` e `table-*` foram removidos; cada papel usa um token da escala) e **espaçamento de texto definido** (seção 5: line-height, letter-spacing, word-spacing e espaço entre parágrafos; fecha T-2 e E-2).
 
-> **Família tipográfica (decidido em 2026-10-21, fecha T-1):** a fonte principal do sistema é **Noto Sans**. **Atkinson Hyperlegible Next** é a fonte de **acento** e só entra em **números** e em **labels** (seções 2 e 2.1). Todo o resto da interface usa Noto Sans. Os tokens e o CSS antigos que punham Atkinson em toda a interface estão **errados** e devem ser corrigidos. No Figma, os estilos antigos (nomeados por px, em Plus Jakarta Sans ou Atkinson) **ainda não** seguem esta spec: a referência são os estilos `Spec/*`, que seguem esta escala.
+> **Família tipográfica (decidido em 2026-10-21, fecha T-1):** a fonte principal do sistema é **Noto Sans**. **Atkinson Hyperlegible Next** é a fonte de **acento** e só entra em **números** e em **labels** (seções 2 e 2.1). Todo o resto da interface usa Noto Sans. Os tokens e o CSS antigos que punham Atkinson em toda a interface estão **errados** e devem ser corrigidos. No Figma, os estilos antigos (nomeados por px, em Plus Jakarta Sans ou Atkinson) **não seguem** esta spec e estão sendo migrados: a referência são os estilos `Spec/*`, que são a **única escala** (os valores do Figma e desta spec devem ser os mesmos; se divergirem, vale esta spec).
 >
 > **Piso de 16px (decidido em 2026-10-27):** nenhum texto da interface pode ter menos de 16px (1 rem), em nenhum breakpoint. A hierarquia abaixo de 18px se faz com **peso (400 ou 600) e cor**, nunca com tamanho menor. Isso vale para badges, chips, legendas, texto de ajuda, tooltips, rodapés e tabelas.
 >
-> **Ainda em aberto (T-2):** os frames do Figma usam line-height de 150%, enquanto os tokens definem 1.4/1.6. Até o design decidir, **implemente pelos tokens** (esta spec) e **não copie line-height direto do Figma**. Tamanhos e hierarquia coincidem na maior parte.
+> **Escala única (decidido em 2026-10-28):** existe **uma só** definição tipográfica, a da seção 3. Botão, label, input, helper e tabela **não têm token próprio**: usam o token da escala indicado no mapa de papéis (seção 4). Line-height, letter-spacing, word-spacing e espaço entre parágrafos também estão na escala (seção 5). Os frames antigos do Figma com line-height de 150% e letter-spacing de 4 a 12% estão desatualizados: **implemente pelos tokens**.
 
 ## 1. Regras obrigatórias
 
-1. **Nunca use valores soltos** de `font-size`, `font-weight`, `line-height`, cor ou espaçamento. Use sempre os tokens (CSS custom properties da seção 8 ou o objeto `designTokens`).
+1. **Nunca use valores soltos** de `font-size`, `font-weight`, `line-height`, `letter-spacing`, `word-spacing`, cor ou espaçamento. Use sempre os tokens (CSS custom properties da seção 8 ou o objeto `designTokens`).
 2. **Fonte principal:** `Noto Sans`, em toda a interface. **Exceção única:** `Atkinson Hyperlegible Next` em **números** e **labels**, conforme a seção 2.1. Não introduza outras famílias sem aprovação do design.
 3. **Não declare `font-family` à mão.** A família vem do token do papel (Noto Sans por padrão; `--font-accent` só nos casos da seção 2.1). O erro mais comum é aplicar Atkinson no `body` ou no tema inteiro.
 4. **Escolha o token pelo papel do elemento**, não pelo tamanho visual (tabela da seção 4). Se nenhum papel serve, pergunte ao design em vez de inventar um tamanho.
 5. **Títulos e rótulos usam peso 600; texto corrido usa 400.** O peso já faz parte do token: não acrescente `font-weight` por cima.
-6. **Responsivo:** tokens `title-*` e `display-*` têm valor desktop e mobile; os tokens `body-*`, `special` e de componente têm valor único. Mobile = viewport < 768px.
+6. **Responsivo:** tokens `title-*` e `display-*` têm valor desktop e mobile; os tokens `body-*` e `special` têm valor único. Mobile = viewport < 768px.
 7. **Espaçamento:** só a escala de `spacing-spec-tce.md` (o 12 está em avaliação, E-1). Nada de 10px, 20px, 15px.
 8. **Não use** `h1`–`h6`/`Typography variant` padrão do MUI com os tamanhos default. Mapeie para os tokens abaixo.
 9. Ao terminar uma tela, rode o checklist da seção 9 e aplique as recomendações da seção 7 para o tipo de página em que está trabalhando.
@@ -41,20 +41,21 @@ Pesos usados: **400** (texto), **500** (apenas `blockquote`), **600** (títulos,
 
 | Caso | Regra |
 |---|---|
-| **Labels de formulário** | Token `form-label` (acima do campo). É o único token de texto que usa `--font-accent` por padrão |
+| **Labels de formulário** | Label acima do campo: `title-sm` com `--font-accent`. É o único papel de texto que usa `--font-accent` por padrão |
 | **Números** | Elementos em que o conteúdo é **o número**: contadores ("(10)", totais por estado), identificadores (nº de ocorrência, protocolo, ID), valores numéricos de destaque, colunas numéricas de tabela, paginação (números de página), datas e prazos exibidos como valor. Sempre com `font-variant-numeric: tabular-nums` |
 
 Fora disso, **Noto Sans**. Em especial:
 
 - Número **dentro de frase** ("Você tem 3 dias para responder") fica em Noto Sans, junto com o resto do texto. Não troque a família no meio da linha.
 - Helper, placeholder, texto digitado no input, cabeçalho de tabela, botões, abas e badges ficam em Noto Sans (a decisão sobre cabeçalho de tabela, badges e abas como "labels" está em T-13).
-- A família muda; **tamanho, peso e line-height continuam os do token do papel**. Um número em `table-cell` continua 16 / 400 / 1.6, só que em Atkinson.
+- A família muda; **tamanho, peso e line-height continuam os do token do papel**. Um número em célula de tabela (`body-md`) continua 16 / 400 / 1.6, só que em Atkinson.
+- **No Figma**, a troca de família é feita pela variável `font/accent` (Atkinson) ligada ao texto, mantendo o estilo `Spec/*` aplicado; o padrão é `font/primary` (Noto Sans). Não troque a fonte direto no texto: isso solta o estilo da escala. No código, equivale ao `--font-accent` sobre o token do papel.
 
 ## 3. Escala tipográfica
 
 Tamanhos em **px** (Figma) com o equivalente em **rem** (código; `rem = px ÷ 16`, base 16px). No CSS da seção 8 os tamanhos já estão em rem.
 
-Letter-spacing é `0px` em todos os tokens (E-2 em aberto). **Menor tamanho da escala: 16px.**
+**Menor tamanho da escala: 16px.** Letter-spacing é `0` em todos os tokens (seção 5).
 
 ### Display e Títulos (desktop → mobile)
 
@@ -85,17 +86,18 @@ Letter-spacing é `0px` em todos os tokens (E-2 em aberto). **Menor tamanho da e
 
 `code` usa Fira Code (`--font-mono`); os demais, Noto Sans. `caption` tem o mesmo tamanho do corpo e se distingue por `text/secondary` e line-height 1.4.
 
-### Tipografia de componentes
+### Componentes não têm token próprio
 
-| Token | Tamanho | Peso | Line-height | Família |
-|---|---|---|---|---|
-| `button-primary` | 16px (1 rem) | 600 | 1.4 | Noto Sans |
-| `button-secondary` | 16px (1 rem) | 600 | 1.4 | Noto Sans |
-| `form-label` | 16px (1 rem) | 600 | 1.4 | **Atkinson** |
-| `form-input` | 16px (1 rem) | 400 | 1.6 | Noto Sans |
-| `form-helper` | 16px (1 rem) | 400 | 1.4 | Noto Sans |
-| `table-header` | 16px (1 rem) | 600 | 1.4 | Noto Sans (T-13) |
-| `table-cell` | 16px (1 rem) | 400 | 1.6 | Noto Sans; **Atkinson** nas células numéricas |
+Botão, label, input, helper, cabeçalho e célula de tabela usam tokens da escala (mapa de papéis, seção 4). Os antigos `button-primary`, `button-secondary`, `form-label`, `form-input`, `form-helper`, `table-header` e `table-cell` **foram removidos** (ds-v3), porque repetiam valores que a escala já tem:
+
+| Antigo | Agora |
+|---|---|
+| `button-primary`, `button-secondary` | `title-sm` (16 / 600 / 1.4) |
+| `form-label` | `title-sm` + `--font-accent` (Atkinson) |
+| `form-input` | `body-md` (16 / 400 / 1.6) |
+| `form-helper` | `caption` (16 / 400 / 1.4) |
+| `table-header` | `title-sm` |
+| `table-cell` | `body-md`; células numéricas com `--font-accent` |
 
 ## 4. Qual token usar (mapa de papéis)
 
@@ -104,15 +106,15 @@ Letter-spacing é `0px` em todos os tokens (E-2 em aberto). **Menor tamanho da e
 | Título da página (ex.: "Gerenciar destinatário") | `title-lg` |
 | Título de seção (ex.: "Ocorrências") | `title-md` |
 | Subseção / título de tabela (ex.: "Informações internas do TCE Ceará") | `title-sm` |
-| Label de campo de formulário | `form-label` (16 / 600 / 1.4, **Atkinson**) |
-| Texto digitado no input | `form-input` (16 / 400 / 1.6) |
-| Texto de ajuda (helper) | `form-helper` (16 / 400 / 1.4) |
-| Mensagem de erro / sucesso | `form-helper` + ícone, cor semântica |
-| Cabeçalho de coluna de tabela | `table-header` (16 / 600 / 1.4) |
-| Célula de tabela | `table-cell` (16 / 400 / 1.6); célula numérica com `--font-accent` e `tabular-nums` |
+| Label de campo de formulário | `title-sm` (16 / 600 / 1.4) com `--font-accent` (**Atkinson**) |
+| Texto digitado no input | `body-md` (16 / 400 / 1.6) |
+| Texto de ajuda (helper) | `caption` (16 / 400 / 1.4) |
+| Mensagem de erro / sucesso | `caption` + ícone, cor semântica |
+| Cabeçalho de coluna de tabela | `title-sm` (16 / 600 / 1.4) |
+| Célula de tabela | `body-md` (16 / 400 / 1.6); célula numérica com `--font-accent` e `tabular-nums` |
 | Número isolado (contador, ID, protocolo, valor de destaque) | token do papel + `--font-accent` + `tabular-nums` (classe `.num`, seção 8) |
-| Botão principal (`.primary`) | `button-primary` (16 / 600) |
-| Botão secundário (`.secondary`), "Anterior/Próximo" | `button-secondary` (16 / 600) |
+| Botão principal (`.primary`) | `title-sm` (16 / 600) |
+| Botão secundário (`.secondary`), "Anterior/Próximo" | `title-sm` (16 / 600); o que diferencia do principal é a cor, não a tipografia |
 | Paginação (rótulos e números) | `body-md`; números com `--font-accent` |
 | Breadcrumb | `body-md`, cor `text/secondary`; links em `link/default` |
 | Texto corrido, descrições | `body-md` |
@@ -122,16 +124,42 @@ Letter-spacing é `0px` em todos os tokens (E-2 em aberto). **Menor tamanho da e
 | Selo, status e chip (texto) | `title-sm` (16 / 600); o componente cresce para acomodar o texto. Exceção: chip de identificação ao lado de um nome (cargo ou perfil de usuário) usa `body-md` (16 / 400) em `text/secondary`, para não competir com o nome |
 | Rótulo de par rótulo–valor | `body-md` em `text/secondary` |
 | Tooltip | `body-md` |
-| Placeholder | `form-input` em itálico, `text/placeholder` |
+| Placeholder | `body-md` em itálico, `text/placeholder` |
 | Trecho de código | `code` (16 / 600 / 1.4, Fira Code) |
 | Número de destaque (indicador, KPI) | `title-2xl` (32 / 600 / 1.2; mobile 24) com `--font-accent` e `tabular-nums` (`.num`). Texto de apoio abaixo: `body-md` em `text/secondary`. Não use `title-lg`, que é do título da página |
 | `display-*` | Sem papel definido nas telas de produto (T-14). Não use sem aprovação do design |
 
 Ênfase dentro de texto corrido (datas, status, valor principal de card): usar peso **600** sobre `body-md`/`body-lg`.
 
-## 5. Espaçamento
+## 5. Espaçamento de texto
 
-A escala, os tokens semânticos e as regras de margem estão em **`spacing-spec-tce.md`**; esta spec não repete esses valores. Espaço entre parágrafos e demais espaçamentos de texto: **A DECIDIR** (E-2 em `decisoes-em-aberto.md`).
+Espaçamento **de layout** (gap, padding, margem) está em **`spacing-spec-tce.md`**. Esta seção é a **única definição** do espaçamento **de texto**: entrelinha, letter-spacing, word-spacing e espaço entre parágrafos. Decidido em 2026-10-28 (fecha T-2 e E-2).
+
+| Propriedade | Valor | Observação |
+|---|---|---|
+| `line-height` | o do token (seção 3): 1.2 em `display-*` e `title-2xl`; 1.4 em `title-lg`, `title-md`, `title-sm`, `code` e `caption`; 1.6 em `body-*`; 1.8 em `blockquote` | Unitless. Não copie o line-height dos frames antigos do Figma (150%) |
+| `letter-spacing` | `0` em todos os tokens | Os 0,08 a 0,12 em do CSS original e os 4 a 12% dos estilos antigos do Figma **não valem** mais |
+| `word-spacing` | `0` | |
+| Espaço entre parágrafos (texto corrido) | **24px** (`1.5rem`), via `margin-block-end`/`gap` entre parágrafos | Só texto corrido: justificativas, respostas, conteúdo de comunicações. Vale a escala de `spacing-spec-tce.md` |
+| Recuo da primeira linha | não usa | |
+| Largura máxima da linha | 60–80 caracteres (≈ 640–720px) | |
+
+### O texto deve aguentar o espaçamento do usuário (WCAG 1.4.12)
+
+Os valores padrão acima não são os mínimos da WCAG, e não precisam ser: o critério 1.4.12 exige que **nada se perca nem fique sobreposto** quando o usuário (extensão, folha de estilo própria, configuração do navegador) aplicar, ao mesmo tempo:
+
+- line-height de pelo menos **1,5×** o tamanho da fonte;
+- espaço entre parágrafos de pelo menos **2×** o tamanho da fonte;
+- letter-spacing de pelo menos **0,12 em**;
+- word-spacing de pelo menos **0,16 em**.
+
+Consequências para o código e o Figma:
+
+1. **Componente com texto usa `min-height`, nunca `height` fixa.** Botão, chip, selo, input, item de menu, aba, célula de tabela e breadcrumb crescem com o texto.
+2. **Sem `overflow: hidden` em contêiner de texto** sem alternativa (truncar com reticências é permitido só em tabela, com tooltip, conforme a seção 7.1).
+3. **Largura do contêiner não pode ser fixa** em texto que pode quebrar linha; use largura mínima ou máxima.
+4. **Não use `px` para altura ou largura de caixa de texto**; use `rem`, `em` ou `min-height`.
+5. **Teste de aceitação:** aplicar os quatro valores acima numa tela e conferir que nada é cortado, sobreposto ou escondido. Vale para cada componente novo.
 
 ## 6. Cores de texto e estados
 
@@ -147,7 +175,7 @@ As cores de texto, link e fundo têm spec própria: **`color-spec-tce.md`** (tok
 | `success` | `text/success` | #206442 |
 | `warning` | só como preenchimento (`status/warning/default`); texto sobre ele usa `text/on-warning` | #FFAE00 |
 
-Links: `body-md` em `link/default`, sublinhados em texto corrido; hover `link/hover`; foco com o padrão de foco da spec de cor (anel amarelo com contorno preto). Placeholder: `form-input`, itálico, `text/placeholder`.
+Links: `body-md` em `link/default`, sublinhados em texto corrido; hover `link/hover`; foco com o padrão de foco da spec de cor (anel amarelo com contorno preto). Placeholder: `body-md`, itálico, `text/placeholder`.
 
 ## 7. Recomendações de uso por página
 
@@ -195,14 +223,10 @@ As recomendações por página e fluxo de cada produto ficam no documento de han
   --code-size: 1rem; --code-weight: 600; --code-lh: 1.4;
   --caption-size: 1rem; --caption-weight: 400; --caption-lh: 1.4;
 
-  /* Componentes (valor único; família indicada no comentário) */
-  --button-primary-size: 1rem; --button-primary-weight: 600; --button-primary-lh: 1.4;
-  --button-secondary-size: 1rem; --button-secondary-weight: 600; --button-secondary-lh: 1.4;
-  --form-label-size: 1rem; --form-label-weight: 600; --form-label-lh: 1.4; /* Atkinson */
-  --form-input-size: 1rem; --form-input-weight: 400; --form-input-lh: 1.6;
-  --form-helper-size: 1rem; --form-helper-weight: 400; --form-helper-lh: 1.4;
-  --table-header-size: 1rem; --table-header-weight: 600; --table-header-lh: 1.4;
-  --table-cell-size: 1rem; --table-cell-weight: 400; --table-cell-lh: 1.6; /* Atkinson nas células numéricas */
+  /* Espaçamento de texto (seção 5): valor único para todos os tokens */
+  --text-letter-spacing: 0;
+  --text-word-spacing: 0;
+  --paragraph-gap: 1.5rem; /* 24px, só texto corrido */
 }
 
 @media (max-width: 767px) {
@@ -217,13 +241,16 @@ As recomendações por página e fluxo de cada produto ficam no documento de han
 }
 
 /* Noto Sans é o padrão de tudo; Atkinson só entra pelas duas regras abaixo */
-body { font-family: var(--font-primary); font-size: var(--body-md-size); }
+body { font-family: var(--font-primary); font-size: var(--body-md-size); letter-spacing: var(--text-letter-spacing); word-spacing: var(--text-word-spacing); }
+
+/* Texto corrido: espaço entre parágrafos */
+.prose p + p { margin-block-start: var(--paragraph-gap); }
 
 /* O texto nunca fica abaixo de 16px: não use `font-size` menor, nem `small`, nem `font-size: smaller` */
 small { font-size: 1em; }
 
 .form-label {
-  font: var(--form-label-weight) var(--form-label-size)/var(--form-label-lh) var(--font-accent);
+  font: var(--title-sm-weight) var(--title-sm-size)/var(--title-sm-lh) var(--font-accent);
 }
 
 .num {
@@ -236,8 +263,8 @@ Uso:
 
 ```css
 .page-title   { font: var(--title-lg-weight) var(--title-lg-size)/var(--title-lg-lh) var(--font-primary); }
-.form-label   { font: var(--form-label-weight) var(--form-label-size)/var(--form-label-lh) var(--font-accent); } /* 16 / 600 / 1.4 */
-.table-cell   { font: var(--table-cell-weight) var(--table-cell-size)/var(--table-cell-lh) var(--font-primary); }
+.form-label   { font: var(--title-sm-weight) var(--title-sm-size)/var(--title-sm-lh) var(--font-accent); } /* title-sm + Atkinson */
+.table-cell   { font: var(--body-md-weight) var(--body-md-size)/var(--body-md-lh) var(--font-primary); }  /* body-md */
 ```
 
 **Carregamento das fontes:** Noto Sans (400, 500, 600) e Atkinson Hyperlegible Next (400, 600) com `font-display: swap`. A pilha de fallback já está nas variáveis (`system-ui, sans-serif`). Verifique o suporte a `tabular-nums` na Atkinson antes de padronizar (7.1, item 6).
@@ -247,20 +274,22 @@ Uso:
 - `designTokens.ts` atual está **incompleto** (faltam `title-2xl`, variantes mobile e tokens `special`; ainda tem `title-xs`, `title-ss` e `body-standard`, que foram removidos) e provavelmente ainda aponta Atkinson como família principal. Regenere a partir desta spec; não edite valores à mão.
 - No `createTheme`, defina `typography.fontFamily` como **Noto Sans**. Atkinson entra só na variante do label e num utilitário de número (`.num` ou `sx`). Se o tema inteiro estiver com Atkinson, é o sintoma que gerou esta revisão.
 - No MUI, crie variantes customizadas no `createTheme` com os nomes dos tokens (`title-lg`, `body-md`…) em vez de reaproveitar `h1`–`h6`/`body1`.
-- Para os labels, sobrescreva `fontFamily` em `MuiInputLabel`, `MuiFormLabel` e `MuiFormControlLabel` (se o label do checkbox/radio for considerado label, ver T-13).
-- Em `DataGrid`, aplique `table-header` no `columnHeader` e `table-cell` no `cell` via `sx`; nas colunas numéricas, use `cellClassName: 'num'`.
+- Para os labels (`title-sm` em Atkinson), sobrescreva `fontFamily` em `MuiInputLabel`, `MuiFormLabel` e `MuiFormControlLabel` (se o label do checkbox/radio for considerado label, ver T-13).
+- Em `DataGrid`, aplique `title-sm` no `columnHeader` e `body-md` no `cell` via `sx`; nas colunas numéricas, use `cellClassName: 'num'`.
 
 ## 9. Checklist de revisão
 
-- [ ] Nenhum `font-size`, `font-weight` ou `line-height` literal no código novo
+- [ ] Nenhum `font-size`, `font-weight`, `line-height`, `letter-spacing` ou `word-spacing` literal no código novo
 - [ ] Nenhum `font-family` literal: a família vem de `--font-primary` (padrão) ou `--font-accent` (só números e labels)
 - [ ] `body` e o tema do MUI em **Noto Sans**; Atkinson só em labels e números
-- [ ] Labels de formulário em Atkinson; helper, input e cabeçalho de tabela em Noto Sans
+- [ ] Labels de formulário (`title-sm`) em Atkinson; helper, input e cabeçalho de tabela em Noto Sans
 - [ ] Contadores, IDs, colunas numéricas e números de paginação em Atkinson com `tabular-nums`; números dentro de frase em Noto Sans
 - [ ] Título da página `title-lg`, seção `title-md`, subseção `title-sm`
 - [ ] **Nenhum texto abaixo de 16px** (inclui chip, selo, helper, legenda, tooltip e rodapé)
-- [ ] Cabeçalho de tabela `table-header`, células `table-cell`, paginação `body-md`
-- [ ] Espaçamentos conforme `spacing-spec-tce.md` (seção 11 dela)
+- [ ] Cabeçalho de tabela `title-sm`, células `body-md`, paginação `body-md`
+- [ ] Espaçamentos de layout conforme `spacing-spec-tce.md` (seção 11 dela)
+- [ ] Espaçamento de texto (seção 5): letter-spacing e word-spacing `0`, parágrafos a 24px
+- [ ] Componentes com texto usam `min-height` (nunca altura fixa), sem `overflow: hidden`; nada é cortado com line-height 1,5, parágrafo 2×, letter-spacing 0,12 em e word-spacing 0,16 em (WCAG 1.4.12)
 - [ ] Tokens `title-*` têm override mobile (< 768px)
 - [ ] Contraste de texto: `text/primary` ou `text/secondary` sobre `surface/default` ou `surface/page`
 - [ ] Estados (hover, focus, disabled, erro) usando as cores da seção 6
@@ -276,4 +305,4 @@ Os contrastes de cada token de texto, link, botão e fundo estão em `color-spec
 
 ## 11. Pontos em aberto
 
-Todos os pontos em aberto de tipografia estão em **`decisoes-em-aberto.md`** (T-2 a T-6, T-9 a T-14; T-1 foi decidido em 2026-10-21; T-7 e T-8 foram resolvidos em 2026-10-27 pelo piso de 16px). Até a decisão, vale o valor desta spec.
+Todos os pontos em aberto de tipografia estão em **`decisoes-em-aberto.md`** (T-3 a T-6, T-9 a T-14; T-1 foi decidido em 2026-10-21; T-7 e T-8 foram resolvidos em 2026-10-27 pelo piso de 16px; T-2 foi resolvido em 2026-10-28 pela seção 5). Até a decisão, vale o valor desta spec.
