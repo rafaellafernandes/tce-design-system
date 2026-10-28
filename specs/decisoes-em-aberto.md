@@ -10,11 +10,12 @@ Legenda de impacto: **Bloqueante** = o dev não deve fechar a padronização sem
 
 Decidido em 2026-10-21 (sai da lista): **T-1, família tipográfica.** A fonte principal é Noto Sans; Atkinson Hyperlegible Next só em números e labels.
 
+Decidido em 2026-10-28 (sai da lista): **escala tipográfica única e espaçamento de texto.** Resolve **T-2** (line-height: valores do token, 1.2 / 1.4 / 1.6 / 1.8; 1,5 só como teste de aceitação) e **E-2** (letter-spacing `0`, word-spacing `0`, parágrafo 24px; o texto deve aguentar os valores da WCAG 1.4.12 sem corte). Os tokens de componente `button-*`, `form-*` e `table-*` foram removidos: usam `title-sm`, `body-md` e `caption`. Ver `typography-spec-tce.md`, seções 3 a 5.
+
 Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Resolve **T-7** (`title-sm` mobile = 16) e **T-8** (`form-helper` = 16). Os tokens `title-xs`, `title-ss` e `body-standard` foram removidos; `caption`, `code`, `form-helper` e `button-secondary` passaram a 16px.
 
 | ID | Decisão | Opções | Proposta / adotado hoje | Impacto | Enquanto isso |
 |---|---|---|---|---|---|
-| T-2 | Line-height | 1,5 como padrão do corpo ou manter 1,4/1,6 | Tokens (1,4 e 1,6) | Importante | Usar os tokens |
 | T-3 | Peso | 600 como único peso de ênfase; botões em 600 ou Regular | Tokens (600) | Importante | Usar 600 |
 | T-4 | Tamanho 18px | Criar tokens `title` e `button` de 18 ou padronizar em 16/20 | Sem token | Importante | Não usar 18px fora de `body-lg` |
 | T-5 | Número da ocorrência em título | Token `title-lg-regular` ou peso 600 do título | Peso do título | Menor | `title-lg` com o peso do título (família do título: Noto Sans, ver T-13) |
@@ -23,7 +24,7 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 | T-10 | Ponto de quebra mobile | 768px | Adotado | Importante | 768px (ver também G-1) |
 | T-11 | Negrito em texto corrido | Sem token | Adotado: 600 | Menor | 600 |
 | T-12 | Cores de texto | Resolvido em parte por `color-spec-tce.md` (abas inativas em `text/secondary`, placeholder em `text/placeholder`, texto verde com 7,1:1); resta o alerta amarelo (C-2) | Resolvido em parte | Menor | Usar os tokens de cor |
-| T-13 | O que conta como "label" para a Atkinson (além do `form-label`) | Incluir ou não: cabeçalho de tabela, abas e itens de menu, badges de status, rótulo de par rótulo–valor, labels de checkbox/radio, `caption` | Só `form-label` e números; o resto em Noto Sans | Importante | Atkinson só no `form-label` e em números (typography-spec, seção 2.1); perguntar antes de ampliar |
+| T-13 | O que conta como "label" para a Atkinson (além do label de formulário) | Incluir ou não: cabeçalho de tabela, abas e itens de menu, badges de status, rótulo de par rótulo–valor, labels de checkbox/radio, `caption` | Só o label de formulário e números; o resto em Noto Sans | Importante | Atkinson só no label de formulário e em números (typography-spec, seção 2.1); perguntar antes de ampliar |
 | T-14 | Papel dos tokens `display-*` | Definir o uso (páginas de marketing?) ou remover. `display-small` tem o mesmo tamanho de `title-2xl` | Sem papel nas telas de produto | Menor | Não usar sem aprovação do design |
 
 ## Espaçamento (`spacing-spec-tce.md`)
@@ -31,7 +32,6 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 | ID | Decisão | Opções | Proposta / adotado hoje | Impacto | Enquanto isso |
 |---|---|---|---|---|---|
 | E-1 | `spacing/12` | Manter ou remover (o CSS original não usa) | Em avaliação | Menor | Evitar 12 em tela nova |
-| E-2 | Espaçamento de texto | Manter o do CSS original (letter-spacing 0,08–0,12 em, word-spacing 0,16 em, line-height 1,5, parágrafo 2× o corpo) ou `letter-spacing: 0` e parágrafo 12 da spec de tipografia | Proposta: manter o do CSS original e corrigir a spec de tipografia (seções 3 e 5) | Importante | Perguntar antes de definir letter-spacing, word-spacing e espaço entre parágrafos |
 | E-3 | `card-padding` | 16 (spec) ou 24 (uso atual em protótipos) | Token em 16 | Importante | Perguntar |
 | E-5 | Prefixo e nomes dos tokens de espaçamento | `--tcece-space-*` ou `--space-*`; alinhar com nomes de tipografia (`title-desk-md` no CSS, `title-md` na spec) | `--tcece-space-*` | Importante | `--tcece-space-*` |
 | E-6 | Padding vertical do chip | 3 está fora da escala | — | Menor | Perguntar |
@@ -86,6 +86,6 @@ Já feito em 05/10/2026: cabeçalho em `table/header` (novo token, alias de gray
 
 ## Tarefas de design pendentes (não são decisões)
 
-- Alinhar o Figma e o `tokens.json` à decisão de família (2026-10-21) e ao piso de 16px (2026-10-27): Noto Sans como principal; Atkinson só em `form-label` e números; nenhum texto abaixo de 16px. Corrigir também as lacunas de tipografia: peso SemiBold, line-height, letter-spacing e versões mobile.
+- Alinhar o Figma e o `tokens.json` à decisão de família (2026-10-21) e ao piso de 16px (2026-10-27): Noto Sans como principal; Atkinson só no label de formulário e em números; nenhum texto abaixo de 16px. Corrigir também as lacunas de tipografia: peso SemiBold, line-height (em %, ligado ao estilo), letter-spacing (`0`) e versões mobile. Migrar os textos dos estilos antigos do Figma para os `Spec/*` e apagar os estilos e a coleção Tipografia Responsiva (escala única, ds-v3).
 - Spec de cor: faltam bordas, ícones, status e alertas, estados de campo, cor de ação genérica e elevação (`color-spec-tce.md`, seção 9).
 - Mapear Code Connect dos componentes de grid e layout.
