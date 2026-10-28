@@ -8,15 +8,15 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **0.5.0** (rascunho) |
+| **Versão da spec** | **0.5.1** (rascunho) |
 | **Última atualização** | **2026-10-28** |
 | Versão do DS | em revisão, ainda sem tag (o `CHANGELOG.md` registra `ds-v3` como a confirmar; a tag é decisão do design) |
-| **Camada** | **1. Átomos (componente)**, Atomic Design (ver `design-system-index.md`, seção 4.1) |
+| **Camada** | **1. Átomos (componente)** |
 | **Depende de** (data da última atualização lida) | Tokens: `typography-spec-tce.md` (2026-10-28), `color-spec-tce.md` (2026-10-21), `spacing-spec-tce.md` (2026-10-28), `grid-layout-spec-tce.md` (2026-10-21, só os breakpoints). Detalhe na seção 11 |
 | **Usada por** | `padroes-de-interface.md` (modais, paginação, estado vazio, formulários) e, quando existirem, as specs de campo de busca, paginação, banner, modal, tabela, menu lateral e header. Detalhe na seção 11 |
 | Arquivo | `specs/button-spec-tce.md` |
 
-**Quem lê (pessoa ou agente):** anote a **versão** e a **data** acima no PR ou no handoff que usar esta spec. Se a versão que você leu for menor que a do repositório, releia antes de implementar. Versões `0.x` são rascunho e podem mudar. Regra de numeração: o primeiro número muda quando um nome de propriedade ou token muda (quebra); o segundo, quando entra regra ou estado novo; o terceiro, em correção de texto. O histórico está na seção 13. O formato do cabeçalho é o padrão do DS (índice, seção 4.1).
+**Quem lê (pessoa ou agente):** anote a **versão** e a **data** acima no PR ou no handoff que usar esta spec. Se a versão que você leu for menor que a do repositório, releia antes de implementar. Versões `0.x` são rascunho e podem mudar. Regra de numeração: o primeiro número muda quando um nome de propriedade ou token muda (quebra); o segundo, quando entra regra ou estado novo; o terceiro, em correção de texto. O histórico está na seção 13. O formato do cabeçalho e o significado das camadas estão no índice (`design-system-index.md`, seção 4.1).
 
 Origem: componente `Button` (antes `btn`) do arquivo ⭐ Design System TCE (fileKey `mn0wkryj2sBHmW412qD2o8`, página 🧩 Componentes, conjunto `106:3174`), com 216 variantes. Os nomes das propriedades no Figma são os mesmos das props do MUI.
 
@@ -272,6 +272,7 @@ Todos em **`decisoes-em-aberto.md`** (B-1 a B-8).
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 0.5.1 | 2026-10-28 | Campo "Camada" encurtado (a metodologia fica só no índice) |
 | 0.5.0 | 2026-10-28 | Consulta à documentação do MUI pelo Context7 (índice, seção 6.1); pendência B-8 (versão do MUI do front) |
 | 0.4.0 | 2026-10-28 | Camada 1 (átomo) segundo o Atomic Design; cabeçalho padrão com "Camada", "Depende de" e "Usada por"; seção 11 dividida em 11.1 (depende de) e 11.2 (usada por); `padroes-de-interface.md` deixa de ser dependência (é spec de cima) |
 | 0.3.0 | 2026-10-28 | Seção 11 (specs relacionadas e dependências), campo "Depende destas specs" no cabeçalho, ordem dos botões em grupos (referência a `padroes-de-interface.md`), pendência B-7 |
