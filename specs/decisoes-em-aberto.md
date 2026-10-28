@@ -10,6 +10,17 @@ Legenda de impacto: **Bloqueante** = o dev não deve fechar a padronização sem
 
 Decidido em 2026-10-21 (sai da lista): **T-1, família tipográfica.** A fonte principal é Noto Sans; Atkinson Hyperlegible Next só em números e labels.
 
+Decidido em 2026-10-28 (sai da lista), segunda rodada:
+- **T-6** título de modal e de página: `title-lg` (24).
+- **T-9** line-height dos títulos: o do token.
+- **T-10** ponto de quebra mobile: 768px (o conflito com o grid segue em G-1).
+- **T-11** negrito em texto corrido: 600.
+- **T-14** `display-*`: papel e escala definidos (seção 3 e 3.1 da tipografia): `display-2xl` (80/44) e `display-xl` (64/40) novos, ambos peso 700; um `display-*` por página, só em hero e páginas institucionais. O letter-spacing do hero ficou para **T-16**.
+- **T-15** mapeamento para o MUI: variantes com o nome do MUI e o prefixo `tcece` (`tceceH1`, `tceceBody1`, `tceceButton`, `tceceCaption`…). Os níveis de cada uma estão na tipografia, seção 12 (ainda a confirmar com o front).
+- **C-5 (foco)**: botão com preenchimento amarelo, texto preto e borda inferior preta de 4px; links, campos e os demais com anel amarelo e contorno preto.
+- **Tokens de cor mais próximos do MUI:** `tcece/text/error`, `tcece/text/success`, `tcece/text/info`, `tcece/action/create`, `tcece/link/default` e `tcece/link/hover` passaram a ser alias de `error/main`, `success/main`, `info/main`, `success/main`, `primary/main` e `primary/dark`. No código use o token do MUI. Os alias saem quando os usos migrarem.
+- **B-8** versão do MUI do front: **9.1.1** (`@mui/material`, `@mui/icons-material` e `@mui/system` em 9.1.1; `@emotion/react` ^11.14.0; `@emotion/styled` ^11.14.1), informada em 2026-10-28.
+
 Decidido em 2026-10-28 (sai da lista): **escala tipográfica única e espaçamento de texto.** Resolve **T-2** (line-height: valores do token, 1.2 / 1.4 / 1.6 / 1.8; 1,5 só como teste de aceitação) e **E-2** (letter-spacing `0`, word-spacing `0`, parágrafo 24px; o texto deve aguentar os valores da WCAG 1.4.12 sem corte). Os tokens de componente `button-*`, `form-*` e `table-*` foram removidos: usam `title-sm`, `body-md` e `caption`. Ver `typography-spec-tce.md`, seções 3 a 5.
 
 Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Resolve **T-7** (`title-sm` mobile = 16) e **T-8** (`form-helper` = 16). Os tokens `title-xs`, `title-ss` e `body-standard` foram removidos; `caption`, `code`, `form-helper` e `button-secondary` passaram a 16px.
@@ -19,14 +30,10 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 | T-3 | Peso | 600 como único peso de ênfase; botões em 600 ou Regular | Tokens (600) | Importante | Usar 600 |
 | T-4 | Tamanho 18px | Criar tokens `title` e `button` de 18 ou padronizar em 16/20 | Sem token | Importante | Não usar 18px fora de `body-lg` |
 | T-5 | Número da ocorrência em título | Token `title-lg-regular` ou peso 600 do título | Peso do título | Menor | `title-lg` com o peso do título (família do título: Noto Sans, ver T-13) |
-| T-6 | Título de modal e de página | `title-lg` (24) em ambos | Adotado | Menor | `title-lg` |
-| T-9 | Line-height dos títulos | 1,2 (reset antigo) ou o do token | Adotado: o do token | Menor | Token |
-| T-10 | Ponto de quebra mobile | 768px | Adotado | Importante | 768px (ver também G-1) |
-| T-11 | Negrito em texto corrido | Sem token | Adotado: 600 | Menor | 600 |
+| T-15 | Quais níveis do MUI recebem cada token (`tceceH1`–`tceceH4`, `tceceBody1`, `tceceBodyLg`…) | Ver tipografia, seção 12 | `tceceH1` = `title-2xl` … `tceceH4` = `title-sm`; `tceceBody1` = `body-md`; `tceceButton` = `title-sm`; `tceceCaption` = `caption` | Menor | Usar o mapa da seção 12; confirmar com o front |
+| T-16 | Revisar o letter-spacing (e o word-spacing) de todo o DS | Hoje é `0` em todos os tokens (decidido em 2026-10-28), mas o hero do Conecta usa espaçamento largo, o CSS original usava 0,08 a 0,12 em e os estilos antigos do Figma 4 a 12%. Rever token a token: `display-*`, títulos, labels, botão, números, `caption` | A decidir | Importante | `0`, como na tipografia, seção 5 |
 | T-12 | Cores de texto | Resolvido em parte por `color-spec-tce.md` (abas inativas em `text/secondary`, placeholder em `tcece/text/placeholder`, texto verde com 7,1:1); resta o alerta amarelo (C-2) | Resolvido em parte | Menor | Usar os tokens de cor |
 | T-13 | O que conta como "label" para a Atkinson (além do label de formulário) | Incluir ou não: cabeçalho de tabela, abas e itens de menu, badges de status, rótulo de par rótulo–valor, labels de checkbox/radio, `caption` | Só o label de formulário e números; o resto em Noto Sans | Importante | Atkinson só no label de formulário e em números (typography-spec, seção 2.1); perguntar antes de ampliar |
-| T-14 | Papel e escala dos tokens `display-*` | Caso real: hero da home do Conecta ("Boas vindas ao / Conecta TCE Ceará"), com tipo bem maior que `display-large` (48) e entrelinha/tracking largos. Hoje `display-small` (32) = `title-2xl` e nenhum `display-*` tem papel definido | Proposta (a aprovar): `display-*` passa a ser só para hero e páginas institucionais, 1 por página; adicionar `display-xl` (64 desktop / 40 mobile) e `display-2xl` (80 / 44), peso 700; tamanho fluido com `clamp()` entre mobile e desktop; peso 600 ou 700 (a decidir); letter-spacing 0 (o espaçamento largo do hero atual conflita com a regra 5 da spec, a decidir); máx. 2 linhas por bloco, sem altura fixa, `text-wrap: balance`, deve passar em reflow a 400% | Menor | Não usar `display-*` em telas de produto sem aprovação do design |
-| T-15 | Mapeamento dos tokens para `theme.typography` do MUI | Variantes customizadas com prefixo (`tceceTitleLg`, `tceceBodyMd`…) ou reaproveitar as do MUI onde existirem (`button`, `caption`). `caption` e `button` são reservadas do MUI | Variantes com prefixo `tcece`, e `title-sm` ligado também a `button` | Importante | Não reaproveitar `caption` nem `h1`–`h6` com outro significado; perguntar |
 
 ## Espaçamento (`spacing-spec-tce.md`)
 
@@ -48,8 +55,7 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 | B-4 | Visual de `disabled` nos `outlined`, `elevated` e `text` | Manter fundo e contorno ou só trocar a cor do rótulo | Fundo `action/disabledBackground` e rótulo `action/disabled` | Menor | Conferir no Figma (`state=disabled`) |
 | B-5 | Botão só com ícone | `IconButton` com spec própria (hoje existe `Btn_icon_primary` no Figma, fora desta spec) | Spec própria | Importante | Perguntar |
 | B-6 | Code Connect do `Button` | Mapear o componente do Figma ao `Button` do MUI | Mapear depois que os nomes estabilizarem | Menor | Handoff descreve as props da seção 2 |
-| B-7 | Specs de fundação que o botão usa e ainda não existem | Criar specs de elevação e sombra, ícones, raio e borda, movimento (ripple e movimento reduzido) | Valores provisórios na `button-spec-tce.md` | Importante | Usar os valores da spec do botão; perguntar antes de reutilizar em outro componente |
-| B-8 | Versão do MUI usada pelo front (`@mui/material`) | Registrar a versão exata (e a do Emotion, se houver) na spec e no handoff, para consultar a documentação certa pelo Context7 (índice, seção 6.1) | Não registrada | Importante | Perguntar ao front; não assumir versão |
+| B-7 | Specs de fundação que o botão usa e ainda não existem | Criar specs de elevação e sombra, ícones, raio e borda, movimento (ripple e movimento reduzido) | Valores provisórios na `button-spec-tce.md` | Importante | Usar os valores da spec do botão; perguntar antes de reutilizar em outro componente. **Lista de pendência: a Rafaella cria as specs quando os tokens voltarem (2026-10-28)** |
 
 ## Grid e layout (`grid-layout-spec-tce.md`)
 
@@ -71,7 +77,6 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 | C-2 | Alerta amarelo como borda/ícone | yellow/700 (4,4:1) ou ícone escuro sobre preenchimento; hoje yellow/500 dá 1,9:1 | Proposta: yellow/700 | Importante | Alerta só como preenchimento, com `tcece/text/on-warning` |
 | C-3 | `tcece/button/bg/active` e `tcece/primary/pressed` | Unificar (mesmo valor) | Unificar | Menor | Usar `pressed` |
 | C-4 | Nomes das cores no código | `--tcece-color-*` (o CSS original já usa esse prefixo com outro significado) | Decidido em 2026-10-28: nomes do MUI onde o papel existe (`theme.palette.*`) e `--tcece-color-*` para o que é só do TCE (`color-spec-tce.md` 2.0.0, seção 7) | Importante | Decidido; resta conferir colisão com o CSS original na migração |
-| C-5 | Foco visível: anel ou preenchimento | A spec de cor (regra 5) e a de tipografia (seção 6) dizem "anel amarelo com contorno preto"; o botão usa fundo amarelo, texto preto e borda inferior preta | Botão: preenchimento (já no Figma). Links e campos: anel | Importante | Botão segue `button-spec-tce.md`; links e campos, anel amarelo com contorno preto |
 | C-5 | Nomes de botão por aparência (`hover-light`, `hover-dark`) | Renomear por papel | Na spec de botões | Menor | Manter |
 | C-6 | Limpeza do Figma (legacy/Green na coleção errada, coleção Focus, 8 estilos de cor antigos) | Mover, unificar e remover | — | Menor | Não usar |
 | C-7 | Tokens fora da spec de cor que os produtos já usam | Bordas (`divider`), cabeçalho de tabela (`tcece/table/header`), status (`status/success/*`, `status/warning/*`), ícones (`tcece/icon/on-action`): documentar na spec de cor | Escrever a seção de bordas, status e ícones | **Bloqueante** para fechar o handoff dos produtos | Usar os tokens como estão no Figma; não criar tokens novos |

@@ -6,7 +6,7 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **2.0.0** (rascunho, escopo parcial) |
+| **Versão da spec** | **2.1.0** (rascunho, escopo parcial) |
 | **Última atualização** | **2026-10-28** |
 | Versão do DS | em revisão, ainda sem tag |
 | **Camada** | **1. Átomos (tokens)** |
@@ -22,13 +22,24 @@ Histórico na seção 12. Formato do cabeçalho: `design-system-index.md`, seç�
 2. **Escolha o token pelo papel**, não pela cor que parece certa.
 3. **Cor nunca é o único indicador** de erro, sucesso, status ou link: acompanhe de ícone e texto, e sublinhe links em texto corrido (WCAG 1.4.1).
 4. **Contraste mínimo:** 4,5:1 para texto normal e 3:1 para texto grande e para componentes de UI e ícones que carregam informação (WCAG 1.4.3 e 1.4.11). Texto desabilitado é isento.
-5. **Foco visível:** sempre o anel amarelo (`tcece/focus/ring`) com o contorno preto (`tcece/focus/border`) juntos. O amarelo sozinho dá 1,35:1 sobre branco.
+5. **Foco visível:** amarelo e preto, sempre juntos; o amarelo sozinho dá 1,35:1 sobre branco. **Botão:** fundo `tcece/focus/bg`, texto `tcece/focus/label` e borda inferior preta de 4px (`button-spec-tce.md`). **Links, campos e os demais elementos:** anel amarelo (`tcece/focus/ring`) com o contorno preto (`tcece/focus/border`). Decidido em 2026-10-28.
 6. **Se nenhum token serve, pergunte ao design.** Não crie cor nova.
 7. Ao terminar uma tela, rode o checklist da seção 10.
 
 ## 2. Nomes: MUI e específicos do TCE
 
 Os tokens seguem o caminho da paleta do MUI onde o papel existe (`primary/main`, `error/main`, `text/primary`, `background/paper`, `divider`, `action/disabled`…). Assim o nome no Figma é o mesmo do `theme.palette` e o handoff é cópia direta. O que o MUI não tem leva o prefixo `tcece/` (`tcece/focus/bg`, `tcece/link/default`, `tcece/primary/pressed`…). Escalas (primitivas): `grey` (grafia do MUI), `blue`, `red`, `green`, `yellow` e `purple`.
+
+**Alias de compatibilidade:** para ficar o mais perto possível do MUI, seis tokens do Figma apontam para o equivalente do MUI e têm o mesmo valor. **No código use o token do MUI**; o nome `tcece/` só existe para não quebrar os usos antigos no Figma e sai quando eles migrarem.
+
+| Token `tcece/…` | Alias de | No código |
+|---|---|---|
+| `tcece/text/error` | `error/main` | `theme.palette.error.main` |
+| `tcece/text/success` | `success/main` | `theme.palette.success.main` |
+| `tcece/text/info` | `info/main` | `theme.palette.info.main` |
+| `tcece/action/create` | `success/main` | `theme.palette.success.main` |
+| `tcece/link/default` | `primary/main` | `theme.palette.primary.main` |
+| `tcece/link/hover` | `primary/dark` | `theme.palette.primary.dark` |
 
 ## 2.1 Arquitetura
 
@@ -138,5 +149,6 @@ Todos os pontos em aberto de cor estão em **`decisoes-em-aberto.md`** (C-1 a C-
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 2.1.0 | 2026-10-28 | Foco: botão com preenchimento e os demais com anel (regra 5, fecha C-5); seis tokens `tcece/` viram alias do MUI |
 | 2.0.0 | 2026-10-28 | Nomes dos tokens alinhados ao MUI (`primary/main`, `error/main`, `background/paper`…); específicos do TCE com prefixo `tcece/`; `gray` → `grey`; sintaxe de código WEB preenchida; cabeçalho padrão; seção 7 (mapa) definida. **Quebra de nome** |
 | 1.0.0 | 2026-10-07 | Revisão estrutural (`ds-v1`) sobre o rascunho de 2026-10-05 |

@@ -4,15 +4,15 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **4.0.1** (em uso, com pendências) |
+| **Versão da spec** | **4.1.0** (em uso, com pendências) |
 | **Última atualização** | **2026-10-28** |
 | Versão do DS | em revisão, ainda sem tag (o `CHANGELOG.md` registra `ds-v3` como a confirmar; a tag é decisão do design) |
 | **Camada** | **1. Átomos (tokens)** |
-| **Depende de** (data da última atualização lida) | Tokens de mesma camada, lidas em 2026-10-28 (ainda sem cabeçalho padrão; última revisão registrada em cada uma): `color-spec-tce.md` (2.0.0, 2026-10-28; cores de texto), `spacing-spec-tce.md` (ds-v1, 2026-10-07; escala, E-1), `grid-layout-spec-tce.md` (ds-v1, 2026-10-07; breakpoints, G-1) |
+| **Depende de** (data da última atualização lida) | Tokens de mesma camada, lidas em 2026-10-28 (ainda sem cabeçalho padrão; última revisão registrada em cada uma): `color-spec-tce.md` (2.1.0, 2026-10-28; cores de texto), `spacing-spec-tce.md` (ds-v1, 2026-10-07; escala, E-1), `grid-layout-spec-tce.md` (ds-v1, 2026-10-07; breakpoints, G-1) |
 | **Usada por** | `button-spec-tce.md`, `padroes-de-interface.md` e, quando existirem, as specs de campo, label, tabela, modal, header, menu lateral e demais componentes com texto |
 | Arquivo e Figma | `specs/typography-spec-tce.md`; coleção `Typography` e estilos `Spec/*` do arquivo ⭐ Design System TCE (seção 12) |
 
-Pendências abertas: T-3 a T-6, T-9 a T-15 (`decisoes-em-aberto.md`). O histórico de versões está na seção 13; o formato do cabeçalho é o padrão do DS (`design-system-index.md`, seção 4.1).
+Pendências abertas: T-3, T-4, T-5, T-12, T-13, T-15 e T-16 (`decisoes-em-aberto.md`). O histórico de versões está na seção 13; o formato do cabeçalho é o padrão do DS (`design-system-index.md`, seção 4.1).
 
 > **Família tipográfica (decidido em 2026-10-21, fecha T-1):** a fonte principal do sistema é **Noto Sans**. **Atkinson Hyperlegible Next** é a fonte de **acento** e só entra em **números** e em **labels** (seções 2 e 2.1). Todo o resto da interface usa Noto Sans. Os tokens e o CSS antigos que punham Atkinson em toda a interface estão **errados** e devem ser corrigidos. No Figma, os estilos antigos (nomeados por px, em Plus Jakarta Sans ou Atkinson) **não seguem** esta spec e estão sendo migrados: a referência são os estilos `Spec/*`, que são a **única escala** (os valores do Figma e desta spec devem ser os mesmos; se divergirem, vale esta spec).
 >
@@ -71,8 +71,8 @@ Tamanhos em **px** (Figma) com o equivalente em **rem** (código; `rem = px ÷ 1
 
 | Token | Desktop | Mobile | Peso | Line-height |
 |---|---|---|---|---|
-| `display-2xl` (proposto, T-14) | 80px (5 rem) | 44px (2,75 rem) | 700 | 1.1 |
-| `display-xl` (proposto, T-14) | 64px (4 rem) | 40px (2,5 rem) | 700 | 1.1 |
+| `display-2xl` | 80px (5 rem) | 44px (2,75 rem) | 700 | 1.1 |
+| `display-xl` | 64px (4 rem) | 40px (2,5 rem) | 700 | 1.1 |
 | `display-large` | 48px (3 rem) | 36px (2,25 rem) | 600 | 1.2 |
 | `display-medium` | 40px (2,5 rem) | 28px (1,75 rem) | 600 | 1.2 |
 | `display-small` | 32px (2 rem) | 24px (1,5 rem) | 600 | 1.2 |
@@ -111,14 +111,14 @@ Botão, label, input, helper, cabeçalho e célula de tabela usam tokens da esca
 | `table-header` | `title-sm` |
 | `table-cell` | `body-md`; células numéricas com `--tcece-font-accent` |
 
-### 3.1 Regras dos tokens `display-*` (proposta, T-14)
+### 3.1 Regras dos tokens `display-*` (decidido em 2026-10-28)
 
 - **Uso:** hero e páginas institucionais, um `display-*` por página. Telas de produto continuam com `title-*`.
 - **Composição do hero:** linha de apoio acima (`title-md`, por exemplo "Boas vindas ao"), nome em `display-2xl` ou `display-xl`, complemento abaixo em `body-lg`.
 - **Tamanho fluido (opcional):** entre o valor mobile e o desktop com `clamp()`. Os breakpoints continuam valendo.
-- **Letter-spacing 0:** o hero atual usa espaçamento largo, que conflita com a seção 5. Manter é exceção a decidir, só para `display-*`.
+- **Letter-spacing:** vale `0` (seção 5). O hero atual do Conecta usa espaçamento largo; o tracking de todo o DS será revisto em T-16.
 - **Acessibilidade:** sem altura fixa, no máximo 2 linhas por bloco, `text-wrap: balance`, funcionar em zoom de 400% sem corte nem rolagem horizontal.
-- **Peso:** 700 nos dois tokens novos e 600 nos demais (a decidir).
+- **Peso:** 700 em `display-2xl` e `display-xl`; 600 nos demais.
 
 ## 4. Qual token usar (mapa de papéis)
 
@@ -148,10 +148,10 @@ Botão, label, input, helper, cabeçalho e célula de tabela usam tokens da esca
 | Placeholder | `body-md` em itálico, `tcece/text/placeholder` |
 | Trecho de código | `code` (16 / 600 / 1.4, Fira Code) |
 | Número de destaque (indicador, KPI) | `title-2xl` (32 / 600 / 1.2; mobile 24) com `--tcece-font-accent` e `tabular-nums` (`.tcece-num`). Texto de apoio abaixo: `body-md` em `text/secondary`. Não use `title-lg`, que é do título da página |
-| `display-2xl` | Proposto (T-14): hero de capa institucional (home do Conecta, páginas de entrada). Uma por página |
-| `display-xl` | Proposto (T-14): hero de página inicial de módulo. Uma por página |
-| `display-large` | Proposto (T-14): título de página de abertura ou de seção de destaque |
-| `display-medium`, `display-small` | Proposto (T-14): destaques numéricos grandes e chamadas de painel. `display-small` repete o tamanho de `title-2xl` |
+| `display-2xl` | Hero de capa institucional (home do Conecta, páginas de entrada). Uma por página |
+| `display-xl` | Hero de página inicial de módulo. Uma por página |
+| `display-large` | Título de página de abertura ou de seção de destaque |
+| `display-medium`, `display-small` | Destaques numéricos grandes e chamadas de painel. `display-small` repete o tamanho de `title-2xl` |
 | `display-*` em telas de produto | Não use sem aprovação do design |
 
 Ênfase dentro de texto corrido (datas, status, valor principal de card): usar peso **600** sobre `body-md`/`body-lg`.
@@ -163,7 +163,7 @@ Espaçamento **de layout** (gap, padding, margem) está em **`spacing-spec-tce.m
 | Propriedade | Valor | Observação |
 |---|---|---|
 | `line-height` | o do token (seção 3): 1.2 em `display-*` e `title-2xl`; 1.4 em `title-lg`, `title-md`, `title-sm`, `code` e `caption`; 1.6 em `body-*`; 1.8 em `blockquote` | Unitless. Não copie o line-height dos frames antigos do Figma (150%) |
-| `letter-spacing` | `0` em todos os tokens | Os 0,08 a 0,12 em do CSS original e os 4 a 12% dos estilos antigos do Figma **não valem** mais |
+| `letter-spacing` | `0` em todos os tokens (revisão de todo o DS em T-16) | Os 0,08 a 0,12 em do CSS original e os 4 a 12% dos estilos antigos do Figma **não valem** mais |
 | `word-spacing` | `0` | |
 | Espaço entre parágrafos (texto corrido) | **24px** (`1.5rem`), via `margin-block-end`/`gap` entre parágrafos | Só texto corrido: justificativas, respostas, conteúdo de comunicações. Vale a escala de `spacing-spec-tce.md` |
 | Recuo da primeira linha | não usa | |
@@ -186,6 +186,17 @@ Consequências para o código e o Figma:
 4. **Não use `px` para altura ou largura de caixa de texto**; use `rem`, `em` ou `min-height`.
 5. **Teste de aceitação:** aplicar os quatro valores acima numa tela e conferir que nada é cortado, sobreposto ou escondido. Vale para cada componente novo.
 
+### 5.1 Reflow, quebra de palavras e idioma
+
+1. **Reflow (WCAG 1.4.10) e zoom (1.4.4):** a tela deve funcionar a 320px de largura (equivale a 400% de zoom em 1280px) e com o texto ampliado em 200%, sem rolagem horizontal, exceto tabelas e blocos de código. Nada de largura fixa em contêiner de texto.
+2. **Palavras longas:** URLs, e-mails, números de processo e identificadores quebram com `overflow-wrap: anywhere` (ou `word-break: break-word`) dentro de contêineres que podem ficar estreitos. Em tabela, trunque com reticências e tooltip (seção 7.1); fora dela, quebre, não corte.
+3. **Sem `text-transform`** (nada de caixa-alta por CSS; escreva o texto como deve ser lido) **e sem `text-align: justify`**; alinhe à esquerda.
+4. **Idioma:** `<html lang="pt-BR">`; trechos em outro idioma levam `lang` próprio. Isso vale para leitor de tela e hifenização.
+5. **Hifenização:** `hyphens: manual`; não use `hyphens: auto`.
+6. **Listas:** use `ul`/`ol` reais. Texto da lista em `body-md`, espaço de 8px entre itens e recuo padrão do navegador; o marcador não depende só de cor.
+7. **Títulos e hero:** `text-wrap: balance` em `title-*` e `display-*`; `text-wrap: pretty` em parágrafos longos.
+8. **Números:** colunas e valores comparáveis usam Atkinson com `font-variant-numeric: tabular-nums`. Teste de aceitação: numa coluna com 1111 e 8888 os dígitos se alinham.
+
 ## 6. Cores de texto e estados
 
 As cores de texto, link e fundo têm spec própria: **`color-spec-tce.md`** (tokens `text/*`, `tcece/text/*`, `tcece/link/*`, `primary/*`, `background/*`, página 🎨 Cores no Figma). Esta spec usa esses nomes. Equivalência com os nomes antigos desta spec:
@@ -200,7 +211,7 @@ As cores de texto, link e fundo têm spec própria: **`color-spec-tce.md`** (tok
 | `success` | `tcece/text/success` | #206442 |
 | `warning` | só como preenchimento (`warning/main`); texto sobre ele usa `tcece/text/on-warning` | #FFAE00 |
 
-Links: `body-md` em `tcece/link/default`, sublinhados em texto corrido; hover `tcece/link/hover`; foco com o padrão de foco da spec de cor (anel amarelo com contorno preto). Placeholder: `body-md`, itálico, `tcece/text/placeholder`.
+Links: `body-md` em `tcece/link/default`, sublinhados em texto corrido; hover `tcece/link/hover`; foco com o padrão de foco da spec de cor (anel amarelo com contorno preto; só o botão usa preenchimento). Placeholder: `body-md`, itálico, `tcece/text/placeholder`.
 
 ## 7. Recomendações de uso por página
 
@@ -235,7 +246,6 @@ As recomendações por página e fluxo de cada produto ficam no documento de han
   --tcece-font-mono: 'Fira Code', ui-monospace, monospace;
 
   /* Desktop (padrão) */
-  /* proposto (T-14) */
   --tcece-display-2xl-size: 5rem; --tcece-display-2xl-weight: 700; --tcece-display-2xl-lh: 1.1;
   --tcece-display-xl-size: 4rem; --tcece-display-xl-weight: 700; --tcece-display-xl-lh: 1.1;
   --tcece-display-large-size: 3rem; --tcece-display-large-weight: 600; --tcece-display-large-lh: 1.2;
@@ -324,7 +334,7 @@ Uso:
 - [ ] Contraste de texto: `text/primary` ou `text/secondary` sobre `background/paper` ou `background/default`
 - [ ] Estados (hover, focus, disabled, erro) usando as cores da seção 6
 - [ ] Apenas **um** `title-lg` por página (o título da página); demais seções em `title-md`/`title-sm`
-- [ ] Contadores e números de destaque **não** usam o mesmo token do título da página (T-14)
+- [ ] Contadores e números de destaque **não** usam o mesmo token do título da página (`display-*`, seção 3.1)
 - [ ] Links em texto corrido sublinhados; cor nunca é o único indicador (erro, sucesso, status)
 - [ ] Texto longo com largura máxima de 60–80 caracteres por linha
 - [ ] Nenhuma fonte fora das famílias da seção 2 (sem SF Pro, Roboto etc. vindos de templates)
@@ -335,26 +345,56 @@ Os contrastes de cada token de texto, link, botão e fundo estão em `color-spec
 
 ## 11. Pontos em aberto
 
-Todos os pontos em aberto de tipografia estão em **`decisoes-em-aberto.md`** (T-3 a T-6, T-9 a T-14; T-1 foi decidido em 2026-10-21; T-7 e T-8 foram resolvidos em 2026-10-27 pelo piso de 16px; T-2 foi resolvido em 2026-10-28 pela seção 5). Até a decisão, vale o valor desta spec.
+Todos os pontos em aberto de tipografia estão em **`decisoes-em-aberto.md`** (T-3, T-4, T-5, T-12, T-13, T-15 e T-16; T-1 foi decidido em 2026-10-21; T-7 e T-8 foram resolvidos em 2026-10-27 pelo piso de 16px; T-2 foi resolvido em 2026-10-28 pela seção 5; T-6, T-9, T-10, T-11 e T-14 foram decididos em 2026-10-28). Até a decisão, vale o valor desta spec.
 
 ## 12. Mapa Figma ↔ código
 
 | Figma | Código | Observação |
 |---|---|---|
-| Coleção `Typography` (67 variáveis, modo único) | Variáveis `--tcece-*` da seção 8 | Nomes no Figma: `title/lg/desktop/fontSize`, `title/lg/mobile/fontSize`, `body/md/fontSize`, `special/code/fontWeight`… Os `display` e `title` têm desktop e mobile; `body` e `special` têm valor único |
+| Coleção `Typography` (79 variáveis, modo único) | Variáveis `--tcece-*` da seção 8 | Nomes no Figma: `title/lg/desktop/fontSize`, `title/lg/mobile/fontSize`, `body/md/fontSize`, `special/code/fontWeight`… Os `display` e `title` têm desktop e mobile; `body` e `special` têm valor único |
 | Variável `…/lineHeight` | `--tcece-<token>-lh` | No Figma o line-height está em **px** (o estilo de texto só aceita px quando ligado a variável); a razão da spec (1.2, 1.4, 1.6, 1.8) está na descrição da variável. No código use sempre o número sem unidade |
 | `special/letterSpacing` | `--tcece-text-letter-spacing` | `0` em todos os tokens (seção 5) |
 | `font/primary` e `font/accent` | `--tcece-font-primary` e `--tcece-font-accent` | A Atkinson se aplica ligando a variável `font/accent` à família do texto, **mantendo** o estilo `Spec/*`. Trocar a família à mão desliga o estilo |
-| Estilos `Spec/display-large`, `-medium`, `-small`, `Spec/title-2xl`, `-lg`, `-md`, `-sm`, `Spec/body-lg`, `-md`, `Spec/blockquote`, `Spec/code`, `Spec/caption` (12) | Tokens de mesmo nome da seção 3 | Os estilos usam as variáveis acima. Só existem para desktop; os estilos mobile ainda não foram criados (pendência) |
+| Estilos `Spec/display-2xl`, `-xl`, `-large`, `-medium`, `-small`, `Spec/title-2xl`, `-lg`, `-md`, `-sm`, `Spec/body-lg`, `-md`, `Spec/blockquote`, `Spec/code`, `Spec/caption` (14) | Tokens de mesmo nome da seção 3 | Os estilos usam as variáveis acima. Só existem para desktop; os estilos mobile ainda não foram criados (pendência) |
 | 51 estilos antigos (`Desktop/…`, `Mobile/…`) e coleção `Tipografia Responsiva` | Não usar | Em migração: serão apagados depois de migrar as outras páginas do arquivo |
 | `fontWeight/*` e `lineHeight/tight`, `normal`, `relaxed` (primitivas antigas) | Não usar | Fora da escala; revisar na limpeza do Figma |
 
-**Mapeamento para o MUI** (`theme.typography`): A DECIDIR (T-15). Dois nomes da escala colidem com variantes reservadas do `Typography` do MUI: `caption` e o estilo do botão (`button`).
+### Mapeamento para o MUI (T-15)
+
+Cada token vira uma variante de `theme.typography` com **o nome do MUI e o prefixo `tcece`**, sem tocar nas variantes do próprio MUI (`h1`–`h6`, `body1`, `button`, `caption`…, que seguem intactas e não usadas). Os níveis abaixo são a proposta a confirmar com o front (T-15).
+
+| Token do DS | Variante | Observação |
+|---|---|---|
+| `title-2xl` | `tceceH1` | O nível do HTML (`h1`, `h2`…) vem do documento, via `component`; a variante dá só o visual |
+| `title-lg` | `tceceH2` | Título de página e de modal (T-6) |
+| `title-md` | `tceceH3` | |
+| `title-sm` | `tceceH4` e `tceceButton` | Mesmo estilo; `tceceButton` é a que o `Button` usa |
+| `body-md` | `tceceBody1` | Texto padrão |
+| `caption` | `tceceCaption` | |
+| `body-lg`, `blockquote`, `code` | `tceceBodyLg`, `tceceBlockquote`, `tceceCode` | Sem equivalente no MUI |
+| `display-2xl`, `-xl`, `-large`, `-medium`, `-small` | `tceceDisplay2xl`, `tceceDisplayXl`, `tceceDisplayLarge`, `tceceDisplayMedium`, `tceceDisplaySmall` | Sem equivalente no MUI |
+
+```ts
+declare module '@mui/material/styles' {
+  interface TypographyVariants {
+    tceceH1: React.CSSProperties; tceceH2: React.CSSProperties; tceceH3: React.CSSProperties; tceceH4: React.CSSProperties;
+    tceceBody1: React.CSSProperties; tceceBodyLg: React.CSSProperties; tceceButton: React.CSSProperties; tceceCaption: React.CSSProperties;
+    // ...e as demais da tabela
+  }
+  interface TypographyVariantsOptions { /* mesmas chaves, opcionais */ }
+}
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides { tceceH1: true; tceceH2: true; tceceH3: true; tceceH4: true; tceceBody1: true; tceceBodyLg: true; tceceButton: true; tceceCaption: true }
+}
+```
+
+Valores de cada variante: os da seção 3, em `rem` e line-height sem unidade. As variantes responsivas (`title-*`, `display-*`) trocam o `fontSize` abaixo de 768px com `theme.breakpoints.down('md')`. Nos componentes do MUI que leem a tipografia (como o `Button`, que usa `theme.typography.button`), defina `tceceButton` e aponte o componente para ela em `components.MuiButton.styleOverrides`. Confirmar a API na documentação do MUI 9.1.1 (Context7).
 
 ## 13. Histórico de versões
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 4.1.0 | 2026-10-28 | `display-2xl` e `display-xl` adotados (peso 700) com regras da seção 3.1; seção 5.1 (reflow, quebra de palavras, idioma, listas); mapeamento para o MUI com variantes `tcece*` (T-15); T-6, T-9, T-10, T-11 e T-14 decididos; revisão do tracking aberta (T-16); Figma com 79 variáveis e 14 estilos |
 | 4.0.1 | 2026-10-28 | Nomes dos tokens de cor atualizados conforme `color-spec-tce.md` 2.0.0 (texto) |
 | 4.0.0 | 2026-10-28 | Proposta `display-2xl`/`display-xl` e seção 3.1 (a aprovar, T-14); prefixo `tcece` nas variáveis CSS e classes (`--tcece-font-primary`, `--tcece-title-lg-size`, `.tcece-num`…); cabeçalho padrão (camada, depende de, usada por); seção 12 (mapa Figma ↔ código); botão aponta para `button-spec-tce.md` |
 | 3.0.0 | 2026-10-28 | Escala única: tokens `button-*`, `form-*` e `table-*` removidos; espaçamento de texto definido (seção 5, fecha T-2 e E-2). Marcada como `ds-v3` (a confirmar) |

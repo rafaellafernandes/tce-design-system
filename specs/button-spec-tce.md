@@ -8,15 +8,17 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **0.6.0** (rascunho) |
+| **Versão da spec** | **0.7.0** (rascunho) |
 | **Última atualização** | **2026-10-28** |
 | Versão do DS | em revisão, ainda sem tag (o `CHANGELOG.md` registra `ds-v3` como a confirmar; a tag é decisão do design) |
 | **Camada** | **1. Átomos (componente)** |
-| **Depende de** (data da última atualização lida) | Tokens: `typography-spec-tce.md` (4.0.1, 2026-10-28), `color-spec-tce.md` (2.0.0, 2026-10-28), `spacing-spec-tce.md` (2026-10-28), `grid-layout-spec-tce.md` (2026-10-21, só os breakpoints). Detalhe na seção 11 |
+| **Depende de** (data da última atualização lida) | Tokens: `typography-spec-tce.md` (4.1.0, 2026-10-28), `color-spec-tce.md` (2.1.0, 2026-10-28), `spacing-spec-tce.md` (2026-10-28), `grid-layout-spec-tce.md` (2026-10-21, só os breakpoints). Detalhe na seção 11 |
 | **Usada por** | `padroes-de-interface.md` (modais, paginação, estado vazio, formulários) e, quando existirem, as specs de campo de busca, paginação, banner, modal, tabela, menu lateral e header. Detalhe na seção 11 |
 | Arquivo | `specs/button-spec-tce.md` |
 
 **Quem lê (pessoa ou agente):** anote a **versão** e a **data** acima no PR ou no handoff que usar esta spec. Se a versão que você leu for menor que a do repositório, releia antes de implementar. Versões `0.x` são rascunho e podem mudar. Regra de numeração: o primeiro número muda quando um nome de propriedade ou token muda (quebra); o segundo, quando entra regra ou estado novo; o terceiro, em correção de texto. O histórico está na seção 13. O formato do cabeçalho e o significado das camadas estão no índice (`design-system-index.md`, seção 4.1).
+
+**Versão do MUI do front:** 9.1.1 (`@mui/material`; informada em 2026-10-28). Na v9, ao trocar o elemento do botão com `component`, informe `nativeButton={false}` (ou `nativeButton` ao contrário); sem isso o MUI avisa em desenvolvimento. O clique por Enter e Espaço agora chega como `MouseEvent`.
 
 Origem: componente `Button` (antes `btn`) do arquivo ⭐ Design System TCE (fileKey `mn0wkryj2sBHmW412qD2o8`, página 🧩 Componentes, conjunto `106:3174`), com 216 variantes. Os nomes das propriedades no Figma são os mesmos das props do MUI.
 
@@ -173,8 +175,14 @@ export const theme = createTheme({
       styleOverrides: {
         root: ({ theme }) => ({
           minHeight: '2.75rem', minWidth: '4rem', padding: '0.5rem 1rem',
-          [theme.breakpoints.down('md')]: { minHeight: '3rem' },   // 768px (T-10)
+          [theme.breakpoints.down('md')]: { minHeight: '3rem' },   // 768px (T-10, decidido)
           '& .MuiTouchRipple-rippleVisible': { opacity: 0.27 },
+          // MUI 9: as chaves containedPrimary, containedSuccess, outlined etc. foram removidas; use variants no root
+          variants: [
+            { props: { variant: 'contained', color: 'primary' }, style: { '&:active': { backgroundColor: '#1F2E5C' }, '& .MuiTouchRipple-rippleVisible': { opacity: 0.3 } } }, // tcece/primary/pressed
+            { props: { variant: 'contained', color: 'success' }, style: { '& .MuiTouchRipple-rippleVisible': { opacity: 0.18 } } },
+            { props: { variant: 'outlined' }, style: { backgroundColor: '#FFFFFF' } },
+          ],
           '&.Mui-focusVisible': {
             backgroundColor: focus.bg, color: focus.fg,
             boxShadow: `inset 0 -4px 0 ${focus.fg}`,
@@ -183,9 +191,6 @@ export const theme = createTheme({
         }),
         startIcon: { marginLeft: '-0.25rem', marginRight: '0.5rem', '& > *:nth-of-type(1)': { fontSize: '1.25rem' } },
         endIcon:   { marginRight: '-0.25rem', marginLeft: '0.5rem', '& > *:nth-of-type(1)': { fontSize: '1.25rem' } },
-        containedPrimary: { '&:active': { backgroundColor: '#1F2E5C' }, '& .MuiTouchRipple-rippleVisible': { opacity: 0.3 } }, // tcece/primary/pressed
-        containedSuccess: { '& .MuiTouchRipple-rippleVisible': { opacity: 0.18 } },
-        outlined: { backgroundColor: '#FFFFFF' },
       },
       variants: [
         {
@@ -246,8 +251,8 @@ O botão é um **átomo** (camada 1): depende só de tokens e **nunca** de molé
 | `typography-spec-tce.md` | `title-sm` (16 / 600 / 1,4), Noto Sans, piso de 16px; espaçamento de texto da seção 5 (letter-spacing 0, word-spacing 0) e teste WCAG 1.4.12 | Regra 6, seção 3, seção 6, tema (seção 8) | `title-sm`, line-height, letter-spacing, teste 1.4.12 |
 | `color-spec-tce.md` | Tokens `primary/*`, `tcece/button/*` e `tcece/focus/*` (seção 5 da cor), contraste mínimo (regra 4), foco amarelo e preto (regra 5) | Seção 4, seção 6, tema | Qualquer token `button/*` ou `focus/*`, regra de contraste, tokens de criação (B-2) |
 | `spacing-spec-tce.md` | Escala (`spacing/8`, `spacing/16`), padding do botão, alvos clicáveis de 44 e 48 (seção 6), espaço entre alvos (E-7). O padding de 12 no lado do ícone usa `spacing/12`, que está em avaliação (E-1) | Seção 3, seção 6 | Escala, linha do botão na seção 4, alvos clicáveis, E-1 e E-7 |
-| `grid-layout-spec-tce.md` | Breakpoint do mobile (768px, G-1 e T-10) que define `tceceDevice`; largura do botão nas colunas (G-6, não definido) | Seção 2, seção 8 | Breakpoints, ocupação de colunas |
-| `decisoes-em-aberto.md` | Pendências B-1 a B-8, T-10, G-1, E-1, E-7, N-1 | Seção 12 | Toda decisão tomada que toque o botão |
+| `grid-layout-spec-tce.md` | Breakpoint do mobile (768px, decidido em T-10; conflito em G-1) que define `tceceDevice`; largura do botão nas colunas (G-6, não definido) | Seção 2, seção 8 | Breakpoints, ocupação de colunas |
+| `decisoes-em-aberto.md` | Pendências B-1 a B-7, G-1, E-1, E-7, N-1 | Seção 12 | Toda decisão tomada que toque o botão |
 | `design-system-index.md` e `CHANGELOG.md` | Precedência, estrutura em camadas, prefixo `tcece`, cabeçalho e versionamento | Seção 2.1 e cabeçalho | Convenções de nome, de camada e de versão |
 
 ### 11.2 Usada por (camadas acima)
@@ -266,12 +271,13 @@ As specs marcadas "a criar" aparecem em `design-system-index.md`, seção 4.1.
 
 ## 12. Pontos em aberto
 
-Todos em **`decisoes-em-aberto.md`** (B-1 a B-8).
+Todos em **`decisoes-em-aberto.md`** (B-1 a B-7).
 
 ## 13. Histórico de versões
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 0.7.0 | 2026-10-28 | MUI 9.1.1 registrado (B-8 decidida); tema ajustado à v9 (as chaves `containedPrimary`, `containedSuccess` e `outlined` de `styleOverrides` foram removidas na v9; viraram `variants` no `root`); regra do `nativeButton`; foco: botão com preenchimento e demais com anel (C-5 decidida); cor 2.1.0 e tipografia 4.1.0 conferidas |
 | 0.6.0 | 2026-10-28 | Tokens de cor renomeados conforme `color-spec-tce.md` 2.0.0 (`primary/main`, `primary/dark`, `tcece/primary/pressed`, `tcece/focus/*`, `tcece/button/*`); tipografia 4.0.1 conferida |
 | 0.5.2 | 2026-10-28 | Verificação das specs relacionadas (índice, seção 7): data lida da spec de cor atualizada para 2026-10-28 (a spec de cor só ganhou um ponteiro para esta, sem mudança de valor); tipografia, espaçamento, grid-layout e padrões conferidos |
 | 0.5.1 | 2026-10-28 | Campo "Camada" encurtado (a metodologia fica só no índice) |
