@@ -4,11 +4,11 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **4.0.0** (em uso, com pendências) |
+| **Versão da spec** | **4.0.1** (em uso, com pendências) |
 | **Última atualização** | **2026-10-28** |
 | Versão do DS | em revisão, ainda sem tag (o `CHANGELOG.md` registra `ds-v3` como a confirmar; a tag é decisão do design) |
 | **Camada** | **1. Átomos (tokens)** |
-| **Depende de** (data da última atualização lida) | Tokens de mesma camada, lidas em 2026-10-28 (ainda sem cabeçalho padrão; última revisão registrada em cada uma): `color-spec-tce.md` (ds-v1, 2026-10-07; cores de texto), `spacing-spec-tce.md` (ds-v1, 2026-10-07; escala, E-1), `grid-layout-spec-tce.md` (ds-v1, 2026-10-07; breakpoints, G-1) |
+| **Depende de** (data da última atualização lida) | Tokens de mesma camada, lidas em 2026-10-28 (ainda sem cabeçalho padrão; última revisão registrada em cada uma): `color-spec-tce.md` (2.0.0, 2026-10-28; cores de texto), `spacing-spec-tce.md` (ds-v1, 2026-10-07; escala, E-1), `grid-layout-spec-tce.md` (ds-v1, 2026-10-07; breakpoints, G-1) |
 | **Usada por** | `button-spec-tce.md`, `padroes-de-interface.md` e, quando existirem, as specs de campo, label, tabela, modal, header, menu lateral e demais componentes com texto |
 | Arquivo e Figma | `specs/typography-spec-tce.md`; coleção `Typography` e estilos `Spec/*` do arquivo ⭐ Design System TCE (seção 12) |
 
@@ -137,7 +137,7 @@ Botão, label, input, helper, cabeçalho e célula de tabela usam tokens da esca
 | Botão (todas as variantes do `Button`) | `title-sm` (16 / 600); o componente está em `button-spec-tce.md` |
 | "Anterior" e "Próximo" da paginação | `title-sm` (16 / 600), no `Button` `outlined`; o que diferencia as variantes é a cor, não a tipografia |
 | Paginação (rótulos e números) | `body-md`; números com `--tcece-font-accent` |
-| Breadcrumb | `body-md`, cor `text/secondary`; links em `link/default` |
+| Breadcrumb | `body-md`, cor `text/secondary`; links em `tcece/link/default` |
 | Texto corrido, descrições | `body-md` |
 | Abas e itens de menu (ativo/inativo) | `title-sm` |
 | Título de modal | `title-lg` |
@@ -145,7 +145,7 @@ Botão, label, input, helper, cabeçalho e célula de tabela usam tokens da esca
 | Selo, status e chip (texto) | `title-sm` (16 / 600); o componente cresce para acomodar o texto. Exceção: chip de identificação ao lado de um nome (cargo ou perfil de usuário) usa `body-md` (16 / 400) em `text/secondary`, para não competir com o nome |
 | Rótulo de par rótulo–valor | `body-md` em `text/secondary` |
 | Tooltip | `body-md` |
-| Placeholder | `body-md` em itálico, `text/placeholder` |
+| Placeholder | `body-md` em itálico, `tcece/text/placeholder` |
 | Trecho de código | `code` (16 / 600 / 1.4, Fira Code) |
 | Número de destaque (indicador, KPI) | `title-2xl` (32 / 600 / 1.2; mobile 24) com `--tcece-font-accent` e `tabular-nums` (`.tcece-num`). Texto de apoio abaixo: `body-md` em `text/secondary`. Não use `title-lg`, que é do título da página |
 | `display-2xl` | Proposto (T-14): hero de capa institucional (home do Conecta, páginas de entrada). Uma por página |
@@ -188,19 +188,19 @@ Consequências para o código e o Figma:
 
 ## 6. Cores de texto e estados
 
-As cores de texto, link e fundo têm spec própria: **`color-spec-tce.md`** (tokens `text/*`, `link/*`, `button/*`, `surface/*`, página 🎨 Cores no Figma). Esta spec usa esses nomes. Equivalência com os nomes antigos desta spec:
+As cores de texto, link e fundo têm spec própria: **`color-spec-tce.md`** (tokens `text/*`, `tcece/text/*`, `tcece/link/*`, `primary/*`, `background/*`, página 🎨 Cores no Figma). Esta spec usa esses nomes. Equivalência com os nomes antigos desta spec:
 
 | Antes | Agora | Hex |
 |---|---|---|
 | `text-dark` | `text/primary` | #27282C |
 | `text-medium` | `text/secondary` | #474C52 |
 | `text-light` | `text/disabled` (só desabilitado) | #73787E |
-| `primary` (links) | `link/default` | #3855A3 |
-| `error` | `text/error` | #A31D24 |
-| `success` | `text/success` | #206442 |
-| `warning` | só como preenchimento (`status/warning/default`); texto sobre ele usa `text/on-warning` | #FFAE00 |
+| `primary` (links) | `tcece/link/default` | #3855A3 |
+| `error` | `tcece/text/error` | #A31D24 |
+| `success` | `tcece/text/success` | #206442 |
+| `warning` | só como preenchimento (`warning/main`); texto sobre ele usa `tcece/text/on-warning` | #FFAE00 |
 
-Links: `body-md` em `link/default`, sublinhados em texto corrido; hover `link/hover`; foco com o padrão de foco da spec de cor (anel amarelo com contorno preto). Placeholder: `body-md`, itálico, `text/placeholder`.
+Links: `body-md` em `tcece/link/default`, sublinhados em texto corrido; hover `tcece/link/hover`; foco com o padrão de foco da spec de cor (anel amarelo com contorno preto). Placeholder: `body-md`, itálico, `tcece/text/placeholder`.
 
 ## 7. Recomendações de uso por página
 
@@ -321,7 +321,7 @@ Uso:
 - [ ] Espaçamento de texto (seção 5): letter-spacing e word-spacing `0`, parágrafos a 24px
 - [ ] Componentes com texto usam `min-height` (nunca altura fixa), sem `overflow: hidden`; nada é cortado com line-height 1,5, parágrafo 2×, letter-spacing 0,12 em e word-spacing 0,16 em (WCAG 1.4.12)
 - [ ] Tokens `title-*` têm override mobile (< 768px)
-- [ ] Contraste de texto: `text/primary` ou `text/secondary` sobre `surface/default` ou `surface/page`
+- [ ] Contraste de texto: `text/primary` ou `text/secondary` sobre `background/paper` ou `background/default`
 - [ ] Estados (hover, focus, disabled, erro) usando as cores da seção 6
 - [ ] Apenas **um** `title-lg` por página (o título da página); demais seções em `title-md`/`title-sm`
 - [ ] Contadores e números de destaque **não** usam o mesmo token do título da página (T-14)
@@ -331,7 +331,7 @@ Uso:
 
 ## 10. Contraste das cores de texto
 
-Os contrastes de cada token de texto, link, botão e fundo estão em `color-spec-tce.md` (seções 3 a 6), calculados sobre os valores atuais do Figma. Os valores e a tabela antiga desta seção (baseados em #212121, #1976D2 etc.) foram substituídos. Regras que continuam valendo: placeholders são texto e atingem 4,5:1 (`text/placeholder`); cor nunca é o único indicador de erro, sucesso ou status.
+Os contrastes de cada token de texto, link, botão e fundo estão em `color-spec-tce.md` (seções 3 a 6), calculados sobre os valores atuais do Figma. Os valores e a tabela antiga desta seção (baseados em #212121, #1976D2 etc.) foram substituídos. Regras que continuam valendo: placeholders são texto e atingem 4,5:1 (`tcece/text/placeholder`); cor nunca é o único indicador de erro, sucesso ou status.
 
 ## 11. Pontos em aberto
 
@@ -355,6 +355,7 @@ Todos os pontos em aberto de tipografia estão em **`decisoes-em-aberto.md`** (T
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 4.0.1 | 2026-10-28 | Nomes dos tokens de cor atualizados conforme `color-spec-tce.md` 2.0.0 (texto) |
 | 4.0.0 | 2026-10-28 | Proposta `display-2xl`/`display-xl` e seção 3.1 (a aprovar, T-14); prefixo `tcece` nas variáveis CSS e classes (`--tcece-font-primary`, `--tcece-title-lg-size`, `.tcece-num`…); cabeçalho padrão (camada, depende de, usada por); seção 12 (mapa Figma ↔ código); botão aponta para `button-spec-tce.md` |
 | 3.0.0 | 2026-10-28 | Escala única: tokens `button-*`, `form-*` e `table-*` removidos; espaçamento de texto definido (seção 5, fecha T-2 e E-2). Marcada como `ds-v3` (a confirmar) |
 | 2.0.0 | 2026-10-27 | Piso de 16px; tokens `title-xs`, `title-ss` e `body-standard` removidos; `caption`, `code`, `form-helper` e `button-secondary` sobem para 16px. Marcada como `ds-v2` (a confirmar) |

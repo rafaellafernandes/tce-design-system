@@ -23,7 +23,7 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 | T-9 | Line-height dos títulos | 1,2 (reset antigo) ou o do token | Adotado: o do token | Menor | Token |
 | T-10 | Ponto de quebra mobile | 768px | Adotado | Importante | 768px (ver também G-1) |
 | T-11 | Negrito em texto corrido | Sem token | Adotado: 600 | Menor | 600 |
-| T-12 | Cores de texto | Resolvido em parte por `color-spec-tce.md` (abas inativas em `text/secondary`, placeholder em `text/placeholder`, texto verde com 7,1:1); resta o alerta amarelo (C-2) | Resolvido em parte | Menor | Usar os tokens de cor |
+| T-12 | Cores de texto | Resolvido em parte por `color-spec-tce.md` (abas inativas em `text/secondary`, placeholder em `tcece/text/placeholder`, texto verde com 7,1:1); resta o alerta amarelo (C-2) | Resolvido em parte | Menor | Usar os tokens de cor |
 | T-13 | O que conta como "label" para a Atkinson (além do label de formulário) | Incluir ou não: cabeçalho de tabela, abas e itens de menu, badges de status, rótulo de par rótulo–valor, labels de checkbox/radio, `caption` | Só o label de formulário e números; o resto em Noto Sans | Importante | Atkinson só no label de formulário e em números (typography-spec, seção 2.1); perguntar antes de ampliar |
 | T-14 | Papel e escala dos tokens `display-*` | Caso real: hero da home do Conecta ("Boas vindas ao / Conecta TCE Ceará"), com tipo bem maior que `display-large` (48) e entrelinha/tracking largos. Hoje `display-small` (32) = `title-2xl` e nenhum `display-*` tem papel definido | Proposta (a aprovar): `display-*` passa a ser só para hero e páginas institucionais, 1 por página; adicionar `display-xl` (64 desktop / 40 mobile) e `display-2xl` (80 / 44), peso 700; tamanho fluido com `clamp()` entre mobile e desktop; peso 600 ou 700 (a decidir); letter-spacing 0 (o espaçamento largo do hero atual conflita com a regra 5 da spec, a decidir); máx. 2 linhas por bloco, sem altura fixa, `text-wrap: balance`, deve passar em reflow a 400% | Menor | Não usar `display-*` em telas de produto sem aprovação do design |
 | T-15 | Mapeamento dos tokens para `theme.typography` do MUI | Variantes customizadas com prefixo (`tceceTitleLg`, `tceceBodyMd`…) ou reaproveitar as do MUI onde existirem (`button`, `caption`). `caption` e `button` são reservadas do MUI | Variantes com prefixo `tcece`, e `title-sm` ligado também a `button` | Importante | Não reaproveitar `caption` nem `h1`–`h6` com outro significado; perguntar |
@@ -45,7 +45,7 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 | B-1 | Combinações de `variant` e `color` | Só as 5 que existem no Figma, ou criar `outlined`/`text` com `success` | Só as 5 existentes | Menor | Não usar outras combinações |
 | B-2 | Cor do botão de criação (`contained` + `success`) | Hoje verde fixo (#216342; hover #2B7D54; pressed = repouso), sem token semântico. O hover **clareia** e o do primário **escurece** | Criar tokens `button/bg/create-*` e padronizar hover e pressed | Importante | Usar os valores do Figma; perguntar |
 | B-3 | Estado `selected` (antes `Active`) | Fica no `Button` como estilo do tema, ou vai para o componente de item de menu | Item de menu | Importante | Aplicar só no menu lateral |
-| B-4 | Visual de `disabled` nos `outlined`, `elevated` e `text` | Manter fundo e contorno ou só trocar a cor do rótulo | Fundo `button/bg/disabled` e rótulo `button/label/disabled` | Menor | Conferir no Figma (`state=disabled`) |
+| B-4 | Visual de `disabled` nos `outlined`, `elevated` e `text` | Manter fundo e contorno ou só trocar a cor do rótulo | Fundo `action/disabledBackground` e rótulo `action/disabled` | Menor | Conferir no Figma (`state=disabled`) |
 | B-5 | Botão só com ícone | `IconButton` com spec própria (hoje existe `Btn_icon_primary` no Figma, fora desta spec) | Spec própria | Importante | Perguntar |
 | B-6 | Code Connect do `Button` | Mapear o componente do Figma ao `Button` do MUI | Mapear depois que os nomes estabilizarem | Menor | Handoff descreve as props da seção 2 |
 | B-7 | Specs de fundação que o botão usa e ainda não existem | Criar specs de elevação e sombra, ícones, raio e borda, movimento (ripple e movimento reduzido) | Valores provisórios na `button-spec-tce.md` | Importante | Usar os valores da spec do botão; perguntar antes de reutilizar em outro componente |
@@ -68,13 +68,13 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 | ID | Decisão | Opções | Proposta / adotado hoje | Impacto | Enquanto isso |
 |---|---|---|---|---|---|
 | C-1 | Cor da marca | `#194383` (CSS institucional) ou `#3855A3` (Figma, blue/700) | Vale o Figma (`#3855A3`) até decidir | **Bloqueante** para re-ancorar a escala de blue | Usar os tokens semânticos; trocar a marca só muda as primitivas |
-| C-2 | Alerta amarelo como borda/ícone | yellow/700 (4,4:1) ou ícone escuro sobre preenchimento; hoje yellow/500 dá 1,9:1 | Proposta: yellow/700 | Importante | Alerta só como preenchimento, com `text/on-warning` |
-| C-3 | `button/bg/active` e `button/bg/pressed` | Unificar (mesmo valor) | Unificar | Menor | Usar `pressed` |
-| C-4 | Nomes das cores no código | `--tcece-color-*` (o CSS original já usa esse prefixo com outro significado) | `--tcece-color-text-primary` etc. | Importante | Proposta |
+| C-2 | Alerta amarelo como borda/ícone | yellow/700 (4,4:1) ou ícone escuro sobre preenchimento; hoje yellow/500 dá 1,9:1 | Proposta: yellow/700 | Importante | Alerta só como preenchimento, com `tcece/text/on-warning` |
+| C-3 | `tcece/button/bg/active` e `tcece/primary/pressed` | Unificar (mesmo valor) | Unificar | Menor | Usar `pressed` |
+| C-4 | Nomes das cores no código | `--tcece-color-*` (o CSS original já usa esse prefixo com outro significado) | Decidido em 2026-10-28: nomes do MUI onde o papel existe (`theme.palette.*`) e `--tcece-color-*` para o que é só do TCE (`color-spec-tce.md` 2.0.0, seção 7) | Importante | Decidido; resta conferir colisão com o CSS original na migração |
 | C-5 | Foco visível: anel ou preenchimento | A spec de cor (regra 5) e a de tipografia (seção 6) dizem "anel amarelo com contorno preto"; o botão usa fundo amarelo, texto preto e borda inferior preta | Botão: preenchimento (já no Figma). Links e campos: anel | Importante | Botão segue `button-spec-tce.md`; links e campos, anel amarelo com contorno preto |
 | C-5 | Nomes de botão por aparência (`hover-light`, `hover-dark`) | Renomear por papel | Na spec de botões | Menor | Manter |
 | C-6 | Limpeza do Figma (legacy/Green na coleção errada, coleção Focus, 8 estilos de cor antigos) | Mover, unificar e remover | — | Menor | Não usar |
-| C-7 | Tokens fora da spec de cor que os produtos já usam | Bordas (`border/subtle`), cabeçalho de tabela (`table/header`), status (`status/success/*`, `status/warning/*`), ícones (`icon/on-action`): documentar na spec de cor | Escrever a seção de bordas, status e ícones | **Bloqueante** para fechar o handoff dos produtos | Usar os tokens como estão no Figma; não criar tokens novos |
+| C-7 | Tokens fora da spec de cor que os produtos já usam | Bordas (`divider`), cabeçalho de tabela (`tcece/table/header`), status (`status/success/*`, `status/warning/*`), ícones (`tcece/icon/on-action`): documentar na spec de cor | Escrever a seção de bordas, status e ícones | **Bloqueante** para fechar o handoff dos produtos | Usar os tokens como estão no Figma; não criar tokens novos |
 
 ## Transversal (vale para todas as specs)
 
@@ -84,7 +84,7 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 
 ## Tabela (componente `Table` e `Cell Content`, Figma do DS, página 🧩 Componentes)
 
-Já feito em 05/10/2026: cabeçalho em `table/header` (novo token, alias de gray/100), bordas em `border/subtle`, padding e gap ligados a `spacing/*` (cabeçalho de 14 para 12), cabeçalho em Desktop/Título/16px com altura mínima de 48, texto das células em `text/primary`, propriedade **Estado** (Dados/Vazio, 60 variantes) e documentação corrigida.
+Já feito em 05/10/2026: cabeçalho em `tcece/table/header` (novo token, alias de grey/100), bordas em `divider`, padding e gap ligados a `spacing/*` (cabeçalho de 14 para 12), cabeçalho em Desktop/Título/16px com altura mínima de 48, texto das células em `text/primary`, propriedade **Estado** (Dados/Vazio, 60 variantes) e documentação corrigida.
 
 | ID | Decisão | Opções | Proposta / adotado hoje | Impacto | Enquanto isso |
 |---|---|---|---|---|---|
