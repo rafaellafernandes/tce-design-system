@@ -16,6 +16,7 @@ Decidido em 2026-10-28 (sai da lista), segunda rodada:
 - **T-10** ponto de quebra mobile: 768px (o conflito com o grid segue em G-1).
 - **T-11** negrito em texto corrido: 600.
 - **T-14** `display-*`: papel e escala definidos (seção 3 e 3.1 da tipografia): `display-2xl` (80/44) e `display-xl` (64/40) novos, ambos peso 700; um `display-*` por página, só em hero e páginas institucionais. O letter-spacing do hero ficou para **T-16**.
+- **T-16** letter-spacing: `0` em todos os tokens, sem exceção para o hero, com uma variável por token e regras de acessibilidade (tipografia, seção 5.2).
 - **T-15** mapeamento para o MUI: variantes com o nome do MUI e o prefixo `tcece` (`tceceH1`, `tceceBody1`, `tceceButton`, `tceceCaption`…). Os níveis de cada uma estão na tipografia, seção 12 (ainda a confirmar com o front).
 - **C-5 (foco)**: botão com preenchimento amarelo, texto preto e borda inferior preta de 4px; links, campos e os demais com anel amarelo e contorno preto.
 - **Tokens de cor mais próximos do MUI:** `tcece/text/error`, `tcece/text/success`, `tcece/text/info`, `tcece/action/create`, `tcece/link/default` e `tcece/link/hover` passaram a ser alias de `error/main`, `success/main`, `info/main`, `success/main`, `primary/main` e `primary/dark`. No código use o token do MUI. Os alias saem quando os usos migrarem.
@@ -31,7 +32,6 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 | T-4 | Tamanho 18px | Criar tokens `title` e `button` de 18 ou padronizar em 16/20 | Sem token | Importante | Não usar 18px fora de `body-lg` |
 | T-5 | Número da ocorrência em título | Token `title-lg-regular` ou peso 600 do título | Peso do título | Menor | `title-lg` com o peso do título (família do título: Noto Sans, ver T-13) |
 | T-15 | Quais níveis do MUI recebem cada token (`tceceH1`–`tceceH4`, `tceceBody1`, `tceceBodyLg`…) | Ver tipografia, seção 12 | `tceceH1` = `title-2xl` … `tceceH4` = `title-sm`; `tceceBody1` = `body-md`; `tceceButton` = `title-sm`; `tceceCaption` = `caption` | Menor | Usar o mapa da seção 12; confirmar com o front |
-| T-16 | Revisar o letter-spacing (e o word-spacing) de todo o DS | Hoje é `0` em todos os tokens (decidido em 2026-10-28), mas o hero do Conecta usa espaçamento largo, o CSS original usava 0,08 a 0,12 em e os estilos antigos do Figma 4 a 12%. Rever token a token: `display-*`, títulos, labels, botão, números, `caption` | A decidir | Importante | `0`, como na tipografia, seção 5 |
 | T-12 | Cores de texto | Resolvido em parte por `color-spec-tce.md` (abas inativas em `text/secondary`, placeholder em `tcece/text/placeholder`, texto verde com 7,1:1); resta o alerta amarelo (C-2) | Resolvido em parte | Menor | Usar os tokens de cor |
 | T-13 | O que conta como "label" para a Atkinson (além do label de formulário) | Incluir ou não: cabeçalho de tabela, abas e itens de menu, badges de status, rótulo de par rótulo–valor, labels de checkbox/radio, `caption` | Só o label de formulário e números; o resto em Noto Sans | Importante | Atkinson só no label de formulário e em números (typography-spec, seção 2.1); perguntar antes de ampliar |
 
