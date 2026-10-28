@@ -20,15 +20,24 @@ Status: rascunho, 2026-10-28. Origem: componente `Button` (antes `btn`) do arqui
 
 | Propriedade no Figma | Valores | Prop no MUI | Observação |
 |---|---|---|---|
-| `variant` | `contained`, `outlined`, `text`, `elevated` | `variant` | `elevated` **não existe no MUI**: é variante customizada do tema (seção 8) |
+| `variant` | `contained`, `outlined`, `text`, `tceceElevated` | `variant` | `tceceElevated` **não existe no MUI**: é variante customizada do tema (seção 8) |
 | `color` | `primary`, `success` | `color` | `contained` + `success` é o botão de criação |
-| `size` | `medium` (desktop), `large` (mobile) | `size` | No código use sempre `size="medium"`: o tema aplica a altura mínima por breakpoint. `large` existe no Figma só para mostrar o mobile |
-| `state` | `default`, `hover`, `pressed`, `focusVisible`, `disabled`, `selected` | ver seção 4 | Estado não é prop (exceto `disabled`): vem do navegador, do `TouchRipple` e das classes `Mui-*` |
-| `startIcon`, `endIcon` | `false`, `true` | `startIcon`, `endIcon` | O ícone se troca em `startIconComponent` e `endIconComponent` |
+| `tceceDevice` | `desktop`, `mobile` | (nenhuma) | Não existe prop no código: o tema aplica a altura mínima por breakpoint. Use sempre `size="medium"` do MUI. O nome leva prefixo porque `size` do MUI tem outro significado |
+| `state` | `default`, `hover`, `pressed`, `focusVisible`, `disabled`, `tceceSelected` | ver seção 4 | Estado não é prop (exceto `disabled`): vem do navegador, do `TouchRipple` e das classes `Mui-*` |
+| `startIcon`, `endIcon` | `false`, `true` | `startIcon`, `endIcon` | O ícone se troca em `tceceStartIcon` e `tceceEndIcon` (só Figma) |
 | `children` | texto | `children` | Rótulo do botão |
 | (não existe no Figma) | — | `disabled`, `fullWidth`, `href` | Valem como no MUI |
 
-Correspondência com os nomes antigos do Figma: Primário = `contained` + `primary`; Criação = `contained` + `success`; Secundário = `outlined`; Terciário = `elevated`; Quaternário = `text`; `Active` = `selected`; `Dispositive` = `size`. Combinações que não existem no Figma (por exemplo `outlined` + `success`) **não devem ser usadas** (B-1).
+Correspondência com os nomes antigos do Figma: Primário = `contained` + `primary`; Criação = `contained` + `success`; Secundário = `outlined`; Terciário = `tceceElevated`; Quaternário = `text`; `Active` = `tceceSelected`; `Dispositive` = `tceceDevice`. Combinações que não existem no Figma (por exemplo `outlined` + `success`) **não devem ser usadas** (B-1).
+
+### 2.1 Prefixo `tcece` (palavras reservadas do MUI)
+
+Nomes que o MUI já usa **não podem ser reaproveitados com outro significado** (props, classes `Mui-*`, `--mui-*`, chaves do tema). Por isso:
+
+- **Espelha o MUI, sem prefixo:** `variant`, `color`, `startIcon`, `endIcon`, `children`, `contained`, `outlined`, `text`, `primary`, `success` e os estados `hover`, `pressed`, `focusVisible`, `disabled`.
+- **É nosso, com prefixo `tcece`:** `tceceElevated` (variante), `tceceDevice` e `tceceSelected` (Figma), `tceceStartIcon` e `tceceEndIcon` (trocas de ícone no Figma), `tcece-hover-overlay` (camada do Figma), `--tcece-*` (variáveis CSS), `theme.tcece` (chaves do tema), `.tcece-*` (classes) e `TceceButton` (só se houver wrapper).
+- **Nunca** use `--mui-*`, `.Mui-*` nem nomes começando com `Mui` para algo nosso.
+- O prefixo único para o repositório inteiro está em `design-system-index.md`, seção 5.
 
 ## 3. Anatomia e medidas
 
@@ -56,7 +65,7 @@ Os tokens estão em `color-spec-tce.md`, seção 5. Esta tabela diz **qual usar 
 | `contained` + `primary` | fundo `button/bg/default`, rótulo `button/label/default` | fundo `button/bg/hover-dark`, rótulo `button/label/hover-dark` | fundo `button/bg/pressed` + `TouchRipple` branco |
 | `contained` + `success` | fundo verde de criação (**sem token, B-2**), rótulo branco | fundo verde mais claro (**B-2**) | fundo igual ao repouso + `TouchRipple` branco |
 | `outlined` | fundo `button/bg/white`, contorno 1px `button/bg/default`, rótulo `button/label/default` | tint de 4% da cor do rótulo sobre o repouso | repouso + `TouchRipple` na cor do rótulo |
-| `elevated` | fundo `button/bg/white`, sem contorno, sombra `0 2px 2px rgba(0,0,0,.25)`, rótulo `button/label/default` | tint de 4% | repouso + `TouchRipple` |
+| `tceceElevated` | fundo `button/bg/white`, sem contorno, sombra `0 2px 2px rgba(0,0,0,.25)`, rótulo `button/label/default` | tint de 4% | repouso + `TouchRipple` |
 | `text` | sem fundo, rótulo `button/label/default` | tint de 4% | repouso + `TouchRipple` |
 
 Estados comuns a todos:
@@ -67,7 +76,7 @@ Estados comuns a todos:
 | `focusVisible` + hover | igual ao foco, com tint preto de 4% | O amarelo e o preto **não mudam** |
 | `focusVisible` + pressed | igual ao foco, com `TouchRipple` preto | A borda preta continua |
 | `disabled` | fundo `button/bg/disabled`, rótulo e ícone `button/label/disabled` | Sem hover e sem ripple; use `disabled` (B-4) |
-| `selected` | fundo `button/bg/default`, rótulo branco | Só `outlined` e `text`, usado no item de menu (`aria-current="page"`); fora do `Button` do MUI (B-3) |
+| `tceceSelected` | fundo `button/bg/default`, rótulo branco | Só `outlined` e `text`, usado no item de menu (`aria-current="page"`); fora do `Button` do MUI (B-3) |
 
 ### Hover e ripple (padrão do MUI)
 
@@ -79,7 +88,7 @@ Estados comuns a todos:
 |---|---|
 | `contained` + `primary` | 30% |
 | `contained` + `success` | 18% |
-| `outlined`, `elevated`, `text` | 27% |
+| `outlined`, `tceceElevated`, `text` | 27% |
 
   O padrão do MUI é 30%, que **não passa** em quatro destas combinações. Use os valores da tabela.
 - **Foco:** desligue o ripple de foco do MUI (`disableFocusRipple`), pois o foco é o amarelo.
@@ -99,7 +108,7 @@ Estados comuns a todos:
 - **Contraste:** rótulo e fundo em todos os estados com pelo menos 4,5:1; `button/bg/default` contra o branco dá 7,0:1 como componente de UI (1.4.11). O desabilitado é isento, mas precisa do atributo.
 - **Nome acessível:** o texto do rótulo. Botão de ação que abre outra tela ou envia dados diz isso no rótulo.
 - **Semântica:** ação usa `<button>`; navegação usa `href` (o MUI renderiza `<a>`). Nunca use `div` clicável.
-- **Cor nunca é o único indicador:** `selected` e `disabled` têm atributo além da cor.
+- **Cor nunca é o único indicador:** `tceceSelected` e `disabled` têm atributo além da cor.
 
 ## 7. Uso
 
@@ -108,9 +117,9 @@ Estados comuns a todos:
 | Ação principal da tela, uma por vez | `contained` + `primary` |
 | Criar ou adicionar algo | `contained` + `success` |
 | Ação secundária ao lado da principal | `outlined` |
-| Ação de apoio sobre fundo claro | `elevated` |
+| Ação de apoio sobre fundo claro | `tceceElevated` |
 | Ação discreta, menu, ações em linha | `text` |
-| Item selecionado no menu lateral | `text` ou `outlined` com `selected` |
+| Item selecionado no menu lateral | `text` ou `outlined` com `tceceSelected` |
 
 No máximo um botão `contained` + `primary` por área de ação. A ordem e a posição dos botões em um grupo de ações não estão definidas (ver `padroes-de-interface.md`): pergunte ao design.
 
@@ -122,12 +131,15 @@ Valores em rem (base 16px). As cores são os tokens `button/*` e `focus/*`; gere
 import { createTheme, alpha } from '@mui/material/styles';
 
 declare module '@mui/material/Button' {
-  interface ButtonPropsVariantOverrides { elevated: true }
+  interface ButtonPropsVariantOverrides { tceceElevated: true }
 }
 
-const focus = { bg: '#FFDD00', fg: '#000000' };      // button/bg/focus, button/label/focus
+// Chaves nossas ficam sob theme.tcece (prefixo, ver seção 2.1); nunca no nível do tema do MUI
+const tcece = { focus: { bg: '#FFDD00', fg: '#000000' } };   // button/bg/focus, button/label/focus
+const focus = tcece.focus;
 
 export const theme = createTheme({
+  // tcece,   // exponha com module augmentation de Theme se precisar ler fora do tema
   shape: { borderRadius: 8 },
   palette: {
     primary: { main: '#3855A3', dark: '#2C417A', contrastText: '#FFFFFF' }, // button/bg/default, hover-dark
@@ -163,7 +175,7 @@ export const theme = createTheme({
       },
       variants: [
         {
-          props: { variant: 'elevated' },
+          props: { variant: 'tceceElevated' },
           style: ({ theme }) => ({
             backgroundColor: '#FFFFFF', color: theme.palette.primary.main,
             boxShadow: '0 2px 2px rgba(0,0,0,0.25)',
@@ -179,18 +191,19 @@ export const theme = createTheme({
 });
 ```
 
-Estado `selected`: aplique no item de menu (`aria-current="page"`), com fundo `button/bg/default` e rótulo branco; não faz parte do tema do `Button` (B-3).
+Estado `tceceSelected`: aplique no item de menu (`aria-current="page"`), com fundo `button/bg/default` e rótulo branco; não faz parte do tema do `Button` (B-3).
 
 ## 9. Mapa Figma ↔ código
 
 | Figma | Código |
 |---|---|
 | Componente `Button` (`106:3174`) | `Button` de `@mui/material` |
-| `variant`, `color`, `size` | props de mesmo nome |
+| `variant`, `color` | props de mesmo nome |
+| `tceceDevice` | breakpoint do tema (768px), sem prop |
 | `children` | `children` |
 | `startIcon` e `endIcon` | props `startIcon` e `endIcon` |
 | `state=hover/pressed/focusVisible/disabled` | `:hover`, `TouchRipple`, `.Mui-focusVisible`, `disabled` |
-| Camadas `hover-overlay` e `TouchRipple` do Figma | Comportamento nativo do MUI; não recrie como elemento |
+| Camadas `tcece-hover-overlay` e `TouchRipple` do Figma | Comportamento nativo do MUI; não recrie como elemento |
 | `button/*`, `focus/*` | `palette` e `styleOverrides` do tema (seção 8) |
 
 Code Connect ainda não está mapeado para o `Button` (B-6).

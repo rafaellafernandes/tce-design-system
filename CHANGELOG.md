@@ -8,6 +8,7 @@ Mais recente primeiro.
 - **Layout do botão** alinhado ao CSS e ao MUI: padding 8/16 (12 no lado do ícone), altura mínima 44 (desktop) e 48 (mobile) em vez de altura fixa, largura mínima 64, ícone de 20px. Fecha E-8.
 - **Hover e pressed no padrão do MUI**: tint de 4% e `TouchRipple`. Opacidade do ripple por variante (30%, 18% e 27%) para manter o rótulo com pelo menos 4,5:1.
 - **Foco visível** mantém o amarelo e o preto também com hover e clique.
+- **Prefixo `tcece` decidido**: tudo o que o DS inventa leva o prefixo e nada nosso usa palavras reservadas do MUI. No Figma, `size` virou `tceceDevice` (desktop e mobile), `selected` virou `tceceSelected`, `elevated` virou `tceceElevated`, as trocas de ícone viraram `tceceStartIcon` e `tceceEndIcon` e a camada `hover-overlay` virou `tcece-hover-overlay`. `button-spec-tce.md` ganhou a seção 2.1.
 - Novas decisões em aberto B-1 a B-6.
 - **Impacto para os devs:** usar o `Button` do MUI com o tema da seção 8 da spec; registrar a variante `elevated`; regenerar `tokens.json` e `designTokens.ts`. No Figma, republicar a biblioteca e reapontar instâncias do botão que usem os nomes antigos de propriedade.
 

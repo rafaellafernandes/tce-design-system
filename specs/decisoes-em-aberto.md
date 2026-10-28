@@ -76,7 +76,7 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 
 | ID | Decisão | Opções | Proposta / adotado hoje | Impacto | Enquanto isso |
 |---|---|---|---|---|---|
-| N-1 | Convenção de nomes no código (consolida C-4, E-5 e G-5) | Prefixo único (`--tcece-*`) e padrão de nomes para tipografia, cor, espaçamento, grid e layout | `--tcece-<assunto>-*` em todas as specs | Importante | Seguir a proposta de cada spec; tipografia usa os nomes da seção 8 da spec |
+| N-1 | Convenção de nomes no código (consolida C-4, E-5 e G-5) | **Prefixo `tcece` decidido em 2026-10-28** (índice, seção 5). Resta o padrão de nomes por assunto: tipografia, cor, espaçamento, grid e layout | `--tcece-<assunto>-*` em todas as specs | Importante | Seguir a proposta de cada spec; tipografia usa os nomes da seção 8 da spec |
 
 ## Tabela (componente `Table` e `Cell Content`, Figma do DS, página 🧩 Componentes)
 
