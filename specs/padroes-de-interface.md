@@ -16,7 +16,7 @@ Status: rascunho. Separado da spec de tipografia (antes seção 7.2) em 2026-10-
 | **Abas** | `title-sm`; ativa em `link/default` com underline 2px (cor de ação genérica ainda sem token, ver `color-spec-tce.md` seção 9); inativa em `text/secondary` (não `text/disabled`, que fica abaixo de 4,5:1) |
 | **Tabelas** | Cabeçalho `title-sm`; células `body-md`; datas e status destacados com peso 600; alinhamento à esquerda para texto, à direita para números, ao centro para ícones/ações; células numéricas em Atkinson com `tabular-nums` (`.num`); truncar com tooltip |
 | **Formulários** | label (`title-sm`, **Atkinson**) acima do campo (8px) · texto digitado `body-md` · ajuda `caption` · erro em `caption` + ícone + cor `text/error` (nunca só cor); placeholder (`text/placeholder`) nunca substitui label |
-| **Modais** | Título `title-lg`; descrição `body-md`; botão de confirmação (primário) à direita, cancelar (secundário) à esquerda dele; ambos `title-sm` |
+| **Modais** | Título `title-lg`; descrição `body-md`; botão de confirmação (primário) à direita, cancelar (secundário) à esquerda dele; ambos `title-sm` (componente em `button-spec-tce.md`) |
 | **Feedback (alerta, banner, toast)** | Título `title-sm`; mensagem `body-md`; cor semântica em ícone, borda e fundo claro; **texto em `text/primary`**, ou `text/error`, `text/success` e `text/info` em mensagens curtas (todos acima de 4,5:1, ver `color-spec-tce.md`) |
 | **Status / badges** | `title-sm` (16/600), `text/primary` sobre fundo claro da cor semântica; texto sempre presente (Aberta, Em revisão, Fechada), cor sozinha não basta |
 | **Estado vazio** | `title-sm` + `body-md` `text/secondary`, centralizados, com um botão primário quando houver ação |

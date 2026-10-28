@@ -51,6 +51,17 @@ A spec de cor cobre só texto, link, botão e fundo; bordas, ícones e status ai
 3. Entre Figma e spec, vale a spec, exceto onde o item estiver em `decisoes-em-aberto.md`: aí vale o que o design decidir.
 4. O CSS original do TCE é referência de valores, não de regras; seus defeitos conhecidos estão em `espacamento-e-css-original-correcoes.md`.
 
+## 4.1 Dependências entre as specs
+
+Specs de **componente** herdam valores das specs de **fundação** e não os repetem. Ao mudar uma fundação, revise as specs de componente que dependem dela e atualize a versão e a data de cada uma.
+
+| Spec de componente | Depende de | Detalhe |
+|---|---|---|
+| `button-spec-tce.md` | tipografia, cor, espaçamento, grid-layout, padrões de interface | Tabela na seção 11 da própria spec |
+| Padrões de interface (blocos recorrentes) | tipografia, cor, espaçamento, grid-layout e `button-spec-tce.md` | Botões dos blocos seguem a spec do botão |
+
+Fundações: tipografia, cor, espaçamento, grid-layout. Ainda não existem fundações de elevação e sombra, ícones, raio e borda, e movimento (B-7 em `decisoes-em-aberto.md`).
+
 ## 5. Convenções comuns
 
 - **Formato das specs:** regras obrigatórias, tokens, como escolher, componentes, responsivo, mapa Figma ↔ código, checklist, pontos em aberto.

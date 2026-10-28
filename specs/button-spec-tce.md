@@ -6,12 +6,13 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **0.2.0** (rascunho) |
+| **Versão da spec** | **0.3.0** (rascunho) |
 | **Última atualização** | **2026-10-28** |
 | Versão do DS | em revisão, ainda sem tag (o `CHANGELOG.md` registra `ds-v3` como a confirmar; a tag é decisão do design) |
+| **Depende destas specs** (data da última atualização que esta versão considera) | `typography-spec-tce.md` (2026-10-28), `color-spec-tce.md` (2026-10-21), `spacing-spec-tce.md` (2026-10-28), `grid-layout-spec-tce.md` (2026-10-21), `padroes-de-interface.md` (2026-10-28). Detalhe na seção 11 |
 | Arquivo | `specs/button-spec-tce.md` |
 
-**Quem lê (pessoa ou agente):** anote a **versão** e a **data** acima no PR ou no handoff que usar esta spec. Se a versão que você leu for menor que a do repositório, releia antes de implementar. Versões `0.x` são rascunho e podem mudar. Regra de numeração: o primeiro número muda quando um nome de propriedade ou token muda (quebra); o segundo, quando entra regra ou estado novo; o terceiro, em correção de texto. O histórico está na seção 12.
+**Quem lê (pessoa ou agente):** anote a **versão** e a **data** acima no PR ou no handoff que usar esta spec. Se a versão que você leu for menor que a do repositório, releia antes de implementar. Versões `0.x` são rascunho e podem mudar. Regra de numeração: o primeiro número muda quando um nome de propriedade ou token muda (quebra); o segundo, quando entra regra ou estado novo; o terceiro, em correção de texto. O histórico está na seção 13.
 
 Origem: componente `Button` (antes `btn`) do arquivo ⭐ Design System TCE (fileKey `mn0wkryj2sBHmW412qD2o8`, página 🧩 Componentes, conjunto `106:3174`), com 216 variantes. Os nomes das propriedades no Figma são os mesmos das props do MUI.
 
@@ -130,7 +131,7 @@ Estados comuns a todos:
 | Ação discreta, menu, ações em linha | `text` |
 | Item selecionado no menu lateral | `text` ou `outlined` com `tceceSelected` |
 
-No máximo um botão `contained` + `primary` por área de ação. A ordem e a posição dos botões em um grupo de ações não estão definidas (ver `padroes-de-interface.md`): pergunte ao design.
+No máximo um botão `contained` + `primary` por área de ação. A posição dos botões em um grupo de ações segue `padroes-de-interface.md`: no modal, confirmação (`contained` + `primary`) à direita e cancelar (`outlined`) à esquerda dela; paginação com "Anterior" e "Próximo" em `outlined`. Fora desses casos a ordem não está definida: pergunte ao design.
 
 ## 8. Tema MUI (referência para o front)
 
@@ -230,13 +231,30 @@ Code Connect ainda não está mapeado para o `Button` (B-6).
 - [ ] Desabilitado com `disabled` ou `aria-disabled`
 - [ ] No máximo um `contained` + `primary` por área de ação
 
-## 11. Pontos em aberto
+## 11. Specs relacionadas (manter sincronizadas)
 
-Todos em **`decisoes-em-aberto.md`** (B-1 a B-6).
+Esta spec **não repete** valores de outras specs: ela os referencia. Em caso de divergência vale a spec do assunto (`design-system-index.md`, seção 4), exceto no que for específico do botão. **Quando uma spec da tabela mudar, revise esta e atualize a versão e o histórico; quando uma mudança no botão afetar outra spec, atualize a outra.**
 
-## 12. Histórico de versões
+| Spec | O que o botão herda | Onde nesta spec | Revisar quando mudar |
+|---|---|---|---|
+| `typography-spec-tce.md` | `title-sm` (16 / 600 / 1,4), Noto Sans, piso de 16px; espaçamento de texto da seção 5 (letter-spacing 0, word-spacing 0) e teste WCAG 1.4.12 | Regra 6, seção 3, seção 6, tema (seção 8) | `title-sm`, line-height, letter-spacing, teste 1.4.12 |
+| `color-spec-tce.md` | Tokens `button/*` e `focus/*` (seção 5 da cor), contraste mínimo (regra 4), foco amarelo e preto (regra 5) | Seção 4, seção 6, tema | Qualquer token `button/*` ou `focus/*`, regra de contraste, tokens de criação (B-2) |
+| `spacing-spec-tce.md` | Escala (`spacing/8`, `spacing/16`), padding do botão, alvos clicáveis de 44 e 48 (seção 6), espaço entre alvos (E-7). O padding de 12 no lado do ícone usa `spacing/12`, que está em avaliação (E-1) | Seção 3, seção 6 | Escala, linha do botão na seção 4, alvos clicáveis, E-1 e E-7 |
+| `grid-layout-spec-tce.md` | Breakpoint do mobile (768px, G-1 e T-10) que define `tceceDevice`; largura do botão nas colunas (G-6, não definido) | Seção 2, seção 8 | Breakpoints, ocupação de colunas |
+| `padroes-de-interface.md` | Onde o botão aparece e em que ordem: modais, estado vazio, paginação, formulários | Seção 7 | Padrão de ações, modais, paginação |
+| `decisoes-em-aberto.md` | Pendências B-1 a B-7, T-10, G-1, E-1, E-7, N-1 | Seção 12 | Toda decisão tomada que toque o botão |
+| `design-system-index.md` e `CHANGELOG.md` | Precedência, prefixo `tcece`, versionamento | Seção 2.1 e cabeçalho | Convenções de nome e de versão |
+
+**Specs que o botão precisa e ainda não existem** (por isso os valores estão aqui, provisórios): elevação e sombra (`tceceElevated`), ícones (tamanho 20, biblioteca `Icons_TCE`), raio e borda (raio 8, contorno 1px), movimento (ripple, `prefers-reduced-motion`) e botão só com ícone (`IconButton`). Quando cada uma existir, o valor passa a ser referência a ela (B-7).
+
+## 12. Pontos em aberto
+
+Todos em **`decisoes-em-aberto.md`** (B-1 a B-7).
+
+## 13. Histórico de versões
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 0.3.0 | 2026-10-28 | Seção 11 (specs relacionadas e dependências), campo "Depende destas specs" no cabeçalho, ordem dos botões em grupos (referência a `padroes-de-interface.md`), pendência B-7 |
 | 0.2.0 | 2026-10-28 | Prefixo `tcece` (seção 2.1): `tceceElevated`, `tceceDevice`, `tceceSelected`, `tceceStartIcon`, `tceceEndIcon`, `tcece-hover-overlay`, `theme.tcece`. Cabeçalho com versão e data |
 | 0.1.0 | 2026-10-28 | Criação: mapa Figma ↔ MUI, medidas, estados, ripple por contraste, foco amarelo e preto, acessibilidade, tema MUI, pendências B-1 a B-6 |

@@ -113,7 +113,7 @@ Botão, label, input, helper, cabeçalho e célula de tabela usam tokens da esca
 | Cabeçalho de coluna de tabela | `title-sm` (16 / 600 / 1.4) |
 | Célula de tabela | `body-md` (16 / 400 / 1.6); célula numérica com `--font-accent` e `tabular-nums` |
 | Número isolado (contador, ID, protocolo, valor de destaque) | token do papel + `--font-accent` + `tabular-nums` (classe `.num`, seção 8) |
-| Botão principal (`.primary`) | `title-sm` (16 / 600) |
+| Botão principal (`.primary`) | `title-sm` (16 / 600); componente em `button-spec-tce.md` |
 | Botão secundário (`.secondary`), "Anterior/Próximo" | `title-sm` (16 / 600); o que diferencia do principal é a cor, não a tipografia |
 | Paginação (rótulos e números) | `body-md`; números com `--font-accent` |
 | Breadcrumb | `body-md`, cor `text/secondary`; links em `link/default` |

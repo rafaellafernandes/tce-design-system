@@ -57,6 +57,8 @@ Link em foco usa o padrão de foco da regra 5.
 
 ## 5. Botões
 
+> Uso no componente (variantes, estados, ripple e foco): `button-spec-tce.md`. Esta seção é a fonte dos tokens; se um token `button/*` ou `focus/*` mudar, revise aquela spec.
+
 | Estado | Fundo | Rótulo | Contraste | Observação |
 |---|---|---|---|---|
 | Primário | `button/bg/default` (blue/700) | `button/label/default` (white) | 7,0:1 | Ação principal |
