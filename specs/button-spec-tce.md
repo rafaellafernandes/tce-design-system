@@ -8,22 +8,24 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **0.5.2** (rascunho) |
+| **Versão da spec** | **0.7.0** (rascunho) |
 | **Última atualização** | **2026-10-28** |
 | Versão do DS | em revisão, ainda sem tag (o `CHANGELOG.md` registra `ds-v3` como a confirmar; a tag é decisão do design) |
 | **Camada** | **1. Átomos (componente)** |
-| **Depende de** (data da última atualização lida) | Tokens: `typography-spec-tce.md` (2026-10-28), `color-spec-tce.md` (2026-10-28), `spacing-spec-tce.md` (2026-10-28), `grid-layout-spec-tce.md` (2026-10-21, só os breakpoints). Detalhe na seção 11 |
+| **Depende de** (data da última atualização lida) | Tokens: `typography-spec-tce.md` (4.1.0, 2026-10-28), `color-spec-tce.md` (2.1.0, 2026-10-28), `spacing-spec-tce.md` (2026-10-28), `grid-layout-spec-tce.md` (2026-10-21, só os breakpoints). Detalhe na seção 11 |
 | **Usada por** | `padroes-de-interface.md` (modais, paginação, estado vazio, formulários) e, quando existirem, as specs de campo de busca, paginação, banner, modal, tabela, menu lateral e header. Detalhe na seção 11 |
 | Arquivo | `specs/button-spec-tce.md` |
 
 **Quem lê (pessoa ou agente):** anote a **versão** e a **data** acima no PR ou no handoff que usar esta spec. Se a versão que você leu for menor que a do repositório, releia antes de implementar. Versões `0.x` são rascunho e podem mudar. Regra de numeração: o primeiro número muda quando um nome de propriedade ou token muda (quebra); o segundo, quando entra regra ou estado novo; o terceiro, em correção de texto. O histórico está na seção 13. O formato do cabeçalho e o significado das camadas estão no índice (`design-system-index.md`, seção 4.1).
+
+**Versão do MUI do front:** 9.1.1 (`@mui/material`; informada em 2026-10-28). Na v9, ao trocar o elemento do botão com `component`, informe `nativeButton={false}` (ou `nativeButton` ao contrário); sem isso o MUI avisa em desenvolvimento. O clique por Enter e Espaço agora chega como `MouseEvent`.
 
 Origem: componente `Button` (antes `btn`) do arquivo ⭐ Design System TCE (fileKey `mn0wkryj2sBHmW412qD2o8`, página 🧩 Componentes, conjunto `106:3174`), com 216 variantes. Os nomes das propriedades no Figma são os mesmos das props do MUI.
 
 ## 1. Regras obrigatórias
 
 1. **Use o `Button` do MUI.** Variação visual vem de `variant`, `color` e do tema, nunca de CSS solto no botão.
-2. **Nunca use cor, medida ou fonte solta.** Cores vêm dos tokens `button/*`, `focus/*` (spec de cor), medidas da escala de espaçamento e texto do token `title-sm`.
+2. **Nunca use cor, medida ou fonte solta.** Cores vêm dos tokens `primary/*`, `tcece/button/*` e `tcece/focus/*` (spec de cor), medidas da escala de espaçamento e texto do token `title-sm`.
 3. **Altura mínima de 44px no desktop e 48px no mobile** (NBR 17225), por `min-height`, **nunca `height` fixa**: o botão cresce com o texto (WCAG 1.4.12).
 4. **O foco visível é sempre amarelo e preto**, em todos os `variant` e `color`, com ou sem hover. Não troque por outro anel.
 5. **Cor nunca é o único indicador** de estado: desabilitado usa também `disabled`/`aria-disabled`; selecionado usa também `aria-pressed` ou `aria-current`.
@@ -76,21 +78,21 @@ Os tokens estão em `color-spec-tce.md`, seção 5. Esta tabela diz **qual usar 
 
 | `variant` | Repouso | Hover | Pressed |
 |---|---|---|---|
-| `contained` + `primary` | fundo `button/bg/default`, rótulo `button/label/default` | fundo `button/bg/hover-dark`, rótulo `button/label/hover-dark` | fundo `button/bg/pressed` + `TouchRipple` branco |
+| `contained` + `primary` | fundo `primary/main`, rótulo `primary/contrastText` | fundo `primary/dark`, rótulo `tcece/button/label/hover-dark` | fundo `tcece/primary/pressed` + `TouchRipple` branco |
 | `contained` + `success` | fundo verde de criação (**sem token, B-2**), rótulo branco | fundo verde mais claro (**B-2**) | fundo igual ao repouso + `TouchRipple` branco |
-| `outlined` | fundo `button/bg/white`, contorno 1px `button/bg/default`, rótulo `button/label/default` | tint de 4% da cor do rótulo sobre o repouso | repouso + `TouchRipple` na cor do rótulo |
-| `tceceElevated` | fundo `button/bg/white`, sem contorno, sombra `0 2px 2px rgba(0,0,0,.25)`, rótulo `button/label/default` | tint de 4% | repouso + `TouchRipple` |
-| `text` | sem fundo, rótulo `button/label/default` | tint de 4% | repouso + `TouchRipple` |
+| `outlined` | fundo `tcece/button/bg/white`, contorno 1px `primary/main`, rótulo `primary/contrastText` | tint de 4% da cor do rótulo sobre o repouso | repouso + `TouchRipple` na cor do rótulo |
+| `tceceElevated` | fundo `tcece/button/bg/white`, sem contorno, sombra `0 2px 2px rgba(0,0,0,.25)`, rótulo `primary/contrastText` | tint de 4% | repouso + `TouchRipple` |
+| `text` | sem fundo, rótulo `primary/contrastText` | tint de 4% | repouso + `TouchRipple` |
 
 Estados comuns a todos:
 
 | Estado | Visual | Observação |
 |---|---|---|
-| `focusVisible` | fundo `button/bg/focus` (amarelo, #FFDD00), rótulo e ícone `button/label/focus` (preto), borda inferior de 4px em `focus/border` (preto) | Contraste 15,6:1. Só com teclado (`:focus-visible`); o clique do mouse não ativa |
+| `focusVisible` | fundo `tcece/focus/bg` (amarelo, #FFDD00), rótulo e ícone `tcece/focus/label` (preto), borda inferior de 4px em `tcece/focus/border` (preto) | Contraste 15,6:1. Só com teclado (`:focus-visible`); o clique do mouse não ativa |
 | `focusVisible` + hover | igual ao foco, com tint preto de 4% | O amarelo e o preto **não mudam** |
 | `focusVisible` + pressed | igual ao foco, com `TouchRipple` preto | A borda preta continua |
-| `disabled` | fundo `button/bg/disabled`, rótulo e ícone `button/label/disabled` | Sem hover e sem ripple; use `disabled` (B-4) |
-| `tceceSelected` | fundo `button/bg/default`, rótulo branco | Só `outlined` e `text`, usado no item de menu (`aria-current="page"`); fora do `Button` do MUI (B-3) |
+| `disabled` | fundo `action/disabledBackground`, rótulo e ícone `action/disabled` | Sem hover e sem ripple; use `disabled` (B-4) |
+| `tceceSelected` | fundo `primary/main`, rótulo branco | Só `outlined` e `text`, usado no item de menu (`aria-current="page"`); fora do `Button` do MUI (B-3) |
 
 ### Hover e ripple (padrão do MUI)
 
@@ -119,7 +121,7 @@ Estados comuns a todos:
 - **Alvo clicável:** 44 (desktop) e 48 (mobile) de altura mínima; largura mínima de 64. Espaço entre botões vizinhos: `spacing/8` (E-7).
 - **Texto:** `min-height`, nunca altura fixa; o botão não corta o texto com line-height 1,5, letter-spacing 0,12 em e word-spacing 0,16 em (WCAG 1.4.12).
 - **Foco visível:** WCAG 2.4.7 e 2.4.11. O amarelo (#FFDD00) sozinho dá 1,35:1 sobre branco, por isso sempre com a borda preta.
-- **Contraste:** rótulo e fundo em todos os estados com pelo menos 4,5:1; `button/bg/default` contra o branco dá 7,0:1 como componente de UI (1.4.11). O desabilitado é isento, mas precisa do atributo.
+- **Contraste:** rótulo e fundo em todos os estados com pelo menos 4,5:1; `primary/main` contra o branco dá 7,0:1 como componente de UI (1.4.11). O desabilitado é isento, mas precisa do atributo.
 - **Nome acessível:** o texto do rótulo. Botão de ação que abre outra tela ou envia dados diz isso no rótulo.
 - **Semântica:** ação usa `<button>`; navegação usa `href` (o MUI renderiza `<a>`). Nunca use `div` clicável.
 - **Cor nunca é o único indicador:** `tceceSelected` e `disabled` têm atributo além da cor.
@@ -139,7 +141,7 @@ No máximo um botão `contained` + `primary` por área de ação. A posição do
 
 ## 8. Tema MUI (referência para o front)
 
-Valores em rem (base 16px). As cores são os tokens `button/*` e `focus/*`; gere-as de `tokens.json` quando for regenerado (pendência do ds-v3) em vez de copiar os hex.
+Valores em rem (base 16px). As cores são os tokens `primary/*`, `tcece/button/*` e `tcece/focus/*`; gere-as de `tokens.json` quando for regenerado (pendência do ds-v3) em vez de copiar os hex.
 
 ```ts
 import { createTheme, alpha } from '@mui/material/styles';
@@ -149,14 +151,14 @@ declare module '@mui/material/Button' {
 }
 
 // Chaves nossas ficam sob theme.tcece (prefixo, ver seção 2.1); nunca no nível do tema do MUI
-const tcece = { focus: { bg: '#FFDD00', fg: '#000000' } };   // button/bg/focus, button/label/focus
+const tcece = { focus: { bg: '#FFDD00', fg: '#000000' } };   // tcece/focus/bg, tcece/focus/label
 const focus = tcece.focus;
 
 export const theme = createTheme({
   // tcece,   // exponha com module augmentation de Theme se precisar ler fora do tema
   shape: { borderRadius: 8 },
   palette: {
-    primary: { main: '#3855A3', dark: '#2C417A', contrastText: '#FFFFFF' }, // button/bg/default, hover-dark
+    primary: { main: '#3855A3', dark: '#2C417A', contrastText: '#FFFFFF' }, // primary/main, primary/dark, primary/contrastText
     success: { main: '#216342', dark: '#2B7D54', contrastText: '#FFFFFF' }, // sem token (B-2)
     action: { hoverOpacity: 0.04 },
   },
@@ -173,8 +175,14 @@ export const theme = createTheme({
       styleOverrides: {
         root: ({ theme }) => ({
           minHeight: '2.75rem', minWidth: '4rem', padding: '0.5rem 1rem',
-          [theme.breakpoints.down('md')]: { minHeight: '3rem' },   // 768px (T-10)
+          [theme.breakpoints.down('md')]: { minHeight: '3rem' },   // 768px (T-10, decidido)
           '& .MuiTouchRipple-rippleVisible': { opacity: 0.27 },
+          // MUI 9: as chaves containedPrimary, containedSuccess, outlined etc. foram removidas; use variants no root
+          variants: [
+            { props: { variant: 'contained', color: 'primary' }, style: { '&:active': { backgroundColor: '#1F2E5C' }, '& .MuiTouchRipple-rippleVisible': { opacity: 0.3 } } }, // tcece/primary/pressed
+            { props: { variant: 'contained', color: 'success' }, style: { '& .MuiTouchRipple-rippleVisible': { opacity: 0.18 } } },
+            { props: { variant: 'outlined' }, style: { backgroundColor: '#FFFFFF' } },
+          ],
           '&.Mui-focusVisible': {
             backgroundColor: focus.bg, color: focus.fg,
             boxShadow: `inset 0 -4px 0 ${focus.fg}`,
@@ -183,9 +191,6 @@ export const theme = createTheme({
         }),
         startIcon: { marginLeft: '-0.25rem', marginRight: '0.5rem', '& > *:nth-of-type(1)': { fontSize: '1.25rem' } },
         endIcon:   { marginRight: '-0.25rem', marginLeft: '0.5rem', '& > *:nth-of-type(1)': { fontSize: '1.25rem' } },
-        containedPrimary: { '&:active': { backgroundColor: '#1F2E5C' }, '& .MuiTouchRipple-rippleVisible': { opacity: 0.3 } }, // button/bg/pressed
-        containedSuccess: { '& .MuiTouchRipple-rippleVisible': { opacity: 0.18 } },
-        outlined: { backgroundColor: '#FFFFFF' },
       },
       variants: [
         {
@@ -205,7 +210,7 @@ export const theme = createTheme({
 });
 ```
 
-Estado `tceceSelected`: aplique no item de menu (`aria-current="page"`), com fundo `button/bg/default` e rótulo branco; não faz parte do tema do `Button` (B-3).
+Estado `tceceSelected`: aplique no item de menu (`aria-current="page"`), com fundo `primary/main` e rótulo branco; não faz parte do tema do `Button` (B-3).
 
 ## 9. Mapa Figma ↔ código
 
@@ -218,7 +223,7 @@ Estado `tceceSelected`: aplique no item de menu (`aria-current="page"`), com fun
 | `startIcon` e `endIcon` | props `startIcon` e `endIcon` |
 | `state=hover/pressed/focusVisible/disabled` | `:hover`, `TouchRipple`, `.Mui-focusVisible`, `disabled` |
 | Camadas `tcece-hover-overlay` e `TouchRipple` do Figma | Comportamento nativo do MUI; não recrie como elemento |
-| `button/*`, `focus/*` | `palette` e `styleOverrides` do tema (seção 8) |
+| `primary/*`, `tcece/button/*`, `tcece/focus/*` | `palette` e `styleOverrides` do tema (seção 8) |
 
 Code Connect ainda não está mapeado para o `Button` (B-6).
 
@@ -226,7 +231,7 @@ Code Connect ainda não está mapeado para o `Button` (B-6).
 
 - [ ] `Button` do MUI, sem `div` clicável e sem CSS solto no botão
 - [ ] `variant` e `color` entre as combinações da seção 2
-- [ ] Cores só por tokens `button/*` e `focus/*`; nenhum hex solto na tela
+- [ ] Cores só por tokens `primary/*`, `tcece/button/*` e `tcece/focus/*`; nenhum hex solto na tela
 - [ ] Altura mínima 44 (desktop) e 48 (mobile) por `min-height`, sem `height`
 - [ ] Foco visível amarelo e preto, inclusive durante hover e clique
 - [ ] Ripple com a opacidade da seção 4 (contraste do rótulo ≥ 4,5:1)
@@ -244,10 +249,10 @@ O botão é um **átomo** (camada 1): depende só de tokens e **nunca** de molé
 | Spec | O que o botão herda | Onde nesta spec | Revisar quando mudar |
 |---|---|---|---|
 | `typography-spec-tce.md` | `title-sm` (16 / 600 / 1,4), Noto Sans, piso de 16px; espaçamento de texto da seção 5 (letter-spacing 0, word-spacing 0) e teste WCAG 1.4.12 | Regra 6, seção 3, seção 6, tema (seção 8) | `title-sm`, line-height, letter-spacing, teste 1.4.12 |
-| `color-spec-tce.md` | Tokens `button/*` e `focus/*` (seção 5 da cor), contraste mínimo (regra 4), foco amarelo e preto (regra 5) | Seção 4, seção 6, tema | Qualquer token `button/*` ou `focus/*`, regra de contraste, tokens de criação (B-2) |
+| `color-spec-tce.md` | Tokens `primary/*`, `tcece/button/*` e `tcece/focus/*` (seção 5 da cor), contraste mínimo (regra 4), foco amarelo e preto (regra 5) | Seção 4, seção 6, tema | Qualquer token `button/*` ou `focus/*`, regra de contraste, tokens de criação (B-2) |
 | `spacing-spec-tce.md` | Escala (`spacing/8`, `spacing/16`), padding do botão, alvos clicáveis de 44 e 48 (seção 6), espaço entre alvos (E-7). O padding de 12 no lado do ícone usa `spacing/12`, que está em avaliação (E-1) | Seção 3, seção 6 | Escala, linha do botão na seção 4, alvos clicáveis, E-1 e E-7 |
-| `grid-layout-spec-tce.md` | Breakpoint do mobile (768px, G-1 e T-10) que define `tceceDevice`; largura do botão nas colunas (G-6, não definido) | Seção 2, seção 8 | Breakpoints, ocupação de colunas |
-| `decisoes-em-aberto.md` | Pendências B-1 a B-8, T-10, G-1, E-1, E-7, N-1 | Seção 12 | Toda decisão tomada que toque o botão |
+| `grid-layout-spec-tce.md` | Breakpoint do mobile (768px, decidido em T-10; conflito em G-1) que define `tceceDevice`; largura do botão nas colunas (G-6, não definido) | Seção 2, seção 8 | Breakpoints, ocupação de colunas |
+| `decisoes-em-aberto.md` | Pendências B-1 a B-7, G-1, E-1, E-7, N-1 | Seção 12 | Toda decisão tomada que toque o botão |
 | `design-system-index.md` e `CHANGELOG.md` | Precedência, estrutura em camadas, prefixo `tcece`, cabeçalho e versionamento | Seção 2.1 e cabeçalho | Convenções de nome, de camada e de versão |
 
 ### 11.2 Usada por (camadas acima)
@@ -266,12 +271,14 @@ As specs marcadas "a criar" aparecem em `design-system-index.md`, seção 4.1.
 
 ## 12. Pontos em aberto
 
-Todos em **`decisoes-em-aberto.md`** (B-1 a B-8).
+Todos em **`decisoes-em-aberto.md`** (B-1 a B-7).
 
 ## 13. Histórico de versões
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 0.7.0 | 2026-10-28 | MUI 9.1.1 registrado (B-8 decidida); tema ajustado à v9 (as chaves `containedPrimary`, `containedSuccess` e `outlined` de `styleOverrides` foram removidas na v9; viraram `variants` no `root`); regra do `nativeButton`; foco: botão com preenchimento e demais com anel (C-5 decidida); cor 2.1.0 e tipografia 4.1.0 conferidas |
+| 0.6.0 | 2026-10-28 | Tokens de cor renomeados conforme `color-spec-tce.md` 2.0.0 (`primary/main`, `primary/dark`, `tcece/primary/pressed`, `tcece/focus/*`, `tcece/button/*`); tipografia 4.0.1 conferida |
 | 0.5.2 | 2026-10-28 | Verificação das specs relacionadas (índice, seção 7): data lida da spec de cor atualizada para 2026-10-28 (a spec de cor só ganhou um ponteiro para esta, sem mudança de valor); tipografia, espaçamento, grid-layout e padrões conferidos |
 | 0.5.1 | 2026-10-28 | Campo "Camada" encurtado (a metodologia fica só no índice) |
 | 0.5.0 | 2026-10-28 | Consulta à documentação do MUI pelo Context7 (índice, seção 6.1); pendência B-8 (versão do MUI do front) |
