@@ -55,9 +55,9 @@ A coluna "Fonte" diz de onde vem o valor: **CSS** (CSS original, confirmado), **
 
 | Componente | Padding | Outros | Fonte |
 |---|---|---|---|
-| Botão (primário, secundário, terciário, quaternário) | 8 vertical, 16 horizontal | altura mínima 44 (desktop), 48 (mobile), margem 4 | CSS |
+| Botão (`contained`, `outlined`, `elevated`, `text`) | 8 vertical, 16 horizontal | altura mínima 44 (desktop), 48 (mobile), margem 4. Detalhe em `button-spec-tce.md` | CSS |
 | Input, select | 8 vertical, 16 horizontal | altura mínima 44, margem 4 | CSS |
-| Botão do DS no Figma | 10 vertical, 20 horizontal | altura 44 | Figma — **fora da escala, alinhar ao CSS** |
+| Botão do DS no Figma | 8 vertical, 16 horizontal (12 no lado do ícone) | altura mínima 44 (desktop) e 48 (mobile), largura mínima 64, ícone 20, gap 8 | Figma, alinhado ao CSS em 2026-10-28 (ver `button-spec-tce.md`) |
 | Bloco de código (`pre`) | 8 | margem 16 acima e abaixo | CSS |
 | Card | 16 (`card-padding`) | gap interno a definir | Spec — **A DECIDIR** (E-3: protótipos usam 24) |
 | Modal | a definir | label→campo 8 | falta levantar |
@@ -126,4 +126,4 @@ As distâncias anotadas no protótipo, com o token de cada uma, ficam no handoff
 
 ## 13. Pontos em aberto
 
-Todos os pontos em aberto de espaçamento estão em **`decisoes-em-aberto.md`** (E-1 a E-8). Os de grid e layout, no mesmo arquivo (G-1 a G-7).
+Todos os pontos em aberto de espaçamento estão em **`decisoes-em-aberto.md`** (E-1 a E-7; E-8 foi resolvido em `button-spec-tce.md`). Os de grid e layout, no mesmo arquivo (G-1 a G-7).

@@ -12,11 +12,12 @@ Status: rascunho de 2026-10-05. Revisão estrutural em 2026-10-07 (versão **ds-
 | Cor (escopo parcial) | `color-spec-tce.md` | Primitivas e semânticos de texto, link, botão e fundo; contraste; regras de uso | Coleções Color / Primitives e Color / Semantic, página 🎨 Cores | Rascunho parcial |
 | Espaçamento | `spacing-spec-tce.md` | Escala 4–48, tokens semânticos, padding de componentes, alvos clicáveis, espaçamento de texto | Coleção Spacing, página Spacing | Rascunho |
 | Grid e layout | `grid-layout-spec-tce.md` | Colunas, margem, gutter, menu lateral, templates de página | Coleções Grid e Layout, páginas 📏 Grid e 🧱 Layout | Rascunho |
+| Botão | `button-spec-tce.md` | Componente `Button` (MUI): propriedades Figma ↔ props do MUI, medidas, estados (hover, ripple, foco amarelo e preto, desabilitado, selecionado), acessibilidade e referência de tema | Página 🧩 Componentes, conjunto `Button` | Rascunho, 6 pendências (B-1 a B-6) |
 | Padrões de interface | `padroes-de-interface.md` | Blocos recorrentes das telas: cabeçalho, seções, abas, tabelas, formulários, modais, feedback, status, estado vazio, texto longo | — | Rascunho |
 | Decisões em aberto | `decisoes-em-aberto.md` | Todos os "A DECIDIR" consolidados, com spec de origem | — | Em andamento |
 | Correções do CSS original | `../referencias/espacamento-e-css-original-correcoes.md` | Defeitos do CSS legado e comparação com o Figma | — | Referência (arquivo, não spec viva) |
 
-A spec de cor cobre só texto, link, botão e fundo; bordas, ícones e status ainda não têm spec. As specs são **do design system**, sem referência a um produto. O que for específico de um produto vai para o handoff dele. Ainda não existem specs de elevação, ícones e componentes individuais (modal, card, tabela). Quando surgirem, entram neste mapa.
+A spec de cor cobre só texto, link, botão e fundo; bordas, ícones e status ainda não têm spec. As specs são **do design system**, sem referência a um produto. O que for específico de um produto vai para o handoff dele. Ainda não existem specs de elevação, ícones e componentes individuais além do botão (modal, card, tabela). Quando surgirem, entram neste mapa.
 
 ## 2. Qual spec consultar
 
@@ -25,6 +26,7 @@ A spec de cor cobre só texto, link, botão e fundo; bordas, ícones e status ai
 | Handoff de um produto | O handoff do produto (fora deste repositório), que remete às specs |
 | Cor de texto, link, botão ou fundo | `color-spec-tce.md` |
 | Qualquer tela nova | Este índice, depois tipografia (seção 4, mapa de papéis) e espaçamento (seção 3, como escolher o token) |
+| Botão, ação, link com aparência de botão | `button-spec-tce.md` |
 | Formulário | Padrões de interface (formulários) + espaçamento (label → campo 8, campo → campo 16) |
 | Tabela, listagem | Padrões de interface (tabelas) + grid-layout (colunas) |
 | Página com menu lateral | Grid-layout (seção 4) |

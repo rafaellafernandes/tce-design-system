@@ -36,7 +36,17 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 | E-5 | Prefixo e nomes dos tokens de espaçamento | `--tcece-space-*` ou `--space-*`; alinhar com nomes de tipografia (`title-desk-md` no CSS, `title-md` na spec) | `--tcece-space-*` | Importante | `--tcece-space-*` |
 | E-6 | Padding vertical do chip | 3 está fora da escala | — | Menor | Perguntar |
 | E-7 | Espaço mínimo entre alvos clicáveis | O CSS usa margem de 4 | — | Menor | 4 |
-| E-8 | Botão do DS no Figma | 10/20 (Figma) ou 8/16 com altura mínima 44 (CSS) | Alinhar ao CSS | Importante | 8/16 com min-height 44 |
+
+## Botão (`button-spec-tce.md`)
+
+| ID | Decisão | Opções | Proposta / adotado hoje | Impacto | Enquanto isso |
+|---|---|---|---|---|---|
+| B-1 | Combinações de `variant` e `color` | Só as 5 que existem no Figma, ou criar `outlined`/`text` com `success` | Só as 5 existentes | Menor | Não usar outras combinações |
+| B-2 | Cor do botão de criação (`contained` + `success`) | Hoje verde fixo (#216342; hover #2B7D54; pressed = repouso), sem token semântico. O hover **clareia** e o do primário **escurece** | Criar tokens `button/bg/create-*` e padronizar hover e pressed | Importante | Usar os valores do Figma; perguntar |
+| B-3 | Estado `selected` (antes `Active`) | Fica no `Button` como estilo do tema, ou vai para o componente de item de menu | Item de menu | Importante | Aplicar só no menu lateral |
+| B-4 | Visual de `disabled` nos `outlined`, `elevated` e `text` | Manter fundo e contorno ou só trocar a cor do rótulo | Fundo `button/bg/disabled` e rótulo `button/label/disabled` | Menor | Conferir no Figma (`state=disabled`) |
+| B-5 | Botão só com ícone | `IconButton` com spec própria (hoje existe `Btn_icon_primary` no Figma, fora desta spec) | Spec própria | Importante | Perguntar |
+| B-6 | Code Connect do `Button` | Mapear o componente do Figma ao `Button` do MUI | Mapear depois que os nomes estabilizarem | Menor | Handoff descreve as props da seção 2 |
 
 ## Grid e layout (`grid-layout-spec-tce.md`)
 

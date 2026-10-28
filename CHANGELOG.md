@@ -2,6 +2,15 @@
 
 Mais recente primeiro.
 
+## Em revisão — 2026-10-28: spec do botão
+
+- **Nova spec `button-spec-tce.md`**: o componente `btn` do Figma virou `Button`, com propriedades de mesmo nome das props do `Button` do MUI (`variant`, `color`, `size`, `state`, `startIcon`, `endIcon`, `children`). Terciário = `elevated` (variante customizada), Criação = `contained` + `success`, `Active` = `selected`, `Dispositive` = `size`.
+- **Layout do botão** alinhado ao CSS e ao MUI: padding 8/16 (12 no lado do ícone), altura mínima 44 (desktop) e 48 (mobile) em vez de altura fixa, largura mínima 64, ícone de 20px. Fecha E-8.
+- **Hover e pressed no padrão do MUI**: tint de 4% e `TouchRipple`. Opacidade do ripple por variante (30%, 18% e 27%) para manter o rótulo com pelo menos 4,5:1.
+- **Foco visível** mantém o amarelo e o preto também com hover e clique.
+- Novas decisões em aberto B-1 a B-6.
+- **Impacto para os devs:** usar o `Button` do MUI com o tema da seção 8 da spec; registrar a variante `elevated`; regenerar `tokens.json` e `designTokens.ts`. No Figma, republicar a biblioteca e reapontar instâncias do botão que usem os nomes antigos de propriedade.
+
 ## ds-v3 — 2026-10-28 (a confirmar; a tag é decisão do design)
 
 **Decisão tomada: escala tipográfica única**
