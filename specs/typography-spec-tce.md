@@ -71,6 +71,8 @@ Tamanhos em **px** (Figma) com o equivalente em **rem** (código; `rem = px ÷ 1
 
 | Token | Desktop | Mobile | Peso | Line-height |
 |---|---|---|---|---|
+| `display-2xl` (proposto, T-14) | 80px (5 rem) | 44px (2,75 rem) | 700 | 1.1 |
+| `display-xl` (proposto, T-14) | 64px (4 rem) | 40px (2,5 rem) | 700 | 1.1 |
 | `display-large` | 48px (3 rem) | 36px (2,25 rem) | 600 | 1.2 |
 | `display-medium` | 40px (2,5 rem) | 28px (1,75 rem) | 600 | 1.2 |
 | `display-small` | 32px (2 rem) | 24px (1,5 rem) | 600 | 1.2 |
@@ -109,6 +111,15 @@ Botão, label, input, helper, cabeçalho e célula de tabela usam tokens da esca
 | `table-header` | `title-sm` |
 | `table-cell` | `body-md`; células numéricas com `--tcece-font-accent` |
 
+### 3.1 Regras dos tokens `display-*` (proposta, T-14)
+
+- **Uso:** hero e páginas institucionais, um `display-*` por página. Telas de produto continuam com `title-*`.
+- **Composição do hero:** linha de apoio acima (`title-md`, por exemplo "Boas vindas ao"), nome em `display-2xl` ou `display-xl`, complemento abaixo em `body-lg`.
+- **Tamanho fluido (opcional):** entre o valor mobile e o desktop com `clamp()`. Os breakpoints continuam valendo.
+- **Letter-spacing 0:** o hero atual usa espaçamento largo, que conflita com a seção 5. Manter é exceção a decidir, só para `display-*`.
+- **Acessibilidade:** sem altura fixa, no máximo 2 linhas por bloco, `text-wrap: balance`, funcionar em zoom de 400% sem corte nem rolagem horizontal.
+- **Peso:** 700 nos dois tokens novos e 600 nos demais (a decidir).
+
 ## 4. Qual token usar (mapa de papéis)
 
 | Elemento | Token |
@@ -137,7 +148,11 @@ Botão, label, input, helper, cabeçalho e célula de tabela usam tokens da esca
 | Placeholder | `body-md` em itálico, `text/placeholder` |
 | Trecho de código | `code` (16 / 600 / 1.4, Fira Code) |
 | Número de destaque (indicador, KPI) | `title-2xl` (32 / 600 / 1.2; mobile 24) com `--tcece-font-accent` e `tabular-nums` (`.tcece-num`). Texto de apoio abaixo: `body-md` em `text/secondary`. Não use `title-lg`, que é do título da página |
-| `display-*` | Sem papel definido nas telas de produto (T-14). Não use sem aprovação do design |
+| `display-2xl` | Proposto (T-14): hero de capa institucional (home do Conecta, páginas de entrada). Uma por página |
+| `display-xl` | Proposto (T-14): hero de página inicial de módulo. Uma por página |
+| `display-large` | Proposto (T-14): título de página de abertura ou de seção de destaque |
+| `display-medium`, `display-small` | Proposto (T-14): destaques numéricos grandes e chamadas de painel. `display-small` repete o tamanho de `title-2xl` |
+| `display-*` em telas de produto | Não use sem aprovação do design |
 
 Ênfase dentro de texto corrido (datas, status, valor principal de card): usar peso **600** sobre `body-md`/`body-lg`.
 
@@ -220,6 +235,9 @@ As recomendações por página e fluxo de cada produto ficam no documento de han
   --tcece-font-mono: 'Fira Code', ui-monospace, monospace;
 
   /* Desktop (padrão) */
+  /* proposto (T-14) */
+  --tcece-display-2xl-size: 5rem; --tcece-display-2xl-weight: 700; --tcece-display-2xl-lh: 1.1;
+  --tcece-display-xl-size: 4rem; --tcece-display-xl-weight: 700; --tcece-display-xl-lh: 1.1;
   --tcece-display-large-size: 3rem; --tcece-display-large-weight: 600; --tcece-display-large-lh: 1.2;
   --tcece-display-medium-size: 2.5rem; --tcece-display-medium-weight: 600; --tcece-display-medium-lh: 1.2;
   --tcece-display-small-size: 2rem; --tcece-display-small-weight: 600; --tcece-display-small-lh: 1.2;
@@ -241,6 +259,8 @@ As recomendações por página e fluxo de cada produto ficam no documento de han
 
 @media (max-width: 767px) {
   :root {
+    --tcece-display-2xl-size: 2.75rem;
+    --tcece-display-xl-size: 2.5rem;
     --tcece-display-large-size: 2.25rem;
     --tcece-display-medium-size: 1.75rem;
     --tcece-display-small-size: 1.5rem;
