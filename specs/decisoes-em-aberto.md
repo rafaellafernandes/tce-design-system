@@ -48,6 +48,7 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 | B-5 | Botão só com ícone | `IconButton` com spec própria (hoje existe `Btn_icon_primary` no Figma, fora desta spec) | Spec própria | Importante | Perguntar |
 | B-6 | Code Connect do `Button` | Mapear o componente do Figma ao `Button` do MUI | Mapear depois que os nomes estabilizarem | Menor | Handoff descreve as props da seção 2 |
 | B-7 | Specs de fundação que o botão usa e ainda não existem | Criar specs de elevação e sombra, ícones, raio e borda, movimento (ripple e movimento reduzido) | Valores provisórios na `button-spec-tce.md` | Importante | Usar os valores da spec do botão; perguntar antes de reutilizar em outro componente |
+| B-8 | Versão do MUI usada pelo front (`@mui/material`) | Registrar a versão exata (e a do Emotion, se houver) na spec e no handoff, para consultar a documentação certa pelo Context7 (índice, seção 6.1) | Não registrada | Importante | Perguntar ao front; não assumir versão |
 
 ## Grid e layout (`grid-layout-spec-tce.md`)
 

@@ -12,7 +12,7 @@ Status: rascunho de 2026-10-05. Revisão estrutural em 2026-10-07 (versão **ds-
 | Cor (escopo parcial) | `color-spec-tce.md` | Primitivas e semânticos de texto, link, botão e fundo; contraste; regras de uso | Coleções Color / Primitives e Color / Semantic, página 🎨 Cores | Rascunho parcial |
 | Espaçamento | `spacing-spec-tce.md` | Escala 4–48, tokens semânticos, padding de componentes, alvos clicáveis, espaçamento de texto | Coleção Spacing, página Spacing | Rascunho |
 | Grid e layout | `grid-layout-spec-tce.md` | Colunas, margem, gutter, menu lateral, templates de página | Coleções Grid e Layout, páginas 📏 Grid e 🧱 Layout | Rascunho |
-| Botão | `button-spec-tce.md` | Componente `Button` (MUI): propriedades Figma ↔ props do MUI, medidas, estados (hover, ripple, foco amarelo e preto, desabilitado, selecionado), acessibilidade e referência de tema | Página 🧩 Componentes, conjunto `Button` | Rascunho, 7 pendências (B-1 a B-7) |
+| Botão | `button-spec-tce.md` | Componente `Button` (MUI): propriedades Figma ↔ props do MUI, medidas, estados (hover, ripple, foco amarelo e preto, desabilitado, selecionado), acessibilidade e referência de tema | Página 🧩 Componentes, conjunto `Button` | Rascunho, 8 pendências (B-1 a B-8) |
 | Padrões de interface | `padroes-de-interface.md` | Blocos recorrentes das telas: cabeçalho, seções, abas, tabelas, formulários, modais, feedback, status, estado vazio, texto longo | — | Rascunho |
 | Decisões em aberto | `decisoes-em-aberto.md` | Todos os "A DECIDIR" consolidados, com spec de origem | — | Em andamento |
 | Correções do CSS original | `../referencias/espacamento-e-css-original-correcoes.md` | Defeitos do CSS legado e comparação com o Figma | — | Referência (arquivo, não spec viva) |
@@ -110,6 +110,16 @@ Unitless fica unitless: `line-height` (1,2; 1,4; 1,6) e pesos. Letter-spacing e 
 - Variáveis, grid styles e componentes criados no Figma só ficam disponíveis nos protótipos depois que a biblioteca for publicada.
 - Code Connect ainda não está mapeado para nenhum componente de grid ou layout.
 - Em 2026-10-05, as variáveis `layout/columns`, `layout/margin` e `layout/gutter` foram renomeadas para `grid/*`. Protótipos que consumiam os nomes antigos precisam ser reapontados após a publicação.
+
+## 6.1 Documentação das bibliotecas (Context7)
+
+O front usa o MUI (`@mui/material`). Para o agente de código não implementar com a API de outra versão do MUI, ele consulta a documentação **da versão que o projeto usa** pelo **Context7** (https://context7.com, da Upstash), que serve documentação atualizada e por versão a agentes de IA.
+
+- **Instalação** (por quem desenvolve; não faz parte do design): no Claude Code, `/plugin install context7@claude-plugins-official`, ou o servidor MCP `https://mcp.context7.com/mcp`, ou `npx ctx7 setup`. A chave de API pode ser necessária; veja https://context7.com/docs/installation.
+- **Quando consultar:** ao implementar um componente com o MUI (props, `styleOverrides`, `variants`, classes `Mui-*`, `createTheme`). Procure a biblioteca pelo nome e **use a versão do `package.json` do front**; não assuma o identificador nem a versão.
+- **Quando não consultar:** para decisões do design system (tokens, estados, medidas, nomes). Elas vêm só das specs deste repositório.
+- **Precedência:** a spec do DS vence a documentação do MUI no que for decisão do DS (por exemplo, hover, ripple e foco do botão). A documentação do MUI vence a memória do agente no que for API do MUI. Se uma spec depender de uma API que a versão do MUI não tem, registre a divergência em `decisoes-em-aberto.md` em vez de contornar.
+- **Versão do MUI do front:** ainda não registrada (B-8). Sem ela, o agente não consegue consultar a documentação certa.
 
 ## 7. Governança
 

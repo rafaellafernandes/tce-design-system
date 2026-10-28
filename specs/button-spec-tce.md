@@ -2,11 +2,13 @@
 
 > **Para o Claude do dev:** este arquivo é a fonte de verdade do componente **Button**. O front usa o **`Button` do MUI** (`@mui/material`), configurado pelo tema (`createTheme`). Não crie um botão novo: use o do MUI com as props da seção 2 e o tema da seção 8. Itens marcados **A DECIDIR** ainda não foram aprovados pelo design: não implemente esses pontos por conta própria, pergunte.
 >
+> Para a API do MUI (props, `styleOverrides`, classes `Mui-*`), consulte a documentação **da versão do MUI do projeto** pelo Context7 (`design-system-index.md`, seção 6.1); as decisões do botão vêm só desta spec. Versão do MUI: B-8.
+>
 > Índice geral: `design-system-index.md`. Cores: `color-spec-tce.md` (seção 5). Tipografia: `typography-spec-tce.md`. Espaçamento: `spacing-spec-tce.md`.
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **0.4.0** (rascunho) |
+| **Versão da spec** | **0.5.0** (rascunho) |
 | **Última atualização** | **2026-10-28** |
 | Versão do DS | em revisão, ainda sem tag (o `CHANGELOG.md` registra `ds-v3` como a confirmar; a tag é decisão do design) |
 | **Camada** | **1. Átomos (componente)**, Atomic Design (ver `design-system-index.md`, seção 4.1) |
@@ -245,7 +247,7 @@ O botão é um **átomo** (camada 1): depende só de tokens e **nunca** de molé
 | `color-spec-tce.md` | Tokens `button/*` e `focus/*` (seção 5 da cor), contraste mínimo (regra 4), foco amarelo e preto (regra 5) | Seção 4, seção 6, tema | Qualquer token `button/*` ou `focus/*`, regra de contraste, tokens de criação (B-2) |
 | `spacing-spec-tce.md` | Escala (`spacing/8`, `spacing/16`), padding do botão, alvos clicáveis de 44 e 48 (seção 6), espaço entre alvos (E-7). O padding de 12 no lado do ícone usa `spacing/12`, que está em avaliação (E-1) | Seção 3, seção 6 | Escala, linha do botão na seção 4, alvos clicáveis, E-1 e E-7 |
 | `grid-layout-spec-tce.md` | Breakpoint do mobile (768px, G-1 e T-10) que define `tceceDevice`; largura do botão nas colunas (G-6, não definido) | Seção 2, seção 8 | Breakpoints, ocupação de colunas |
-| `decisoes-em-aberto.md` | Pendências B-1 a B-7, T-10, G-1, E-1, E-7, N-1 | Seção 12 | Toda decisão tomada que toque o botão |
+| `decisoes-em-aberto.md` | Pendências B-1 a B-8, T-10, G-1, E-1, E-7, N-1 | Seção 12 | Toda decisão tomada que toque o botão |
 | `design-system-index.md` e `CHANGELOG.md` | Precedência, estrutura em camadas, prefixo `tcece`, cabeçalho e versionamento | Seção 2.1 e cabeçalho | Convenções de nome, de camada e de versão |
 
 ### 11.2 Usada por (camadas acima)
@@ -264,12 +266,13 @@ As specs marcadas "a criar" aparecem em `design-system-index.md`, seção 4.1.
 
 ## 12. Pontos em aberto
 
-Todos em **`decisoes-em-aberto.md`** (B-1 a B-7).
+Todos em **`decisoes-em-aberto.md`** (B-1 a B-8).
 
 ## 13. Histórico de versões
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 0.5.0 | 2026-10-28 | Consulta à documentação do MUI pelo Context7 (índice, seção 6.1); pendência B-8 (versão do MUI do front) |
 | 0.4.0 | 2026-10-28 | Camada 1 (átomo) segundo o Atomic Design; cabeçalho padrão com "Camada", "Depende de" e "Usada por"; seção 11 dividida em 11.1 (depende de) e 11.2 (usada por); `padroes-de-interface.md` deixa de ser dependência (é spec de cima) |
 | 0.3.0 | 2026-10-28 | Seção 11 (specs relacionadas e dependências), campo "Depende destas specs" no cabeçalho, ordem dos botões em grupos (referência a `padroes-de-interface.md`), pendência B-7 |
 | 0.2.0 | 2026-10-28 | Prefixo `tcece` (seção 2.1): `tceceElevated`, `tceceDevice`, `tceceSelected`, `tceceStartIcon`, `tceceEndIcon`, `tcece-hover-overlay`, `theme.tcece`. Cabeçalho com versão e data |
