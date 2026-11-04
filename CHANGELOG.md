@@ -2,6 +2,15 @@
 
 Mais recente primeiro.
 
+## Em revisão — 2026-11-04 (2): alinhamento ao Figma, tokens e hug no snackbar
+
+- **Tipografia 5.0.0 (resolve N-2):** a spec passa a refletir o Figma: letter-spacing de **0,04 em** em todos os tokens (23 variáveis; seção 5.2 reescrita, teto 0,04 em) e **corpo em Atkinson** (`body-lg`, `body-md`, `caption`), além de números e labels. Títulos, display e botões seguem em Noto Sans.
+- **Snackbar 0.2.0:** largura que acompanha o conteúdo, máximo 560 (fecha SN-3; Figma atualizado nas 16 variantes); raio `radius/sm`, sombra `Card/01`; ícones `tcece/icon/success`, `tcece/icon/info`, `tcece/icon/default`; nomes de ícone do Figma (`CheckCircleFilled`, `ErrorFilled`, `InfoFilled`, `CloseOutlined`).
+- **Modal 0.2.0:** rodapé do modal genérico a 24/32 (fecha E-9); fundo, borda, raio, sombra e divisores ligados a tokens (fecha MD-1); novo `tcece/border/subtle`.
+- **Figma:** nenhuma propriedade solta em Snackbar, Modal, Modal - Confirmação, Linha de resumo e Corpo (exemplo): fills, strokes, raios, paddings, gaps e efeitos ligados a variáveis e estilos.
+- **Espaçamento 1.2.1** e **Cor 2.1.1:** rodapé 24; tokens novos listados na seção 9.
+- **Impacto para os devs:** usar `letter-spacing: 0.04em` e Atkinson no corpo em todo o produto, não só nos componentes; snackbar sem largura fixa.
+
 ## Em revisão — 2026-11-04: specs de snackbar e de modal
 
 - **Nova spec `snackbar-spec-tce.md` (0.1.0, molécula):** componente `Snackbar` do Figma (16 variantes: tipo, detalhe, ação; mais "Mostrar fechar"), camadas, medidas, tokens (`title-md` para a mensagem, `body-md` para o detalhe), implementação com o `Snackbar` do MUI 9.1.1 (sem `Alert`, porque o botão fica abaixo do detalhe), acessibilidade. Pendências SN-1 a SN-4.

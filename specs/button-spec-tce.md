@@ -8,7 +8,7 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **0.7.1** (rascunho) |
+| **Versão da spec** | **0.7.2** (rascunho) |
 | **Última atualização** | **2026-11-04** |
 | Versão do DS | em revisão, ainda sem tag (o `CHANGELOG.md` registra `ds-v3` como a confirmar; a tag é decisão do design) |
 | **Camada** | **1. Átomos (componente)** |
@@ -248,7 +248,7 @@ O botão é um **átomo** (camada 1): depende só de tokens e **nunca** de molé
 
 | Spec | O que o botão herda | Onde nesta spec | Revisar quando mudar |
 |---|---|---|---|
-| `typography-spec-tce.md` | `title-sm` (16 / 600 / 1,4), Noto Sans, piso de 16px; espaçamento de texto da seção 5 (letter-spacing 0, word-spacing 0) e teste WCAG 1.4.12 | Regra 6, seção 3, seção 6, tema (seção 8) | `title-sm`, line-height, letter-spacing, teste 1.4.12 |
+| `typography-spec-tce.md` | `title-sm` (16 / 600 / 1,4), Noto Sans, piso de 16px; espaçamento de texto da seção 5 (letter-spacing 0,04 em, word-spacing 0) e teste WCAG 1.4.12 | Regra 6, seção 3, seção 6, tema (seção 8) | `title-sm`, line-height, letter-spacing, teste 1.4.12 |
 | `color-spec-tce.md` | Tokens `primary/*`, `tcece/button/*` e `tcece/focus/*` (seção 5 da cor), contraste mínimo (regra 4), foco amarelo e preto (regra 5) | Seção 4, seção 6, tema | Qualquer token `button/*` ou `focus/*`, regra de contraste, tokens de criação (B-2) |
 | `spacing-spec-tce.md` | Escala (`spacing/8`, `spacing/16`), padding do botão, alvos clicáveis de 44 e 48 (seção 6), espaço entre alvos (E-7). O padding de 12 no lado do ícone usa `spacing/12`, que está em avaliação (E-1) | Seção 3, seção 6 | Escala, linha do botão na seção 4, alvos clicáveis, E-1 e E-7 |
 | `grid-layout-spec-tce.md` | Breakpoint do mobile (768px, decidido em T-10; conflito em G-1) que define `tceceDevice`; largura do botão nas colunas (G-6, não definido) | Seção 2, seção 8 | Breakpoints, ocupação de colunas |
@@ -279,6 +279,7 @@ Todos em **`decisoes-em-aberto.md`** (B-1 a B-7).
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 0.7.2 | 2026-11-04 | Referência à tipografia: letter-spacing 0,04 em (tipografia 5.0.0) |
 | 0.7.1 | 2026-11-04 | Seção 11.2: snackbar e modal passam a usar o botão (`snackbar-spec-tce.md`, `modal-spec-tce.md`); cancelar no modal é `tceceElevated`, como no Figma. Sem mudança de valor |
 | 0.7.0 | 2026-10-28 | MUI 9.1.1 registrado (B-8 decidida); tema ajustado à v9 (as chaves `containedPrimary`, `containedSuccess` e `outlined` de `styleOverrides` foram removidas na v9; viraram `variants` no `root`); regra do `nativeButton`; foco: botão com preenchimento e demais com anel (C-5 decidida); cor 2.1.0 e tipografia 4.1.0 conferidas |
 | 0.6.0 | 2026-10-28 | Tokens de cor renomeados conforme `color-spec-tce.md` 2.0.0 (`primary/main`, `primary/dark`, `tcece/primary/pressed`, `tcece/focus/*`, `tcece/button/*`); tipografia 4.0.1 conferida |

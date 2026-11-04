@@ -4,7 +4,7 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **4.2.2** (em uso, com pendências) |
+| **Versão da spec** | **5.0.0** (em uso, com pendências) |
 | **Última atualização** | **2026-11-04** |
 | Versão do DS | em revisão, ainda sem tag (o `CHANGELOG.md` registra `ds-v3` como a confirmar; a tag é decisão do design) |
 | **Camada** | **1. Átomos (tokens)** |
@@ -12,19 +12,19 @@
 | **Usada por** | `button-spec-tce.md`, `snackbar-spec-tce.md`, `modal-spec-tce.md`, `padroes-de-interface.md` e, quando existirem, as specs de campo, label, tabela, header, menu lateral e demais componentes com texto |
 | Arquivo e Figma | `specs/typography-spec-tce.md`; coleção `Typography` e estilos `Spec/*` do arquivo ⭐ Design System TCE (seção 12) |
 
-Pendências abertas: T-3, T-4, T-5, T-12, T-13 e T-15 (`decisoes-em-aberto.md`). **Divergência com o Figma (N-2):** os componentes Snackbar, Modal e Button estão com letter-spacing de 0,04 em e o `Spec/body-md` em Atkinson; nesses componentes vale o Figma até o design decidir. O histórico de versões está na seção 13; o formato do cabeçalho é o padrão do DS (`design-system-index.md`, seção 4.1).
+Pendências abertas: T-3, T-4, T-5, T-12, T-13 e T-15 (`decisoes-em-aberto.md`). **Alinhada ao Figma desde a 5.0.0 (2026-11-04, resolve N-2):** letter-spacing de **0,04 em** em todos os tokens e corpo (`body-lg`, `body-md`, `caption`) em **Atkinson Hyperlegible Next**, como nos estilos `Spec/*` do arquivo ⭐ Design System TCE. O histórico de versões está na seção 13; o formato do cabeçalho é o padrão do DS (`design-system-index.md`, seção 4.1).
 
-> **Família tipográfica (decidido em 2026-10-21, fecha T-1):** a fonte principal do sistema é **Noto Sans**. **Atkinson Hyperlegible Next** é a fonte de **acento** e só entra em **números** e em **labels** (seções 2 e 2.1). Todo o resto da interface usa Noto Sans. Os tokens e o CSS antigos que punham Atkinson em toda a interface estão **errados** e devem ser corrigidos. No Figma, os estilos antigos (nomeados por px, em Plus Jakarta Sans ou Atkinson) **não seguem** esta spec e estão sendo migrados: a referência são os estilos `Spec/*`, que são a **única escala** (os valores do Figma e desta spec devem ser os mesmos; se divergirem, vale esta spec).
+> **Família tipográfica (decidido em 2026-10-21, fecha T-1):** a fonte principal do sistema é **Noto Sans** (títulos, display, botões, abas, `blockquote`). **Atkinson Hyperlegible Next** é a fonte de **acento**: **números**, **labels** e, desde a 5.0.0 (alinhamento ao Figma, 2026-11-04), o **texto de corpo** (`body-lg`, `body-md`, `caption`). As seções 2 e 2.1 listam os casos. O CSS antigo que punha Atkinson no `body` **sem** passar pelo token do papel continua **errado**: a família vem sempre do token (seção 8). No Figma, os estilos antigos (nomeados por px, em Plus Jakarta Sans ou Atkinson) **não seguem** esta spec e estão sendo migrados: a referência são os estilos `Spec/*`, que são a **única escala** (os valores do Figma e desta spec devem ser os mesmos; se divergirem, vale esta spec).
 >
 > **Piso de 16px (decidido em 2026-10-27):** nenhum texto da interface pode ter menos de 16px (1 rem), em nenhum breakpoint. A hierarquia abaixo de 18px se faz com **peso (400 ou 600) e cor**, nunca com tamanho menor. Isso vale para badges, chips, legendas, texto de ajuda, tooltips, rodapés e tabelas.
 >
-> **Escala única (decidido em 2026-10-28):** existe **uma só** definição tipográfica, a da seção 3. Botão, label, input, helper e tabela **não têm token próprio**: usam o token da escala indicado no mapa de papéis (seção 4). Line-height, letter-spacing, word-spacing e espaço entre parágrafos também estão na escala (seção 5). Os frames antigos do Figma com line-height de 150% e letter-spacing de 4 a 12% estão desatualizados: **implemente pelos tokens**.
+> **Escala única (decidido em 2026-10-28):** existe **uma só** definição tipográfica, a da seção 3. Botão, label, input, helper e tabela **não têm token próprio**: usam o token da escala indicado no mapa de papéis (seção 4). Line-height, letter-spacing, word-spacing e espaço entre parágrafos também estão na escala (seção 5). Os frames antigos do Figma com line-height de 150% e letter-spacing de 8 a 12% estão desatualizados: **implemente pelos tokens**.
 
 ## 1. Regras obrigatórias
 
 1. **Nunca use valores soltos** de `font-size`, `font-weight`, `line-height`, `letter-spacing`, `word-spacing`, cor ou espaçamento. Use sempre os tokens (CSS custom properties da seção 8 ou o objeto `designTokens`).
-2. **Fonte principal:** `Noto Sans`, em toda a interface. **Exceção única:** `Atkinson Hyperlegible Next` em **números** e **labels**, conforme a seção 2.1. Não introduza outras famílias sem aprovação do design.
-3. **Não declare `font-family` à mão.** A família vem do token do papel (Noto Sans por padrão; `--tcece-font-accent` só nos casos da seção 2.1). O erro mais comum é aplicar Atkinson no `body` ou no tema inteiro.
+2. **Fonte principal:** `Noto Sans` em títulos, display, botões e abas. `Atkinson Hyperlegible Next` no **texto de corpo** (`body-lg`, `body-md`, `caption`), em **números** e em **labels**, conforme a seção 2.1. Não introduza outras famílias sem aprovação do design.
+3. **Não declare `font-family` à mão.** A família vem do token do papel (Noto Sans nos títulos; `--tcece-font-accent` nos casos da seção 2.1). O erro mais comum é aplicar uma família no `body` ou no tema inteiro em vez de usar o token do papel.
 4. **Escolha o token pelo papel do elemento**, não pelo tamanho visual (tabela da seção 4). Se nenhum papel serve, pergunte ao design em vez de inventar um tamanho.
 5. **Títulos e rótulos usam peso 600; texto corrido usa 400.** O peso já faz parte do token: não acrescente `font-weight` por cima.
 6. **Responsivo:** tokens `title-*` e `display-*` têm valor desktop e mobile; os tokens `body-*` e `special` têm valor único. Mobile = viewport < 768px.
@@ -37,8 +37,8 @@ Pendências abertas: T-3, T-4, T-5, T-12, T-13 e T-15 (`decisoes-em-aberto.md`).
 
 | Token | Fonte | Uso |
 |---|---|---|
-| `--tcece-font-primary` | Noto Sans | **Padrão de toda a interface**: títulos, corpo, botões, tabelas, menus, abas |
-| `--tcece-font-accent` | Atkinson Hyperlegible Next | **Só** números e labels (seção 2.1) |
+| `--tcece-font-primary` | Noto Sans | Títulos, display, botões, tabelas (cabeçalho), menus, abas, `blockquote` |
+| `--tcece-font-accent` | Atkinson Hyperlegible Next | Texto de corpo (`body-lg`, `body-md`, `caption`), números e labels (seção 2.1) |
 | `--tcece-font-mono` | Fira Code | Só o token `code` |
 
 `--font-secondary` (antes Noto Sans) foi removido: Noto Sans agora é a fonte principal.
@@ -51,21 +51,22 @@ Pesos usados: **400** (texto), **500** (apenas `blockquote`), **600** (títulos,
 
 | Caso | Regra |
 |---|---|
-| **Labels de formulário** | Label acima do campo: `title-sm` com `--tcece-font-accent`. É o único papel de texto que usa `--tcece-font-accent` por padrão |
+| **Texto de corpo** | `body-lg`, `body-md` e `caption` usam `--tcece-font-accent`: parágrafo, descrição, texto digitado no input, helper, célula de tabela, detalhe de snackbar, descrição e resumo de modal. No Figma, os estilos `Spec/body-lg`, `Spec/body-md` e `Spec/caption` já trazem a Atkinson |
+| **Labels de formulário** | Label acima do campo: `title-sm` com `--tcece-font-accent` |
 | **Números** | Elementos em que o conteúdo é **o número**: contadores ("(10)", totais por estado), identificadores (nº de ocorrência, protocolo, ID), valores numéricos de destaque, colunas numéricas de tabela, paginação (números de página), datas e prazos exibidos como valor. Sempre com `font-variant-numeric: tabular-nums` |
 
-Fora disso, **Noto Sans**. Em especial:
+Fora disso, **Noto Sans** (e `Fira Code` no `code`). Em especial:
 
-- Número **dentro de frase** ("Você tem 3 dias para responder") fica em Noto Sans, junto com o resto do texto. Não troque a família no meio da linha.
-- Helper, placeholder, texto digitado no input, cabeçalho de tabela, botões, abas e badges ficam em Noto Sans (a decisão sobre cabeçalho de tabela, badges e abas como "labels" está em T-13).
-- A família muda; **tamanho, peso e line-height continuam os do token do papel**. Um número em célula de tabela (`body-md`) continua 16 / 400 / 1.6, só que em Atkinson.
-- **No Figma**, a troca de família é feita pela variável `font/accent` (Atkinson) ligada ao texto, mantendo o estilo `Spec/*` aplicado; o padrão é `font/primary` (Noto Sans). Não troque a fonte direto no texto: isso solta o estilo da escala. No código, equivale ao `--tcece-font-accent` sobre o token do papel.
+- Número **dentro de frase** ("Você tem 3 dias para responder") fica na família do texto à volta, sem troca no meio da linha.
+- Cabeçalho de tabela, botões, abas e badges (`title-sm`) ficam em Noto Sans (a decisão sobre cabeçalho de tabela, badges e abas como "labels" está em T-13). Helper, placeholder e texto digitado no input são `body-md`/`caption`, portanto Atkinson.
+- A família muda; **tamanho, peso e line-height continuam os do token do papel**. Um label (`title-sm`) em Atkinson continua 16 / 600 / 1.4.
+- **No Figma**, a troca de família é feita pela variável `font/accent` (Atkinson) ligada ao texto, mantendo o estilo `Spec/*` aplicado; o padrão dos títulos é `font/primary` (Noto Sans); os estilos de corpo já trazem `font/accent`. Não troque a fonte direto no texto: isso solta o estilo da escala. No código, equivale ao `--tcece-font-accent` sobre o token do papel.
 
 ## 3. Escala tipográfica
 
 Tamanhos em **px** (Figma) com o equivalente em **rem** (código; `rem = px ÷ 16`, base 16px). No CSS da seção 8 os tamanhos já estão em rem.
 
-**Menor tamanho da escala: 16px.** Letter-spacing é `0` em todos os tokens (seção 5).
+**Menor tamanho da escala: 16px.** Letter-spacing é **0,04 em** em todos os tokens (seção 5.2). Nas tabelas abaixo, a coluna mostra o valor em `em`.
 
 ### Display e Títulos (desktop → mobile)
 
@@ -85,16 +86,16 @@ Tamanhos em **px** (Figma) com o equivalente em **rem** (código; `rem = px ÷ 1
 
 | Token | Tamanho | Peso | Line-height | Letter-spacing |
 |---|---|---|---|---|
-| `body-lg` | 18px (1,125 rem) | 400 | 1.6 | 0px |
-| `body-md` | 16px (1 rem) | 400 | 1.6 | 0px |
+| `body-lg` | 18px (1,125 rem) | 400 | 1.6 | 0,04 em |
+| `body-md` | 16px (1 rem) | 400 | 1.6 | 0,04 em |
 
 ### Especiais
 
 | Token | Tamanho | Peso | Line-height | Letter-spacing |
 |---|---|---|---|---|
-| `blockquote` | 18px (1,125 rem) | 500 | 1.8 | 0px |
-| `code` | 16px (1 rem) | 600 | 1.4 | 0px |
-| `caption` | 16px (1 rem) | 400 | 1.4 | 0px |
+| `blockquote` | 18px (1,125 rem) | 500 | 1.8 | 0,04 em |
+| `code` | 16px (1 rem) | 600 | 1.4 | 0,04 em |
+| `caption` | 16px (1 rem) | 400 | 1.4 | 0,04 em |
 
 `code` usa Fira Code (`--tcece-font-mono`); os demais, Noto Sans. `caption` tem o mesmo tamanho do corpo e se distingue por `text/secondary` e line-height 1.4.
 
@@ -116,7 +117,7 @@ Botão, label, input, helper, cabeçalho e célula de tabela usam tokens da esca
 - **Uso:** hero e páginas institucionais, um `display-*` por página. Telas de produto continuam com `title-*`.
 - **Composição do hero:** linha de apoio acima (`title-md`, por exemplo "Boas vindas ao"), nome em `display-2xl` ou `display-xl`, complemento abaixo em `body-lg`.
 - **Tamanho fluido (opcional):** entre o valor mobile e o desktop com `clamp()`. Os breakpoints continuam valendo.
-- **Letter-spacing:** `0`, sem exceção para o hero (seção 5.2). O espaçamento largo do hero antigo do Conecta (8%) não vale.
+- **Letter-spacing:** 0,04 em, igual aos demais tokens (seção 5.2). O espaçamento largo do hero antigo do Conecta (8%) não vale.
 - **Acessibilidade:** sem altura fixa, no máximo 2 linhas por bloco, `text-wrap: balance`, funcionar em zoom de 400% sem corte nem rolagem horizontal.
 - **Peso:** 700 em `display-2xl` e `display-xl`; 600 nos demais.
 
@@ -165,7 +166,7 @@ Espaçamento **de layout** (gap, padding, margem) está em **`spacing-spec-tce.m
 | Propriedade | Valor | Observação |
 |---|---|---|
 | `line-height` | o do token (seção 3): 1.2 em `display-*` e `title-2xl`; 1.4 em `title-lg`, `title-md`, `title-sm`, `code` e `caption`; 1.6 em `body-*`; 1.8 em `blockquote` | Unitless. Não copie o line-height dos frames antigos do Figma (150%) |
-| `letter-spacing` | `0` em todos os tokens, com uma variável por token (seção 5.2) | Os 0,08 a 0,12 em do CSS original e os 4 a 12% dos estilos antigos do Figma **não valem** mais |
+| `letter-spacing` | **0,04 em** em todos os tokens, com uma variável por token (seção 5.2) | Os 0,08 a 0,12 em do CSS original e os 8 a 12% dos estilos antigos do Figma **não valem** |
 | `word-spacing` | `0` | |
 | Espaço entre parágrafos (texto corrido) | **24px** (`1.5rem`), via `margin-block-end`/`gap` entre parágrafos | Só texto corrido: justificativas, respostas, conteúdo de comunicações. Vale a escala de `spacing-spec-tce.md` |
 | Recuo da primeira linha | não usa | |
@@ -199,25 +200,25 @@ Consequências para o código e o Figma:
 7. **Títulos e hero:** `text-wrap: balance` em `title-*` e `display-*`; `text-wrap: pretty` em parágrafos longos.
 8. **Números:** colunas e valores comparáveis usam Atkinson com `font-variant-numeric: tabular-nums`. Teste de aceitação: numa coluna com 1111 e 8888 os dígitos se alinham.
 
-### 5.2 Letter-spacing por token e acessibilidade (decidido em 2026-10-28, fecha T-16)
+### 5.2 Letter-spacing por token e acessibilidade (alinhado ao Figma em 2026-11-04; resolve N-2 e substitui a decisão de 2026-10-28, T-16)
 
-Cada token tem a sua variável de letter-spacing (`--tcece-<token>-letter-spacing`; no Figma, `<grupo>/<token>/<desktop|mobile>/letterSpacing`). Todas valem `0` e apontam para a base `--tcece-text-letter-spacing` (`special/letterSpacing`). A variável por token existe para qualquer ajuste futuro ficar restrito a um token, mas **hoje nenhum token tem valor diferente de 0**.
+Todos os tokens usam **0,04 em** (4% do tamanho da fonte). Cada token tem a sua variável (`--tcece-<token>-letter-spacing`; no Figma, `<grupo>/<token>/<desktop|mobile>/letterSpacing`). No código elas apontam para a base `--tcece-text-letter-spacing: 0.04em`; no Figma cada variável guarda o valor em px (0,04 × o tamanho do token). A variável por token existe para qualquer ajuste futuro ficar restrito a um token, mas **hoje nenhum token difere de 0,04 em**.
 
-| Grupo | Valor | Antes (estilos antigos do Figma) |
+| Grupo | Valor | Exemplo no Figma (px) |
 |---|---|---|
-| `display-*` | 0 | 8% (hero do Conecta) |
-| `title-*` | 0 | 12% |
-| `body-*`, `blockquote`, `code`, `caption` | 0 | 4% |
-| `title-sm` (botão, label, cabeçalho de tabela) e números em Atkinson | 0 | 4% (`Btn`), de 0% a 5% no mobile |
+| `display-*` | 0,04 em | `display-2xl` desktop 3,2; mobile 1,76 |
+| `title-*` | 0,04 em | `title-lg` desktop 0,96; `title-md` 0,8; `title-sm` 0,64 |
+| `body-*`, `blockquote`, `code`, `caption` | 0,04 em | `body-lg` 0,72; `body-md` 0,64 |
+| Labels e números em Atkinson | 0,04 em (o do token do papel) | — |
 
 **Regras para garantir a acessibilidade:**
 
-1. **Teto 0 em todos os tokens; nunca negativo.** Valor positivo estreita a margem da WCAG 1.4.12 e piora texto corrido; valor negativo piora a legibilidade para quem tem dislexia. Para o hero, a presença vem do tamanho e do peso 700.
-2. **Mudar um valor exige registro.** Qualquer token com valor diferente de 0 só entra com aprovação do design, numa tabela nesta seção com token, valor em `em`, motivo e resultado do teste de aceitação da seção 5 (WCAG 1.4.12).
+1. **Teto 0,04 em; nunca negativo.** Valor maior estreita a margem da WCAG 1.4.12 (o usuário pode aplicar 0,12 em) e piora texto corrido; valor negativo piora a legibilidade para quem tem dislexia. Para o hero, a presença vem do tamanho e do peso 700.
+2. **Mudar um valor exige registro.** Qualquer token com valor diferente de 0,04 em só entra com aprovação do design, numa tabela nesta seção com token, valor em `em`, motivo e resultado do teste de aceitação da seção 5 (WCAG 1.4.12).
 3. **O usuário sempre vence.** Sem `!important` e sem `letter-spacing` inline: a folha de estilo ou a extensão do usuário precisa sobrescrever o tracking. A regra `avoid-inline-spacing` do axe-core confere isso.
-4. **Teste automático.** Em cada componente novo, aplicar os quatro valores da WCAG 1.4.12 (por exemplo, com Playwright) e conferir que nada é cortado nem sobreposto.
-5. **Lint.** `letter-spacing` só aceita `0` ou `var(--tcece-*-letter-spacing)`; valor solto em `px`, `em` ou `%` é erro.
-6. **Unidade.** No código, `em` (acompanha o zoom). O Figma guarda `px`; a conversão fica no registro da regra 2.
+4. **Teste automático.** Em cada componente novo, aplicar os quatro valores da WCAG 1.4.12 (por exemplo, com Playwright) e conferir que nada é cortado nem sobreposto. Com 0,04 em de base, a folga até 0,12 em é menor: componentes de largura justa (botão, chip, snackbar) precisam passar no teste.
+5. **Lint.** `letter-spacing` só aceita `var(--tcece-*-letter-spacing)`; valor solto em `px`, `em` ou `%` é erro.
+6. **Unidade.** No código, `em` (acompanha o zoom). O Figma guarda `px`; a conversão é 0,04 × o tamanho do token.
 
 ## 6. Cores de texto e estados
 
@@ -284,7 +285,7 @@ As recomendações por página e fluxo de cada produto ficam no documento de han
   --tcece-caption-size: 1rem; --tcece-caption-weight: 400; --tcece-caption-lh: 1.4;
 
   /* Espaçamento de texto (seção 5): base 0; cada token herda a base e pode ser ajustado só nele (seção 5.2) */
-  --tcece-text-letter-spacing: 0;
+  --tcece-text-letter-spacing: 0.04em; /* igual para todos os tokens (Figma: 4% do tamanho) */
   --tcece-display-2xl-letter-spacing: var(--tcece-text-letter-spacing);
   --tcece-display-xl-letter-spacing: var(--tcece-text-letter-spacing);
   --tcece-display-large-letter-spacing: var(--tcece-text-letter-spacing);
@@ -316,8 +317,8 @@ As recomendações por página e fluxo de cada produto ficam no documento de han
   }
 }
 
-/* Noto Sans é o padrão de tudo; Atkinson só entra pelas duas regras abaixo */
-body { font-family: var(--tcece-font-primary); font-size: var(--tcece-body-md-size); letter-spacing: var(--tcece-body-md-letter-spacing); word-spacing: var(--tcece-text-word-spacing); }
+/* Corpo (body-lg, body-md, caption), labels e números em Atkinson; títulos e botões em Noto Sans (font-primary) */
+body { font-family: var(--tcece-font-accent); font-size: var(--tcece-body-md-size); letter-spacing: var(--tcece-body-md-letter-spacing); word-spacing: var(--tcece-text-word-spacing); }
 
 /* Texto corrido: espaço entre parágrafos */
 .tcece-prose p + p { margin-block-start: var(--tcece-paragraph-gap); }
@@ -340,7 +341,7 @@ Uso:
 ```css
 .tcece-page-title   { font: var(--tcece-title-lg-weight) var(--tcece-title-lg-size)/var(--tcece-title-lg-lh) var(--tcece-font-primary); }
 .tcece-form-label   { font: var(--tcece-title-sm-weight) var(--tcece-title-sm-size)/var(--tcece-title-sm-lh) var(--tcece-font-accent); } /* title-sm + Atkinson */
-.tcece-table-cell   { font: var(--tcece-body-md-weight) var(--tcece-body-md-size)/var(--tcece-body-md-lh) var(--tcece-font-primary); }  /* body-md */
+.tcece-table-cell   { font: var(--tcece-body-md-weight) var(--tcece-body-md-size)/var(--tcece-body-md-lh) var(--tcece-font-accent); }  /* body-md (Atkinson) */
 ```
 
 **Carregamento das fontes:** Noto Sans (400, 500, 600) e Atkinson Hyperlegible Next (400, 600) com `font-display: swap`. A pilha de fallback já está nas variáveis (`system-ui, sans-serif`). Verifique o suporte a `tabular-nums` na Atkinson antes de padronizar (7.1, item 6).
@@ -348,7 +349,7 @@ Uso:
 ### TypeScript / MUI
 
 - `designTokens.ts` atual está **incompleto** (faltam `title-2xl`, variantes mobile e tokens `special`; ainda tem `title-xs`, `title-ss` e `body-standard`, que foram removidos) e provavelmente ainda aponta Atkinson como família principal. Regenere a partir desta spec; não edite valores à mão.
-- No `createTheme`, defina `typography.fontFamily` como **Noto Sans**. Atkinson entra só na variante do label e num utilitário de número (`.tcece-num` ou `sx`). Se o tema inteiro estiver com Atkinson, é o sintoma que gerou esta revisão.
+- No `createTheme`, cada variante customizada leva a família do seu token: `title-*`, `display-*` e `button` em **Noto Sans**; `body-lg`, `body-md`, `caption`, labels e números em **Atkinson**. Defina também `letterSpacing: '0.04em'` em todas as variantes (valor do token, seção 5.2). Não ponha uma família única no tema inteiro.
 - No MUI, crie variantes customizadas no `createTheme` com os nomes dos tokens (`title-lg`, `body-md`…) em vez de reaproveitar `h1`–`h6`/`body1`.
 - Para os labels (`title-sm` em Atkinson), sobrescreva `fontFamily` em `MuiInputLabel`, `MuiFormLabel` e `MuiFormControlLabel` (se o label do checkbox/radio for considerado label, ver T-13).
 - Em `DataGrid`, aplique `title-sm` no `columnHeader` e `body-md` no `cell` via `sx`; nas colunas numéricas, use `cellClassName: 'tcece-num'`.
@@ -356,15 +357,15 @@ Uso:
 ## 9. Checklist de revisão
 
 - [ ] Nenhum `font-size`, `font-weight`, `line-height`, `letter-spacing` ou `word-spacing` literal no código novo
-- [ ] Nenhum `font-family` literal: a família vem de `--tcece-font-primary` (padrão) ou `--tcece-font-accent` (só números e labels)
-- [ ] `body` e o tema do MUI em **Noto Sans**; Atkinson só em labels e números
-- [ ] Labels de formulário (`title-sm`) em Atkinson; helper, input e cabeçalho de tabela em Noto Sans
-- [ ] Contadores, IDs, colunas numéricas e números de paginação em Atkinson com `tabular-nums`; números dentro de frase em Noto Sans
+- [ ] Nenhum `font-family` literal: a família vem de `--tcece-font-primary` (títulos, botões) ou `--tcece-font-accent` (corpo, números e labels)
+- [ ] Títulos, display e botões em **Noto Sans**; corpo (`body-lg`, `body-md`, `caption`), labels e números em **Atkinson**
+- [ ] Labels de formulário (`title-sm`) em Atkinson; helper, input e célula de tabela (`body-md`/`caption`) em Atkinson; cabeçalho de tabela (`title-sm`) em Noto Sans
+- [ ] Contadores, IDs, colunas numéricas e números de paginação em Atkinson com `tabular-nums`; números dentro de frase na família do texto à volta
 - [ ] Título da página `title-lg`, seção `title-md`, subseção `title-sm`
 - [ ] **Nenhum texto abaixo de 16px** (inclui chip, selo, helper, legenda, tooltip e rodapé)
 - [ ] Cabeçalho de tabela `title-sm`, células `body-md`, paginação `body-md`
 - [ ] Espaçamentos de layout conforme `spacing-spec-tce.md` (seção 11 dela)
-- [ ] Espaçamento de texto (seção 5): letter-spacing e word-spacing `0`, parágrafos a 24px
+- [ ] Espaçamento de texto (seção 5): letter-spacing 0,04 em (variável do token), word-spacing `0`, parágrafos a 24px
 - [ ] Componentes com texto usam `min-height` (nunca altura fixa), sem `overflow: hidden`; nada é cortado com line-height 1,5, parágrafo 2×, letter-spacing 0,12 em e word-spacing 0,16 em (WCAG 1.4.12)
 - [ ] Tokens `title-*` têm override mobile (< 768px)
 - [ ] Contraste de texto: `text/primary` ou `text/secondary` sobre `background/paper` ou `background/default`
@@ -389,8 +390,8 @@ Todos os pontos em aberto de tipografia estão em **`decisoes-em-aberto.md`** (T
 |---|---|---|
 | Coleção `Typography` (102 variáveis, modo único) | Variáveis `--tcece-*` da seção 8 | Nomes no Figma: `title/lg/desktop/fontSize`, `title/lg/mobile/fontSize`, `body/md/fontSize`, `special/code/fontWeight`… Os `display` e `title` têm desktop e mobile; `body` e `special` têm valor único |
 | Variável `…/lineHeight` | `--tcece-<token>-lh` | No Figma o line-height está em **px** (o estilo de texto só aceita px quando ligado a variável); a razão da spec (1.2, 1.4, 1.6, 1.8) está na descrição da variável. No código use sempre o número sem unidade |
-| `special/letterSpacing` | `--tcece-text-letter-spacing` | Base `0`; as variáveis por token apontam para ela (seção 5.2) |
-| Variáveis `…/letterSpacing` (23: `display` e `title` em desktop e mobile, `body-lg`, `body-md`, `blockquote`, `code`, `caption`) | `--tcece-<token>-letter-spacing` | Alias da base, valor `0`; os 14 estilos `Spec/*` usam a do próprio token (desktop) |
+| `special/letterSpacing` | — | Mantém `0` no Figma e **não** é usada pelos estilos `Spec/*`. No código, `--tcece-text-letter-spacing` vale 0,04 em (seção 5.2) |
+| Variáveis `…/letterSpacing` (23: `display` e `title` em desktop e mobile, `body-lg`, `body-md`, `blockquote`, `code`, `caption`) | `--tcece-<token>-letter-spacing` | Valor próprio por token: **0,04 × tamanho**, em px (ex.: `title/lg/desktop` 0,96; `body/md` 0,64; `display/2xl/desktop` 3,2). No código, tudo é 0,04 em. Os 14 estilos `Spec/*` usam a variável do próprio token |
 | `font/primary` e `font/accent` | `--tcece-font-primary` e `--tcece-font-accent` | A Atkinson se aplica ligando a variável `font/accent` à família do texto, **mantendo** o estilo `Spec/*`. Trocar a família à mão desliga o estilo |
 | Estilos `Spec/display-2xl`, `-xl`, `-large`, `-medium`, `-small`, `Spec/title-2xl`, `-lg`, `-md`, `-sm`, `Spec/body-lg`, `-md`, `Spec/blockquote`, `Spec/code`, `Spec/caption` (14) | Tokens de mesmo nome da seção 3 | Os estilos usam as variáveis acima. Só existem para desktop; os estilos mobile ainda não foram criados (pendência) |
 | 51 estilos antigos (`Desktop/…`, `Mobile/…`) e coleção `Tipografia Responsiva` | Não usar | Em migração: serão apagados depois de migrar as outras páginas do arquivo |
@@ -431,6 +432,7 @@ Valores de cada variante: os da seção 3, em `rem` e line-height sem unidade. A
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 5.0.0 | 2026-11-04 | **Alinhada ao Figma (resolve N-2):** letter-spacing 0,04 em em todos os tokens (seção 5.2 reescrita; teto 0,04 em); `body-lg`, `body-md` e `caption` em Atkinson (seções 2, 2.1, 8, 9, 12); mapa Figma ↔ código com os valores reais das 23 variáveis |
 | 4.2.2 | 2026-11-04 | Aviso no cabeçalho sobre N-2 (o Figma dos componentes diverge: 0,04 em e corpo em Atkinson). Valores da spec não mudam |
 | 4.2.1 | 2026-11-04 | Mapa de papéis: descrição de modal, linha de resumo e snackbar |
 | 4.2.0 | 2026-10-28 | Letter-spacing por token com teto 0 e regras de acessibilidade (seção 5.2, fecha T-16); 23 variáveis novas no Figma (102 no total); variáveis CSS `--tcece-<token>-letter-spacing` |
