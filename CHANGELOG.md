@@ -2,6 +2,15 @@
 
 Mais recente primeiro.
 
+## Em revisão — 2026-11-04: specs de snackbar e de modal
+
+- **Nova spec `snackbar-spec-tce.md` (0.1.0, molécula):** componente `Snackbar` do Figma (16 variantes: tipo, detalhe, ação; mais "Mostrar fechar"), camadas, medidas, tokens (`title-md` para a mensagem, `body-md` para o detalhe), implementação com o `Snackbar` do MUI 9.1.1 (sem `Alert`, porque o botão fica abaixo do detalhe), acessibilidade. Pendências SN-1 a SN-4.
+- **Nova spec `modal-spec-tce.md` (0.1.0, organismo):** `Modal` (640 e 880), `Modal - Confirmação` (destrutivo, neutro, criação; 2 ou 3 ações; com ou sem resumo) e `Linha de resumo`, com camadas, medidas, ordem dos botões, implementação com o `Dialog` do MUI 9.1.1 e acessibilidade. Pendências MD-1 a MD-5.
+- **Cancelar no modal é `tceceElevated`** (como no Figma), não `outlined`: `padroes-de-interface.md` 2.1.0 e `button-spec-tce.md` 0.7.1 corrigidos.
+- **Espaçamento 1.2.0:** linhas de Modal - Confirmação, Modal e Snackbar na seção 4 (E-9: padding de 20 no rodapé do modal).
+- **Tipografia 4.2.1:** mapa de papéis (descrição de modal, linha de resumo, mensagem de snackbar). **Divergência registrada em N-2:** os componentes Snackbar, Modal e Button do Figma estão com letter-spacing de 0,04 em e corpo em Atkinson, contra a tipografia (0 e Noto Sans). A spec vale; o Figma precisa ser corrigido.
+- **Impacto para os devs:** usar o `Snackbar` e o `Dialog` do MUI com as medidas das duas specs; Cancelar `tceceElevated`; letter-spacing 0.
+
 ## Em revisão — 2026-10-28: spec do botão
 
 - **Nova spec `button-spec-tce.md`**: o componente `btn` do Figma virou `Button`, com propriedades de mesmo nome das props do `Button` do MUI (`variant`, `color`, `size`, `state`, `startIcon`, `endIcon`, `children`). Terciário = `elevated` (variante customizada), Criação = `contained` + `success`, `Active` = `selected`, `Dispositive` = `size`.

@@ -2,7 +2,7 @@
 
 > **Para o Claude do dev:** leia este arquivo primeiro. Ele diz qual spec consultar para cada tarefa, o que vale para todas e o que ainda está pendente. Se duas specs divergirem, vale a ordem de precedência da seção 4. Itens **A DECIDIR** não devem ser implementados por conta própria: pergunte ao design.
 
-Status: rascunho de 2026-10-05. Revisão estrutural em 2026-10-07 (versão **ds-v1**). Atualizado em 2026-10-21 (família tipográfica decidida). Origem: arquivo Figma ⭐ Design System TCE (fileKey `mn0wkryj2sBHmW412qD2o8`), protótipos existentes e CSS original do TCE. As specs são do design system; a aplicação em cada produto fica em um handoff próprio.
+Status: rascunho de 2026-10-05. Revisão estrutural em 2026-10-07 (versão **ds-v1**). Atualizado em 2026-10-21 (família tipográfica decidida). Atualizado em 2026-11-04 (specs de snackbar e de modal). Origem: arquivo Figma ⭐ Design System TCE (fileKey `mn0wkryj2sBHmW412qD2o8`), protótipos existentes e CSS original do TCE. As specs são do design system; a aplicação em cada produto fica em um handoff próprio.
 
 ## 1. Mapa das specs
 
@@ -13,11 +13,13 @@ Status: rascunho de 2026-10-05. Revisão estrutural em 2026-10-07 (versão **ds-
 | Espaçamento | `spacing-spec-tce.md` | Escala 4–48, tokens semânticos, padding de componentes, alvos clicáveis, espaçamento de texto | Coleção Spacing, página Spacing | Rascunho |
 | Grid e layout | `grid-layout-spec-tce.md` | Colunas, margem, gutter, menu lateral, templates de página | Coleções Grid e Layout, páginas 📏 Grid e 🧱 Layout | Rascunho |
 | Botão | `button-spec-tce.md` | Componente `Button` (MUI): propriedades Figma ↔ props do MUI, medidas, estados (hover, ripple, foco amarelo e preto, desabilitado, selecionado), acessibilidade e referência de tema | Página 🧩 Componentes, conjunto `Button` | Rascunho, 7 pendências (B-1 a B-7) |
+| Snackbar | `snackbar-spec-tce.md` | Componente `Snackbar` (MUI): 16 variantes (tipo, detalhe, ação), camadas, medidas, tokens, acessibilidade | Página 🧩 Componentes, conjunto `Snackbar` | Rascunho, 4 pendências (SN-1 a SN-4) |
+| Modal | `modal-spec-tce.md` | Componentes `Modal` (640 e 880), `Modal - Confirmação` (destrutivo, neutro, criação) e `Linha de resumo` (`Dialog` do MUI): camadas, medidas, ordem dos botões, acessibilidade | Página 🧩 Componentes, conjuntos `Modal` e `Modal - Confirmação` | Rascunho, 5 pendências (MD-1 a MD-5) |
 | Padrões de interface | `padroes-de-interface.md` | Blocos recorrentes das telas: cabeçalho, seções, abas, tabelas, formulários, modais, feedback, status, estado vazio, texto longo | — | Rascunho |
 | Decisões em aberto | `decisoes-em-aberto.md` | Todos os "A DECIDIR" consolidados, com spec de origem | — | Em andamento |
 | Correções do CSS original | `../referencias/espacamento-e-css-original-correcoes.md` | Defeitos do CSS legado e comparação com o Figma | — | Referência (arquivo, não spec viva) |
 
-A spec de cor cobre só texto, link, botão e fundo; bordas, ícones e status ainda não têm spec. As specs são **do design system**, sem referência a um produto. O que for específico de um produto vai para o handoff dele. Ainda não existem specs de elevação, ícones e componentes individuais além do botão (modal, card, tabela). Quando surgirem, entram neste mapa.
+A spec de cor cobre só texto, link, botão e fundo; bordas, ícones e status ainda não têm spec. As specs são **do design system**, sem referência a um produto. O que for específico de um produto vai para o handoff dele. Ainda não existem specs de elevação, ícones e componentes individuais além do botão, do snackbar e do modal (card, tabela). Quando surgirem, entram neste mapa.
 
 ## 2. Qual spec consultar
 
@@ -30,7 +32,9 @@ A spec de cor cobre só texto, link, botão e fundo; bordas, ícones e status ai
 | Formulário | Padrões de interface (formulários) + espaçamento (label → campo 8, campo → campo 16) |
 | Tabela, listagem | Padrões de interface (tabelas) + grid-layout (colunas) |
 | Página com menu lateral | Grid-layout (seção 4) |
-| Modal, card | Padrões de interface + espaçamento (seção 4, componentes); padding de card é decisão pendente |
+| Modal (genérico ou de confirmação) | `modal-spec-tce.md` |
+| Snackbar (aviso de resultado) | `snackbar-spec-tce.md` |
+| Card | Padrões de interface + espaçamento (seção 4, componentes); padding de card é decisão pendente |
 | Responsivo | Grid-layout (seção 7) + tipografia (tokens mobile) |
 
 ## 3. Regras que valem para todas as specs
@@ -59,8 +63,8 @@ As specs seguem as cinco camadas do Atomic Design. A camada diz **de quem a spec
 |---|---|---|---|---|
 | **1. Átomos (tokens)** | Cor, tipografia, espaçamento: tokens de design | Fundações | `color-spec-tce.md`, `typography-spec-tce.md`, `spacing-spec-tce.md`, tokens de `grid-layout-spec-tce.md` | Elevação e sombra, raio e borda, movimento, iconografia |
 | **1. Átomos (componentes)** | button, input, label, icon, heading, image | Componentes indivisíveis | `button-spec-tce.md` | Campos (input, select, checkbox, radio, switch) e label, link, selo e chip, ícone, tooltip, contador, indicador de progresso |
-| **2. Moléculas** | Grupos de átomos: campo de busca, form de login, card de produto | Átomos juntos com uma função | Parte de `padroes-de-interface.md` (formulários, paginação, abas, feedback) | Campo de busca, campo de formulário (label + input + helper + erro), chip de filtro, breadcrumb, paginação, item de menu, banner e snackbar, dropdown |
-| **3. Organismos** | Seções independentes: header, sidebar, footer, grid de cards | Seções completas da interface | Parte de `padroes-de-interface.md` (cabeçalho de página, tabelas, modais) e menu lateral em `grid-layout-spec-tce.md` | Header, menu lateral, tabela, modal, cards (métrica e indicador), filtros de busca |
+| **2. Moléculas** | Grupos de átomos: campo de busca, form de login, card de produto | Átomos juntos com uma função | `snackbar-spec-tce.md` e parte de `padroes-de-interface.md` (formulários, paginação, abas, feedback) | Campo de busca, campo de formulário (label + input + helper + erro), chip de filtro, breadcrumb, paginação, item de menu, banner, dropdown |
+| **3. Organismos** | Seções independentes: header, sidebar, footer, grid de cards | Seções completas da interface | `modal-spec-tce.md`, parte de `padroes-de-interface.md` (cabeçalho de página, tabelas) e menu lateral em `grid-layout-spec-tce.md` | Header, menu lateral, tabela, cards (métrica e indicador), filtros de busca |
 | **4. Templates** | Estrutura da página sem conteúdo real | Wireframe com componentes reais, define layout e hierarquia | Templates de página em `grid-layout-spec-tce.md` | Templates de listagem, detalhe e formulário |
 | **5. Páginas** | Templates com conteúdo real; onde se testa texto longo, imagens, erros e estados vazios | Produto final | Handoff de cada produto (fora deste repositório) | Não é spec do DS |
 

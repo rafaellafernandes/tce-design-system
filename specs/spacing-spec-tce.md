@@ -8,12 +8,12 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **1.1.0** (rascunho) |
-| **Última atualização** | **2026-10-28** |
+| **Versão da spec** | **1.2.0** (rascunho) |
+| **Última atualização** | **2026-11-04** |
 | Versão do DS | em revisão, ainda sem tag |
 | **Camada** | **1. Átomos (tokens)** |
 | **Depende de** (data da última atualização lida) | Nenhuma (é base). Remete a `grid-layout-spec-tce.md` 1.0.0 (2026-10-28, margem de página e gutter) e a `typography-spec-tce.md` 4.1.0 (2026-10-28, espaçamento de texto) |
-| **Usada por** | `typography-spec-tce.md`, `grid-layout-spec-tce.md`, `button-spec-tce.md`, `padroes-de-interface.md` e todas as specs de componente |
+| **Usada por** | `typography-spec-tce.md`, `grid-layout-spec-tce.md`, `button-spec-tce.md`, `snackbar-spec-tce.md`, `modal-spec-tce.md`, `padroes-de-interface.md` e todas as specs de componente |
 | Arquivo e Figma | `specs/spacing-spec-tce.md`; coleção Spacing do ⭐ Design System TCE |
 
 Histórico na última seção. Formato do cabeçalho: `design-system-index.md`, seção 4.1.
@@ -72,7 +72,9 @@ A coluna "Fonte" diz de onde vem o valor: **CSS** (CSS original, confirmado), **
 | Botão do DS no Figma | 8 vertical, 16 horizontal (12 no lado do ícone) | altura mínima 44 (desktop) e 48 (mobile), largura mínima 64, ícone 20, gap 8 | Figma, alinhado ao CSS em 2026-10-28 (ver `button-spec-tce.md`) |
 | Bloco de código (`pre`) | 8 | margem 16 acima e abaixo | CSS |
 | Card | 16 (`card-padding`) | gap interno a definir | Spec — **A DECIDIR** (E-3: protótipos usam 24) |
-| Modal | a definir | label→campo 8 | falta levantar |
+| Modal - Confirmação | 32 | gap entre blocos 24; resumo: padding 16 e gap 8; ações: gap 12 | Figma, 2026-11-04 (`modal-spec-tce.md`) |
+| Modal (genérico) | cabeçalho 24/32, corpo 32, rodapé 20/32 | gap do rodapé 12; label→campo 8 | Figma, 2026-11-04 (`modal-spec-tce.md`); 20 do rodapé está fora da escala (E-9) |
+| Snackbar | 16 | gap ícone→texto 12; mensagem→detalhe 4 (8 com ação) | Figma, 2026-11-04 (`snackbar-spec-tce.md`) |
 | Chip / badge | 12 horizontal, 3 vertical | altura 30 | Figma — 3 está fora da escala, **A DECIDIR** (E-6). Com o piso de 16px de texto (`title-sm`, line-height 1.4 ≈ 22), proposta: 4 vertical (dentro da escala), altura mínima 30 |
 | Barra de ações fixa | a definir | a definir | falta levantar |
 | Linha de tabela, item de menu, breadcrumb | a documentar | — | falta levantar |
@@ -144,5 +146,6 @@ Todos os pontos em aberto de espaçamento estão em **`decisoes-em-aberto.md`** 
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 1.2.0 | 2026-11-04 | Seção 4: linhas de Modal - Confirmação, Modal (genérico) e Snackbar com os valores do Figma; nova pendência E-9 (padding de 20 no rodapé do modal) |
 | 1.1.0 | 2026-10-28 | Botão com padding 8/16, altura mínima 44/48, largura mínima 64, ícone 20 e gap 8 (fecha E-8); espaçamento de texto remetido à tipografia |
 | 1.0.0 | 2026-10-07 | Rascunho de 2026-10-05; grid e layout separados em `grid-layout-spec-tce.md`; revisão estrutural (`ds-v1`) |

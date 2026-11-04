@@ -8,8 +8,8 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **0.7.0** (rascunho) |
-| **Última atualização** | **2026-10-28** |
+| **Versão da spec** | **0.7.1** (rascunho) |
+| **Última atualização** | **2026-11-04** |
 | Versão do DS | em revisão, ainda sem tag (o `CHANGELOG.md` registra `ds-v3` como a confirmar; a tag é decisão do design) |
 | **Camada** | **1. Átomos (componente)** |
 | **Depende de** (data da última atualização lida) | Tokens: `typography-spec-tce.md` (4.1.0, 2026-10-28), `color-spec-tce.md` (2.1.0, 2026-10-28), `spacing-spec-tce.md` (2026-10-28), `grid-layout-spec-tce.md` (2026-10-21, só os breakpoints). Detalhe na seção 11 |
@@ -261,9 +261,11 @@ Ao usar o botão, essas specs referenciam esta e não redefinem variante, estado
 
 | Camada | Spec ou componente | Como usa o botão |
 |---|---|---|
-| 2. Moléculas e 3. Organismos | `padroes-de-interface.md` | Modais (confirmação `contained` + `primary` à direita, cancelar `outlined` à esquerda), paginação ("Anterior" e "Próximo" em `outlined`), estado vazio (botão primário), formulários (ações) |
-| 2. Moléculas (a criar) | Campo de busca, paginação, banner e snackbar, célula de tabela com ação | Botões em linha: `text`, `outlined` |
-| 3. Organismos (a criar) | Modal, tabela, header, filtros de busca ("Buscar" e "Limpar filtros"), menu lateral | Menu lateral usa `text` com `tceceSelected`; filtros usam `contained` e `text` |
+| 2. Moléculas e 3. Organismos | `padroes-de-interface.md` | Modais (confirmação `contained` à direita; cancelar `tceceElevated` à esquerda, como no Figma; detalhe em `modal-spec-tce.md`), paginação ("Anterior" e "Próximo" em `outlined`), estado vazio (botão primário), formulários (ações) |
+| 2. Moléculas | `snackbar-spec-tce.md` | Botão de ação: `tceceElevated`, `primary` |
+| 2. Moléculas (a criar) | Campo de busca, paginação, banner, célula de tabela com ação | Botões em linha: `text`, `outlined` |
+| 3. Organismos | `modal-spec-tce.md` | Rodapé: `tceceElevated` (cancelar), `outlined` (secundária), `contained` (principal; `primary`, `error` ou `success`) |
+| 3. Organismos (a criar) | Tabela, header, filtros de busca ("Buscar" e "Limpar filtros"), menu lateral | Menu lateral usa `text` com `tceceSelected`; filtros usam `contained` e `text` |
 
 As specs marcadas "a criar" aparecem em `design-system-index.md`, seção 4.1.
 
@@ -277,6 +279,7 @@ Todos em **`decisoes-em-aberto.md`** (B-1 a B-7).
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 0.7.1 | 2026-11-04 | Seção 11.2: snackbar e modal passam a usar o botão (`snackbar-spec-tce.md`, `modal-spec-tce.md`); cancelar no modal é `tceceElevated`, como no Figma. Sem mudança de valor |
 | 0.7.0 | 2026-10-28 | MUI 9.1.1 registrado (B-8 decidida); tema ajustado à v9 (as chaves `containedPrimary`, `containedSuccess` e `outlined` de `styleOverrides` foram removidas na v9; viraram `variants` no `root`); regra do `nativeButton`; foco: botão com preenchimento e demais com anel (C-5 decidida); cor 2.1.0 e tipografia 4.1.0 conferidas |
 | 0.6.0 | 2026-10-28 | Tokens de cor renomeados conforme `color-spec-tce.md` 2.0.0 (`primary/main`, `primary/dark`, `tcece/primary/pressed`, `tcece/focus/*`, `tcece/button/*`); tipografia 4.0.1 conferida |
 | 0.5.2 | 2026-10-28 | Verificação das specs relacionadas (índice, seção 7): data lida da spec de cor atualizada para 2026-10-28 (a spec de cor só ganhou um ponteiro para esta, sem mudança de valor); tipografia, espaçamento, grid-layout e padrões conferidos |
