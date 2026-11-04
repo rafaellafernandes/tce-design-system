@@ -8,7 +8,7 @@
 | **Última atualização** | **2026-11-04** |
 | Versão do DS | em revisão, ainda sem tag |
 | **Camada** | **2. Moléculas e 3. Organismos (mistura; cada padrão declara a sua)** |
-| **Depende de** (data da última atualização lida) | `typography-spec-tce.md` 4.1.0, `color-spec-tce.md` 2.1.0 (2026-10-28), `spacing-spec-tce.md` 1.2.0, `grid-layout-spec-tce.md` 1.0.0 (2026-10-28), `button-spec-tce.md` 0.7.1, `snackbar-spec-tce.md` 0.1.0 e `modal-spec-tce.md` 0.1.0 (as de 2026-11-04 lidas em 2026-11-04) |
+| **Depende de** (data da última atualização lida) | `typography-spec-tce.md` 4.1.0, `color-spec-tce.md` 2.1.0 (2026-10-28), `spacing-spec-tce.md` 1.2.0, `grid-layout-spec-tce.md` 1.0.0 (2026-10-28), `button-spec-tce.md` 0.7.1, `snackbar-spec-tce.md` 0.1.1 e `modal-spec-tce.md` 0.1.1 (as de 2026-11-04 lidas em 2026-11-04) |
 | **Usada por** | Telas dos produtos (Páginas, fora do DS); specs de componente que nascerem destes padrões (tabela, formulário, paginação…); `snackbar-spec-tce.md` e `modal-spec-tce.md` já nasceram |
 | Arquivo e Figma | `specs/padroes-de-interface.md` |
 

@@ -6,11 +6,11 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **0.1.0** (rascunho) |
+| **Versão da spec** | **0.1.1** (rascunho) |
 | **Última atualização** | **2026-11-04** |
 | Versão do DS | em revisão, ainda sem tag |
 | **Camada** | **3. Organismos (componente)** |
-| **Depende de** (data da última atualização lida) | `typography-spec-tce.md` 4.2.1 (2026-11-04), `color-spec-tce.md` 2.1.0 (2026-10-28), `spacing-spec-tce.md` 1.2.0 (2026-11-04), `button-spec-tce.md` 0.7.1 (2026-11-04) |
+| **Depende de** (data da última atualização lida) | `typography-spec-tce.md` 4.2.2 (2026-11-04), `color-spec-tce.md` 2.1.0 (2026-10-28), `spacing-spec-tce.md` 1.2.0 (2026-11-04), `button-spec-tce.md` 0.7.1 (2026-11-04) |
 | **Usada por** | `padroes-de-interface.md` (modais) e os handoffs dos produtos (catálogo de modais) |
 | Arquivo e Figma | `specs/modal-spec-tce.md`; conjuntos `Modal` (`1459:3736`, 6 variantes), `Modal - Confirmação` (`1415:3408`, 12 variantes) e componente `Linha de resumo`, página 🧩 Componentes do ⭐ Design System TCE (`mn0wkryj2sBHmW412qD2o8`) |
 
@@ -107,7 +107,7 @@ Com `Ações=1` existe só a ação principal.
 
 ## 5. Texto
 
-Título `title-lg`; descrição e corpo `body-md`; botões `title-sm`. Família, letter-spacing e line-height são os do token (`typography-spec-tce.md`): **Noto Sans e letter-spacing `0`**. **Atenção:** no Figma o título, o corpo e os botões deste componente estão com letter-spacing de 0,04 em, e o corpo e a descrição em Atkinson, o que contradiz a tipografia (N-2). Siga a tipografia.
+Título `title-lg`; descrição e corpo `body-md`; botões `title-sm`. **Como está no Figma (lido em 2026-11-04) e vale até a decisão N-2:** título (`Spec/title-lg`), 24 / 33,6, Noto Sans 600, letter-spacing 0,96px (0,04 em); botões (`Spec/title-sm`), 16 / 22,4, Noto Sans 600, letter-spacing 0,64px (0,04 em); descrição, corpo e linhas de resumo (`Spec/body-md`), 16 / 25,6, **Atkinson Hyperlegible Next** (`font/accent`), 400, letter-spacing 0,64px (0,04 em). **Conflito com a tipografia (N-2):** `typography-spec-tce.md` diz letter-spacing 0 e Noto Sans no corpo. Por pedido do design (2026-11-04), este componente segue o Figma até o N-2 ser decidido.
 
 ## 6. Implementação com o MUI 9.1.1
 
@@ -129,7 +129,7 @@ Título `title-lg`; descrição e corpo `body-md`; botões `title-sm`. Família,
 
 | Spec | O que o modal herda |
 |---|---|
-| `typography-spec-tce.md` | `title-lg`, `body-md`, `title-sm`; letter-spacing 0; teste 1.4.12 |
+| `typography-spec-tce.md` | `title-lg`, `body-md`, `title-sm`; letter-spacing 0 (ver N-2: o Figma usa 0,04 em); teste 1.4.12 |
 | `color-spec-tce.md` | `background/paper`, `divider`, `text/primary`, `text/secondary`, `error/main`, `success/main`, `primary/main` |
 | `spacing-spec-tce.md` | `spacing/8`, `12`, `16`, `24`, `32`; linha "Modal" na seção 4 |
 | `button-spec-tce.md` | `tceceElevated`, `outlined`, `contained` (+ `error`, `success`) |
@@ -139,4 +139,5 @@ Título `title-lg`; descrição e corpo `body-md`; botões `title-sm`. Família,
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 0.1.1 | 2026-11-04 | Tipografia como no Figma (letter-spacing 0,04 em; corpo em Atkinson) até a decisão N-2 |
 | 0.1.0 | 2026-11-04 | Criação, a partir dos conjuntos `Modal` (6 variantes) e `Modal - Confirmação` (12) e do componente `Linha de resumo` do Figma: propriedades, camadas, medidas, tokens, implementação com o MUI 9.1.1, acessibilidade. Pendências MD-1 a MD-5 |

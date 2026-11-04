@@ -6,11 +6,11 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **0.1.0** (rascunho) |
+| **Versão da spec** | **0.1.1** (rascunho) |
 | **Última atualização** | **2026-11-04** |
 | Versão do DS | em revisão, ainda sem tag |
 | **Camada** | **2. Moléculas (componente)** |
-| **Depende de** (data da última atualização lida) | `typography-spec-tce.md` 4.2.1 (2026-11-04), `color-spec-tce.md` 2.1.0 (2026-10-28), `spacing-spec-tce.md` 1.2.0 (2026-11-04), `button-spec-tce.md` 0.7.1 (2026-11-04; botão de ação) |
+| **Depende de** (data da última atualização lida) | `typography-spec-tce.md` 4.2.2 (2026-11-04), `color-spec-tce.md` 2.1.0 (2026-10-28), `spacing-spec-tce.md` 1.2.0 (2026-11-04), `button-spec-tce.md` 0.7.1 (2026-11-04; botão de ação) |
 | **Usada por** | `padroes-de-interface.md` (feedback) e os handoffs dos produtos (catálogo de avisos) |
 | Arquivo e Figma | `specs/snackbar-spec-tce.md`; conjunto `Snackbar` (`1418:3448`, 16 variantes), página 🧩 Componentes do ⭐ Design System TCE (`mn0wkryj2sBHmW412qD2o8`) |
 
@@ -31,7 +31,7 @@ Pendências abertas: SN-1 a SN-4 e N-2 (`decisoes-em-aberto.md`). Histórico na 
 | `Tipo` | variante | **Sucesso**, Erro, Aviso, Informação | Define o ícone e a cor do ícone (seção 4). Prop do componente: `severity` (`success`, `error`, `warning`, `info`) |
 | `Detalhe` | variante | **Com**, Sem | Mostra a linha de apoio. Prop: `detail?: string` |
 | `Ação` | variante | **Sem**, Com | Mostra o botão de ação abaixo do detalhe. Props: `actionLabel?: string`, `onAction?: () => void` |
-| `Mostrar fechar` | booleano | **ligado**, desligado | Mostra o X. Prop: `closable` |
+| `Mostrar fechar` | booleano | **ligado**, desligado | Mostra o X. Prop: `closable`, ligada por padrão: **todo snackbar tem X**, salvo decisão em contrário (SN-2) |
 | `Mensagem` | texto | — | Texto principal (obrigatório) |
 | `Texto do detalhe` | texto | — | Texto do detalhe (só com `Detalhe=Com`) |
 
@@ -61,8 +61,8 @@ Snackbar (560 × hug, horizontal, padding 16, gap 12)
 | Contêiner: padding e gap | 16 e 12 | `spacing/16`, `spacing/12` (E-1 avalia o 12) |
 | Largura | 560, fixa | — (ver nota) |
 | Ícone | 24 (glifo de 20) | Sucesso: `success/main`. Informação: `info/main`. Erro e Aviso: `tcece/icon/color` (C-7) |
-| Mensagem | 20 / 28, 600 | `title-md` (`Spec/title-md`), cor `text/primary` |
-| Detalhe | 16 / 25,6, 400 | `body-md` (`Spec/body-md`), cor `text/primary` |
+| Mensagem | 20 / 28, 600, letter-spacing 0,8px | `title-md` (`Spec/title-md`), Noto Sans, cor `text/primary` |
+| Detalhe | 16 / 25,6, 400, letter-spacing 0,64px | `body-md` (`Spec/body-md`), **Atkinson** (N-2), cor `text/primary` |
 | Botão de ação | padding 8/16, altura mínima 44, raio 8 | `Button` `tceceElevated` (`button-spec-tce.md`) |
 | Fechar | 24; glifo de 14 | `tcece/icon/color` |
 
@@ -73,7 +73,8 @@ Snackbar (560 × hug, horizontal, padding 16, gap 12)
 ## 5. Texto
 
 - Mensagem: `title-md`. Detalhe: `body-md`. Ação: `title-sm` (do botão).
-- Família, `letter-spacing` e `line-height` são os do token (`typography-spec-tce.md`, seções 2 e 5): **Noto Sans e letter-spacing `0`**. **Atenção:** os textos deste componente no Figma estão com letter-spacing de 0,04 em e o detalhe em Atkinson, o que contradiz a tipografia (N-2). Siga a tipografia.
+- **Como está no Figma (lido em 2026-11-04) e vale até a decisão N-2:** a mensagem (`Spec/title-md`) é Noto Sans 20 / 28, 600, com letter-spacing 0,8px (0,04 em; variável `title/md/desktop/letterSpacing`). O detalhe (`Spec/body-md`) é **Atkinson Hyperlegible Next** (`font/accent`) 16 / 25,6, 400, com letter-spacing 0,64px (0,04 em; `body/md/letterSpacing`). O botão de ação segue o `title-sm` do botão.
+- **Conflito com a tipografia (N-2):** `typography-spec-tce.md` diz letter-spacing 0 e Noto Sans no corpo. Por pedido do design (2026-11-04), este componente segue o Figma até o N-2 ser decidido.
 
 ## 6. Implementação com o MUI 9.1.1
 
@@ -114,4 +115,5 @@ Snackbar (560 × hug, horizontal, padding 16, gap 12)
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 0.1.1 | 2026-11-04 | Tipografia como no Figma (letter-spacing 0,04 em; detalhe em Atkinson) até a decisão N-2; `Mostrar fechar` ligado por padrão |
 | 0.1.0 | 2026-11-04 | Criação, a partir do conjunto `Snackbar` do Figma (16 variantes): propriedades, camadas, medidas, tokens, implementação com o MUI 9.1.1, acessibilidade. Pendências SN-1 a SN-4 |

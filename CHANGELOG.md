@@ -8,8 +8,9 @@ Mais recente primeiro.
 - **Nova spec `modal-spec-tce.md` (0.1.0, organismo):** `Modal` (640 e 880), `Modal - Confirmação` (destrutivo, neutro, criação; 2 ou 3 ações; com ou sem resumo) e `Linha de resumo`, com camadas, medidas, ordem dos botões, implementação com o `Dialog` do MUI 9.1.1 e acessibilidade. Pendências MD-1 a MD-5.
 - **Cancelar no modal é `tceceElevated`** (como no Figma), não `outlined`: `padroes-de-interface.md` 2.1.0 e `button-spec-tce.md` 0.7.1 corrigidos.
 - **Espaçamento 1.2.0:** linhas de Modal - Confirmação, Modal e Snackbar na seção 4 (E-9: padding de 20 no rodapé do modal).
-- **Tipografia 4.2.1:** mapa de papéis (descrição de modal, linha de resumo, mensagem de snackbar). **Divergência registrada em N-2:** os componentes Snackbar, Modal e Button do Figma estão com letter-spacing de 0,04 em e corpo em Atkinson, contra a tipografia (0 e Noto Sans). A spec vale; o Figma precisa ser corrigido.
-- **Impacto para os devs:** usar o `Snackbar` e o `Dialog` do MUI com as medidas das duas specs; Cancelar `tceceElevated`; letter-spacing 0.
+- **Tipografia 4.2.1 e 4.2.2:** mapa de papéis (descrição de modal, linha de resumo, mensagem de snackbar) e aviso no cabeçalho sobre a divergência do Figma (N-2).
+- **Atualização do mesmo dia (snackbar 0.1.1, modal 0.1.1, tipografia 4.2.2):** por pedido do design, os componentes seguem o Figma: letter-spacing 0,04 em e `body-md` em Atkinson (N-2 reescrita). `Mostrar fechar` ligado por padrão: todo snackbar tem X. A spec de tipografia não mudou de valor; ganhou aviso no cabeçalho.
+- **Impacto para os devs:** usar o `Snackbar` e o `Dialog` do MUI com as medidas das duas specs; Cancelar `tceceElevated`; nos componentes Snackbar, Modal e Button seguir o Figma (0,04 em; corpo em Atkinson) até N-2 ser decidida.
 
 ## Em revisão — 2026-10-28: spec do botão
 
