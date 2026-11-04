@@ -16,7 +16,7 @@ Decidido em 2026-10-28 (sai da lista), segunda rodada:
 - **T-10** ponto de quebra mobile: 768px (o conflito com o grid segue em G-1).
 - **T-11** negrito em texto corrido: 600.
 - **T-14** `display-*`: papel e escala definidos (seção 3 e 3.1 da tipografia): `display-2xl` (80/44) e `display-xl` (64/40) novos, ambos peso 700; um `display-*` por página, só em hero e páginas institucionais. O letter-spacing do hero ficou para **T-16**.
-- **T-16** letter-spacing: `0` em todos os tokens, sem exceção para o hero, com uma variável por token e regras de acessibilidade (tipografia, seção 5.2).
+- **T-16** letter-spacing: **0,04 em em todos os tokens**, com uma variável por token e regras de acessibilidade (tipografia 5.0.0, seção 5.2). Decisão de 2026-10-28 (valor 0) revista em 2026-11-04 para seguir o Figma; resolve **N-2**. O corpo (`body-lg`, `body-md`, `caption`) passou a Atkinson, também como no Figma.
 - **T-15** mapeamento para o MUI: variantes com o nome do MUI e o prefixo `tcece` (`tceceH1`, `tceceBody1`, `tceceButton`, `tceceCaption`…). Os níveis de cada uma estão na tipografia, seção 12 (ainda a confirmar com o front).
 - **C-5 (foco)**: botão com preenchimento amarelo, texto preto e borda inferior preta de 4px; links, campos e os demais com anel amarelo e contorno preto.
 - **Tokens de cor mais próximos do MUI:** `tcece/text/error`, `tcece/text/success`, `tcece/text/info`, `tcece/action/create`, `tcece/link/default` e `tcece/link/hover` passaram a ser alias de `error/main`, `success/main`, `info/main`, `success/main`, `primary/main` e `primary/dark`. No código use o token do MUI. Os alias saem quando os usos migrarem.
@@ -44,7 +44,6 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 | E-5 | Prefixo e nomes dos tokens de espaçamento | `--tcece-space-*` ou `--space-*`; alinhar com nomes de tipografia (`title-desk-md` no CSS, `title-md` na spec) | `--tcece-space-*` | Importante | `--tcece-space-*` |
 | E-6 | Padding vertical do chip | 3 está fora da escala | — | Menor | Perguntar |
 | E-7 | Espaço mínimo entre alvos clicáveis | O CSS usa margem de 4 | — | Menor | 4 |
-| E-9 | Padding vertical de 20 no rodapé do modal genérico | 20 está fora da escala (`spacing/16` ou `spacing/24`) | Levar a 16 ou 24 | Menor | Usar 20, como no Figma (`modal-spec-tce.md`) |
 
 ## Botão (`button-spec-tce.md`)
 
@@ -84,18 +83,20 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 
 ## Snackbar (`snackbar-spec-tce.md`)
 
+Decidido em 2026-11-04: largura que acompanha o conteúdo, máximo 560 (fecha **SN-3**); Figma atualizado.
+
 | ID | Decisão | Opções | Proposta / adotado hoje | Impacto | Enquanto isso |
 |---|---|---|---|---|---|
 | SN-1 | Posição na tela, duração e empilhamento (vários avisos ao mesmo tempo) | O Figma não define. Ex.: canto superior direito, 3 a 5 s, um de cada vez | Não definido | Importante | O handoff de cada produto registra; não inventar no componente |
 | SN-2 | Quando o aviso some sozinho e quando fica até a pessoa fechar. O X já está decidido pelo Figma: `Mostrar fechar` vem ligado e o protótipo mostra o X em todos | Sumir sozinho só nos avisos sem ação e sem erro; fixar os de erro e os com ação (WCAG 2.2.1) | Proposta: fixar erro e ação | Importante | X em todos; duração conforme o handoff do produto |
-| SN-3 | Largura do snackbar | 560 fixa (Figma) ou acompanhar o conteúdo, máximo 560 (ou a tela menos 32) | Pedido do design em 2026-11-04: acompanhar o conteúdo. O componente no Figma ainda tem 560 fixos | Menor | Seguir o Figma (560) até decidir; o protótipo do Conecta já mostra a versão ajustada ao conteúdo |
-| SN-4 | Aviso e Erro têm o mesmo ícone (`ErrorFilled`) e a mesma cor (`tcece/icon/color`) | Ícone de alerta (`Warning`) e cor própria para Aviso; Erro em `error/main` | Aguardar C-2 e C-7 | Importante | Manter como no Figma; o texto diferencia |
+| SN-4 | Aviso e Erro têm o mesmo ícone (`ErrorFilled`) e a mesma cor (`tcece/icon/default`) | Ícone de alerta (`Warning`) e cor própria para Aviso; Erro em `error/main` | Aguardar C-2 e C-7 | Importante | Manter como no Figma; o texto diferencia |
 
 ## Modal (`modal-spec-tce.md`)
 
+Decidido em 2026-11-04: cores, raios, sombra e divisores do `Modal` ligados a tokens (`background/paper`, `divider`, `tcece/border/subtle`, `radius/*`, `Card/01`; fecha **MD-1**); rodapé do modal genérico com padding vertical 24 (fecha **E-9**).
+
 | ID | Decisão | Opções | Proposta / adotado hoje | Impacto | Enquanto isso |
 |---|---|---|---|---|---|
-| MD-1 | O `Modal` genérico usa cores fixas (fundo `#FFFFFF`, borda `#C9CCD1`, divisores `#EBEDF0`) em vez de `background/paper` e `divider`; o `Modal - Confirmação` já usa os tokens | Ligar aos tokens; criar token para o divisor mais claro | Ligar a `background/paper` e `divider`; divisor claro: C-7 | Menor | Usar os tokens na implementação; no Figma, corrigir |
 | MD-2 | Esc e clique no fundo fecham o modal? | Esc sempre fecha; clique no fundo não fecha modal com dados nem de decisão | Proposta ao lado | Importante | Esc fecha; clique no fundo não fecha |
 | MD-3 | Foco inicial ao abrir | Título, primeiro campo, ou Cancelar nos modais destrutivos | Cancelar nos destrutivos, primeiro campo nos formulários | Importante | O padrão do `Dialog` do MUI |
 | MD-4 | Modal em tela estreita (abaixo de 768): largura, padding, tela cheia | Reduzir padding (24 e 16/20); tela cheia no genérico | Não desenhado | Importante | Largura máxima da tela menos 32, sem rolagem horizontal |
@@ -105,7 +106,6 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 
 | ID | Decisão | Opções | Proposta / adotado hoje | Impacto | Enquanto isso |
 |---|---|---|---|---|---|
-| N-2 | Os componentes Snackbar, Modal e Button do Figma não seguem a spec de tipografia: o letter-spacing das variáveis da coleção Typography vale 0,04 em (`title/lg/desktop/letterSpacing` 0,96px, `title/md/desktop/letterSpacing` 0,8px, `title/sm/desktop/letterSpacing` e `body/md/letterSpacing` 0,64px) e o estilo `Spec/body-md` usa Atkinson (`font/accent`). A spec (4.2.0, seções 2.1 e 5.2) diz letter-spacing 0 e Noto Sans no corpo. Lido em 2026-11-04 | Rever a spec de tipografia (0,04 em e Atkinson no corpo) ou corrigir o Figma (0 e Noto Sans) | O design pediu em 2026-11-04 que as specs dos componentes sigam o Figma; o protótipo do Conecta já usa 0,04 em e Atkinson no corpo | Importante | Nos componentes (Snackbar, Modal, Button): seguir o Figma. Fora deles: seguir a tipografia. A spec de tipografia só muda quando o design decidir |
 | N-1 | Convenção de nomes no código (consolida C-4, E-5 e G-5) | **Prefixo `tcece` decidido em 2026-10-28** (índice, seção 5). Resta o padrão de nomes por assunto: tipografia, cor, espaçamento, grid e layout | `--tcece-<assunto>-*` em todas as specs | Importante | Seguir a proposta de cada spec; tipografia usa os nomes da seção 8 da spec |
 
 ## Tabela (componente `Table` e `Cell Content`, Figma do DS, página 🧩 Componentes)

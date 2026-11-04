@@ -6,7 +6,7 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **2.1.0** (rascunho, escopo parcial) |
+| **Versão da spec** | **2.1.1** (rascunho, escopo parcial) |
 | **Última atualização** | **2026-10-28** |
 | Versão do DS | em revisão, ainda sem tag |
 | **Camada** | **1. Átomos (tokens)** |
@@ -130,6 +130,8 @@ A migração dos tokens antigos para os semânticos e as cores fixas de cada pro
 
 Bordas (`divider`, `tcece/border/*`), ícones (`tcece/icon/*`), status e alertas (`*/main`, `tcece/*/subtle`), foco como tokens além da regra 5, elevação e sombra, tabelas além das linhas, estados de campo (fundo desabilitado), item de menu selecionado, cor de ação genérica (aba ativa, chip). Até haver spec, quem precisar deles deve perguntar ao design em vez de escolher uma primitiva.
 
+**Tokens criados no Figma em 2026-11-04 para Snackbar e Modal (documentados aqui só como referência; a spec completa segue em C-7):** `tcece/border/subtle` (alias de `grey/100`, divisor leve de cabeçalho e rodapé do modal), `tcece/icon/success` (alias de `success/main`) e `tcece/icon/info` (alias de `info/main`). Ícones de Erro, Aviso e Fechar usam `tcece/icon/default` (alias de `grey/800`).
+
 ## 10. Checklist de revisão
 
 - [ ] Nenhuma cor com hex solto ou primitiva em tela e componente
@@ -149,6 +151,7 @@ Todos os pontos em aberto de cor estão em **`decisoes-em-aberto.md`** (C-1 a C-
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 2.1.1 | 2026-11-04 | Seção 9: tokens `tcece/border/subtle`, `tcece/icon/success` e `tcece/icon/info` criados no Figma para Snackbar e Modal (C-7 segue aberta) |
 | 2.1.0 | 2026-10-28 | Foco: botão com preenchimento e os demais com anel (regra 5, fecha C-5); seis tokens `tcece/` viram alias do MUI |
 | 2.0.0 | 2026-10-28 | Nomes dos tokens alinhados ao MUI (`primary/main`, `error/main`, `background/paper`…); específicos do TCE com prefixo `tcece/`; `gray` → `grey`; sintaxe de código WEB preenchida; cabeçalho padrão; seção 7 (mapa) definida. **Quebra de nome** |
 | 1.0.0 | 2026-10-07 | Revisão estrutural (`ds-v1`) sobre o rascunho de 2026-10-05 |

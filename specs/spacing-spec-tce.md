@@ -8,7 +8,7 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **1.2.0** (rascunho) |
+| **Versão da spec** | **1.2.1** (rascunho) |
 | **Última atualização** | **2026-11-04** |
 | Versão do DS | em revisão, ainda sem tag |
 | **Camada** | **1. Átomos (tokens)** |
@@ -73,7 +73,7 @@ A coluna "Fonte" diz de onde vem o valor: **CSS** (CSS original, confirmado), **
 | Bloco de código (`pre`) | 8 | margem 16 acima e abaixo | CSS |
 | Card | 16 (`card-padding`) | gap interno a definir | Spec — **A DECIDIR** (E-3: protótipos usam 24) |
 | Modal - Confirmação | 32 | gap entre blocos 24; resumo: padding 16 e gap 8; ações: gap 12 | Figma, 2026-11-04 (`modal-spec-tce.md`) |
-| Modal (genérico) | cabeçalho 24/32, corpo 32, rodapé 20/32 | gap do rodapé 12; label→campo 8 | Figma, 2026-11-04 (`modal-spec-tce.md`); 20 do rodapé está fora da escala (E-9) |
+| Modal (genérico) | cabeçalho 24/32, corpo 32, rodapé 24/32 | gap do rodapé 12; label→campo 8 | Figma, 2026-11-04 (`modal-spec-tce.md`); rodapé levado de 20 para 24 (dentro da escala, fecha E-9) |
 | Snackbar | 16 | gap ícone→texto 12; mensagem→detalhe 4 (8 com ação) | Figma, 2026-11-04 (`snackbar-spec-tce.md`) |
 | Chip / badge | 12 horizontal, 3 vertical | altura 30 | Figma — 3 está fora da escala, **A DECIDIR** (E-6). Com o piso de 16px de texto (`title-sm`, line-height 1.4 ≈ 22), proposta: 4 vertical (dentro da escala), altura mínima 30 |
 | Barra de ações fixa | a definir | a definir | falta levantar |
@@ -105,7 +105,7 @@ A escala de espaçamento (seção 2) é **a mesma em todos os breakpoints**. O q
 
 ## 8. Espaçamento de texto (definido na spec de tipografia)
 
-Line-height, letter-spacing, word-spacing e espaço entre parágrafos **não são definidos aqui**: a única definição está em **`typography-spec-tce.md`, seção 5** (decidido em 2026-10-28: letter-spacing e word-spacing `0`, parágrafo 24px, line-height do token, e exigência de que os componentes aguentem os valores da WCAG 1.4.12 sem cortar texto). Os valores do CSS original (letter-spacing 0,08 a 0,12 em, word-spacing 0,16 em, parágrafo 32px) deixam de valer como padrão e passam a ser o **teste de aceitação** de acessibilidade.
+Line-height, letter-spacing, word-spacing e espaço entre parágrafos **não são definidos aqui**: a única definição está em **`typography-spec-tce.md`, seção 5** (decidido em 2026-10-28: letter-spacing 0,04 em, word-spacing `0`, parágrafo 24px, line-height do token, e exigência de que os componentes aguentem os valores da WCAG 1.4.12 sem cortar texto). Os valores do CSS original (letter-spacing 0,08 a 0,12 em, word-spacing 0,16 em, parágrafo 32px) deixam de valer como padrão e passam a ser o **teste de aceitação** de acessibilidade.
 
 ## 9. Mapa Figma ↔ código
 
@@ -146,6 +146,7 @@ Todos os pontos em aberto de espaçamento estão em **`decisoes-em-aberto.md`** 
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 1.2.1 | 2026-11-04 | Rodapé do modal genérico de 20/32 para 24/32 (fecha E-9); Figma com paddings e gaps ligados a `spacing/*` |
 | 1.2.0 | 2026-11-04 | Seção 4: linhas de Modal - Confirmação, Modal (genérico) e Snackbar com os valores do Figma; nova pendência E-9 (padding de 20 no rodapé do modal) |
 | 1.1.0 | 2026-10-28 | Botão com padding 8/16, altura mínima 44/48, largura mínima 64, ícone 20 e gap 8 (fecha E-8); espaçamento de texto remetido à tipografia |
 | 1.0.0 | 2026-10-07 | Rascunho de 2026-10-05; grid e layout separados em `grid-layout-spec-tce.md`; revisão estrutural (`ds-v1`) |

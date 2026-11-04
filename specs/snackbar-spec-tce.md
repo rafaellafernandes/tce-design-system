@@ -6,7 +6,7 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **0.1.1** (rascunho) |
+| **Versão da spec** | **0.2.0** (rascunho) |
 | **Última atualização** | **2026-11-04** |
 | Versão do DS | em revisão, ainda sem tag |
 | **Camada** | **2. Moléculas (componente)** |
@@ -14,7 +14,7 @@
 | **Usada por** | `padroes-de-interface.md` (feedback) e os handoffs dos produtos (catálogo de avisos) |
 | Arquivo e Figma | `specs/snackbar-spec-tce.md`; conjunto `Snackbar` (`1418:3448`, 16 variantes), página 🧩 Componentes do ⭐ Design System TCE (`mn0wkryj2sBHmW412qD2o8`) |
 
-Pendências abertas: SN-1 a SN-4 e N-2 (`decisoes-em-aberto.md`). Histórico na última seção.
+Pendências abertas: SN-1, SN-2 e SN-4 (`decisoes-em-aberto.md`). SN-3 (largura) e N-2 (tipografia) estão resolvidas desde 2026-11-04. Histórico na última seção.
 
 ## 1. Regras obrigatórias
 
@@ -40,10 +40,10 @@ Total: 4 × 2 × 2 = 16 variantes (`Tipo=…, Detalhe=…, Ação=…`).
 ## 3. Composição (camadas)
 
 ```
-Snackbar (560 × hug, horizontal, padding 16, gap 12)
+Snackbar (hug × hug, largura máxima 560, horizontal, padding 16, gap 12)
 ├─ Ícone de status      instância 24×24: Filled/CheckCircleFilled | Filled/ErrorFilled | Filled/InfoFilled
-├─ Mensagem             quadro vertical, preenche a largura (gap 4 sem ação, 8 com ação)
-│  ├─ Mensagem          texto  (propriedade "Mensagem")
+├─ Mensagem             quadro vertical, hug, largura máxima 456 (gap 4 sem ação, 8 com ação)
+│  ├─ Mensagem          texto  (propriedade "Mensagem"; hug, quebra a 456)
 │  ├─ Detalhe           texto  (propriedade "Texto do detalhe"; só com Detalhe=Com)
 │  └─ Ação              quadro horizontal (só com Ação=Com)
 │     └─ Botão de ação  instância de Button: variant=tceceElevated, color=primary, tceceDevice=desktop
@@ -56,30 +56,29 @@ Snackbar (560 × hug, horizontal, padding 16, gap 12)
 |---|---|---|
 | Contêiner: fundo | — | `background/paper` |
 | Contêiner: borda | 1px | `divider` |
-| Contêiner: raio | 8 | sem token (B-7: raio e borda) |
-| Contêiner: sombra | 0 / 4 / 4, preto a 25 % | sem token (B-7: elevação) |
+| Contêiner: raio | 8 | `radius/sm` |
+| Contêiner: sombra | 0 / 4 / 4, preto a 25 % | estilo de efeito `Card/01` |
 | Contêiner: padding e gap | 16 e 12 | `spacing/16`, `spacing/12` (E-1 avalia o 12) |
-| Largura | 560, fixa | — (ver nota) |
-| Ícone | 24 (glifo de 20) | Sucesso: `success/main`. Informação: `info/main`. Erro e Aviso: `tcece/icon/color` (C-7) |
-| Mensagem | 20 / 28, 600, letter-spacing 0,8px | `title-md` (`Spec/title-md`), Noto Sans, cor `text/primary` |
-| Detalhe | 16 / 25,6, 400, letter-spacing 0,64px | `body-md` (`Spec/body-md`), **Atkinson** (N-2), cor `text/primary` |
+| Largura | acompanha o conteúdo, máximo 560 (ou a tela menos 32) | — (ver nota) |
+| Ícone | 24 (glifo de 20) | Sucesso: `tcece/icon/success` (alias de `success/main`). Informação: `tcece/icon/info` (alias de `info/main`). Erro e Aviso: `tcece/icon/default` |
+| Mensagem | 20 / 28, 600, letter-spacing 0,04 em | `title-md` (`Spec/title-md`), Noto Sans, cor `text/primary` |
+| Detalhe | 16 / 25,6, 400, letter-spacing 0,04 em | `body-md` (`Spec/body-md`), Atkinson, cor `text/primary` |
 | Botão de ação | padding 8/16, altura mínima 44, raio 8 | `Button` `tceceElevated` (`button-spec-tce.md`) |
-| Fechar | 24; glifo de 14 | `tcece/icon/color` |
+| Fechar | 24; glifo de 14 | `tcece/icon/default` |
 
-**Largura.** O Figma desenha 560 fixos. Um aviso curto ("Planilha excluída") fica com uma faixa vazia à direita; por isso a largura que acompanha o conteúdo, com máximo de 560 (ou a largura da tela menos 32), é pedido do design (2026-11-04) e está em SN-3: ainda não vale como spec e o Figma não foi atualizado.
+**Largura (decidido pelo design em 2026-11-04, fecha SN-3).** O snackbar acompanha o conteúdo, com máximo de 560 (ou a largura da tela menos 32). Um aviso curto ("Planilha excluída") não fica com faixa vazia. O Figma foi atualizado: largura `hug` com `maxWidth` 560 nas 16 variantes; a mensagem e o detalhe quebram linha a 456.
 
 **Aviso e Erro.** No Figma os dois usam o mesmo ícone (`ErrorFilled`) e a mesma cor. A diferença entre eles é só o texto (SN-4).
 
 ## 5. Texto
 
 - Mensagem: `title-md`. Detalhe: `body-md`. Ação: `title-sm` (do botão).
-- **Como está no Figma (lido em 2026-11-04) e vale até a decisão N-2:** a mensagem (`Spec/title-md`) é Noto Sans 20 / 28, 600, com letter-spacing 0,8px (0,04 em; variável `title/md/desktop/letterSpacing`). O detalhe (`Spec/body-md`) é **Atkinson Hyperlegible Next** (`font/accent`) 16 / 25,6, 400, com letter-spacing 0,64px (0,04 em; `body/md/letterSpacing`). O botão de ação segue o `title-sm` do botão.
-- **Conflito com a tipografia (N-2):** `typography-spec-tce.md` diz letter-spacing 0 e Noto Sans no corpo. Por pedido do design (2026-11-04), este componente segue o Figma até o N-2 ser decidido.
+- A mensagem (`Spec/title-md`) é Noto Sans 20 / 28, 600; o detalhe (`Spec/body-md`) é **Atkinson Hyperlegible Next** 16 / 25,6, 400; ambos com letter-spacing de 0,04 em (variáveis `title/md/desktop/letterSpacing` e `body/md/letterSpacing`). O botão de ação segue o `title-sm` do botão. Está de acordo com `typography-spec-tce.md` 5.0.0.
 
 ## 6. Implementação com o MUI 9.1.1
 
 - **Contêiner:** `Snackbar` do MUI (cuida de posição, `open`, `autoHideDuration` e `onClose`). O conteúdo é um `Paper` ou `Box` próprio com as medidas da seção 4. **Não use `Alert` nem `SnackbarContent`** como conteúdo: o `action` deles fica à direita da mensagem, e no Figma o botão fica **abaixo** do detalhe.
-- **Ícones:** `@mui/icons-material` (mesma versão, 9.1.1): `CheckCircle`, `Error`, `Info` e `CloseOutlined`. Confirmar os nomes no Context7 antes de importar (B-7: spec de ícones ainda não existe; a biblioteca do DS é `Icons_TCE`).
+- **Ícones:** `@mui/icons-material` (mesma versão, 9.1.1):  Nomes como no Figma (componentes `Filled/CheckCircleFilled`, `Filled/ErrorFilled`, `Filled/InfoFilled` e `Outlined/CloseOutlined`): `CheckCircleFilled`, `ErrorFilled`, `InfoFilled` e `CloseOutlined`. A spec de ícones ainda não existe (B-7); a biblioteca do DS é `Icons_TCE`.
 - **Botão de ação:** o `Button` do tema (`button-spec-tce.md`), com `variant="contained"`, `color="primary"` e a variante `tceceElevated`. Não estilize o botão no snackbar.
 - **Posição, duração e empilhamento:** não definidos pelo DS (SN-1, SN-2). Cada produto os registra no seu handoff.
 - **Slots:** na v9 as props de transição do `Snackbar` passam por `slots`/`slotProps`; confirmar no Context7 (as props antigas `TransitionComponent` e `TransitionProps` podem ter sido removidas).
@@ -105,7 +104,7 @@ Snackbar (560 × hug, horizontal, padding 16, gap 12)
 
 | Spec | O que o snackbar herda |
 |---|---|
-| `typography-spec-tce.md` | `title-md`, `body-md`, Noto Sans, letter-spacing 0, teste 1.4.12 |
+| `typography-spec-tce.md` | `title-md` (Noto Sans), `body-md` (Atkinson), letter-spacing 0,04 em, teste 1.4.12 |
 | `color-spec-tce.md` | `background/paper`, `divider`, `text/primary`, `success/main`, `info/main`; ícones (C-7) |
 | `spacing-spec-tce.md` | `spacing/16`, `spacing/12` |
 | `button-spec-tce.md` | `tceceElevated` para a ação |
@@ -115,5 +114,6 @@ Snackbar (560 × hug, horizontal, padding 16, gap 12)
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 0.2.0 | 2026-11-04 | Largura que acompanha o conteúdo (fecha SN-3); tokens de raio (`radius/sm`), sombra (`Card/01`) e ícone (`tcece/icon/success`, `info`, `default`); tipografia alinhada à 5.0.0 (fecha N-2); nomes de ícone como no Figma; Figma sem propriedades soltas |
 | 0.1.1 | 2026-11-04 | Tipografia como no Figma (letter-spacing 0,04 em; detalhe em Atkinson) até a decisão N-2; `Mostrar fechar` ligado por padrão |
 | 0.1.0 | 2026-11-04 | Criação, a partir do conjunto `Snackbar` do Figma (16 variantes): propriedades, camadas, medidas, tokens, implementação com o MUI 9.1.1, acessibilidade. Pendências SN-1 a SN-4 |

@@ -6,7 +6,7 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **0.1.1** (rascunho) |
+| **Versão da spec** | **0.2.0** (rascunho) |
 | **Última atualização** | **2026-11-04** |
 | Versão do DS | em revisão, ainda sem tag |
 | **Camada** | **3. Organismos (componente)** |
@@ -14,7 +14,7 @@
 | **Usada por** | `padroes-de-interface.md` (modais) e os handoffs dos produtos (catálogo de modais) |
 | Arquivo e Figma | `specs/modal-spec-tce.md`; conjuntos `Modal` (`1459:3736`, 6 variantes), `Modal - Confirmação` (`1415:3408`, 12 variantes) e componente `Linha de resumo`, página 🧩 Componentes do ⭐ Design System TCE (`mn0wkryj2sBHmW412qD2o8`) |
 
-Pendências abertas: MD-1 a MD-5 e N-2 (`decisoes-em-aberto.md`). Histórico na última seção.
+Pendências abertas: MD-2 a MD-5 (`decisoes-em-aberto.md`). MD-1, E-9 e N-2 estão resolvidas desde 2026-11-04. Histórico na última seção.
 
 ## 1. Regras obrigatórias
 
@@ -76,7 +76,7 @@ Modal (640 ou 880 × hug, vertical, sem padding no contêiner)
 │  └─ Fechar            instância 24×24: Outlined/CloseOutlined
 ├─ Corpo                vertical, padding 32
 │  └─ Conteúdo          instância trocável, preenche a largura
-└─ Rodapé               horizontal, padding 20/32, gap 12, alinhado à direita, divisor superior 1
+└─ Rodapé               horizontal, padding 24/32, gap 12, alinhado à direita, divisor superior 1
    ├─ Ação 1 (cancelar)     Button tceceElevated   · Ações=2 e 3
    ├─ Ação 2 (secundária)   Button outlined        · Ações=3
    └─ Ação principal        Button contained, primary
@@ -89,25 +89,25 @@ Com `Ações=1` existe só a ação principal.
 | Parte | Modal - Confirmação | Modal (genérico) | Token |
 |---|---|---|---|
 | Largura | 560 | 640 (Médio) ou 880 (Grande) | — |
-| Fundo | `background/paper` | branco fixo (MD-1) | `background/paper` |
-| Borda | 1px `divider` | 1px `#C9CCD1` fixo (MD-1) | `divider` |
-| Raio | 8 | 16 | sem token (B-7; MD-5) |
-| Sombra | 0 / 4 / 4, preto a 25 % | igual | sem token (B-7) |
+| Fundo | `background/paper` | `background/paper` | `background/paper` |
+| Borda | 1px `divider` | 1px `divider` | `divider` |
+| Raio | 8 | 16 | `radius/sm` (8) e `radius/lg` (16); unificar é MD-5 |
+| Sombra | 0 / 4 / 4, preto a 25 % | igual | estilo de efeito `Card/01` |
 | Padding do contêiner | 32 | 0 | `spacing/32` |
 | Gap entre blocos | 24 | — | `spacing/24` |
-| Cabeçalho | sem padding próprio | padding 24/32, divisor `#EBEDF0` fixo (MD-1) | — |
+| Cabeçalho | sem padding próprio | padding 24/32, divisor inferior 1 | `spacing/24`, `spacing/32`; divisor `tcece/border/subtle` |
 | Corpo | — | padding 32 | `spacing/32` |
-| Rodapé / Ações | gap 12, à direita | padding 20/32, gap 12, divisor `#EBEDF0` fixo (MD-1) | `spacing/12` (E-1) |
+| Rodapé / Ações | gap 12, à direita | padding 24/32, gap 12, divisor superior 1 | `spacing/24`, `spacing/32`, `spacing/12` (E-1); divisor `tcece/border/subtle` |
 | Título | 24 / 33,6, 600, `text/primary` | igual | `title-lg` |
 | Descrição | 16 / 25,6, `text/secondary` | — | `body-md` |
-| Resumo | padding 16, gap 8, raio 8, borda 1 `divider` | — | `spacing/16`, `spacing/8` |
+| Resumo | padding 16, gap 8, raio 8, borda 1 `divider` | — | `spacing/16`, `spacing/8`, `radius/sm` |
 | Linha de resumo | rótulo `text/secondary`, valor `text/primary`, 16 / 25,6 | — | `body-md` |
-| Fechar | 24; glifo 14; `tcece/icon/color` | igual | C-7 |
-| Corpo de exemplo | padding 16, raio 8, texto `body-md` | — | — |
+| Fechar | 24; glifo 14 | igual | `tcece/icon/default` |
+| Corpo de exemplo | fundo `background/default`, borda `divider`, padding 16, raio 8, texto `body-md` em `text/secondary` | — | `background/default`, `divider`, `spacing/16`, `radius/sm`, `text/secondary` |
 
 ## 5. Texto
 
-Título `title-lg`; descrição e corpo `body-md`; botões `title-sm`. **Como está no Figma (lido em 2026-11-04) e vale até a decisão N-2:** título (`Spec/title-lg`), 24 / 33,6, Noto Sans 600, letter-spacing 0,96px (0,04 em); botões (`Spec/title-sm`), 16 / 22,4, Noto Sans 600, letter-spacing 0,64px (0,04 em); descrição, corpo e linhas de resumo (`Spec/body-md`), 16 / 25,6, **Atkinson Hyperlegible Next** (`font/accent`), 400, letter-spacing 0,64px (0,04 em). **Conflito com a tipografia (N-2):** `typography-spec-tce.md` diz letter-spacing 0 e Noto Sans no corpo. Por pedido do design (2026-11-04), este componente segue o Figma até o N-2 ser decidido.
+Título `title-lg` (24 / 33,6, Noto Sans 600); botões `title-sm` (16 / 22,4, Noto Sans 600); descrição, corpo e linhas de resumo `body-md` (16 / 25,6, **Atkinson Hyperlegible Next**, 400). Letter-spacing de 0,04 em em todos (variáveis `title/lg/desktop/letterSpacing` 0,96px, `title/sm/desktop/letterSpacing` e `body/md/letterSpacing` 0,64px). Está de acordo com `typography-spec-tce.md` 5.0.0.
 
 ## 6. Implementação com o MUI 9.1.1
 
@@ -115,7 +115,7 @@ Título `title-lg`; descrição e corpo `body-md`; botões `title-sm`. **Como es
 - **Modal genérico:** `DialogTitle` (título + `IconButton` de fechar), `DialogContent` (corpo, com rolagem quando o conteúdo passar da altura da tela) e `DialogActions` (rodapé). **Cabeçalho e rodapé ficam fixos; só o corpo rola.** Zere o padding padrão do `Paper` e aplique as medidas da seção 4 em cada parte.
 - **Modal - Confirmação:** `Dialog` com um conteúdo em coluna (padding 32, gap 24): cabeçalho, descrição, resumo e ações. Não precisa de `DialogContent` separado.
 - **Botões:** o `Button` do tema (`button-spec-tce.md`): Cancelar `tceceElevated`, secundária `outlined`, principal `contained` com a `color` do tipo. Não estilize botões no modal.
-- **Ícone de fechar:** `CloseOutlined` de `@mui/icons-material` 9.1.1 dentro de `IconButton` (24 × 24, `aria-label="Fechar"`); confirmar o nome no Context7.
+- **Ícone de fechar:** `CloseOutlined` (nome do ícone no Figma: `Outlined/CloseOutlined`) de `@mui/icons-material` 9.1.1 dentro de `IconButton` (24 × 24, `aria-label="Fechar"`).
 - **Título e descrição:** `aria-labelledby` no `Dialog` apontando para o título e `aria-describedby` para a descrição.
 
 ## 7. Acessibilidade
@@ -129,7 +129,7 @@ Título `title-lg`; descrição e corpo `body-md`; botões `title-sm`. **Como es
 
 | Spec | O que o modal herda |
 |---|---|
-| `typography-spec-tce.md` | `title-lg`, `body-md`, `title-sm`; letter-spacing 0 (ver N-2: o Figma usa 0,04 em); teste 1.4.12 |
+| `typography-spec-tce.md` | `title-lg`, `body-md`, `title-sm`; letter-spacing 0,04 em; teste 1.4.12 |
 | `color-spec-tce.md` | `background/paper`, `divider`, `text/primary`, `text/secondary`, `error/main`, `success/main`, `primary/main` |
 | `spacing-spec-tce.md` | `spacing/8`, `12`, `16`, `24`, `32`; linha "Modal" na seção 4 |
 | `button-spec-tce.md` | `tceceElevated`, `outlined`, `contained` (+ `error`, `success`) |
@@ -139,5 +139,6 @@ Título `title-lg`; descrição e corpo `body-md`; botões `title-sm`. **Como es
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 0.2.0 | 2026-11-04 | Rodapé do modal genérico a 24/32 (fecha E-9); cores, raios, sombra e divisor ligados a tokens, sem valor fixo (fecha MD-1; novo `tcece/border/subtle`); ícone Fechar em `tcece/icon/default`; tipografia alinhada à 5.0.0 (fecha N-2); Figma sem propriedades soltas |
 | 0.1.1 | 2026-11-04 | Tipografia como no Figma (letter-spacing 0,04 em; corpo em Atkinson) até a decisão N-2 |
 | 0.1.0 | 2026-11-04 | Criação, a partir dos conjuntos `Modal` (6 variantes) e `Modal - Confirmação` (12) e do componente `Linha de resumo` do Figma: propriedades, camadas, medidas, tokens, implementação com o MUI 9.1.1, acessibilidade. Pendências MD-1 a MD-5 |
