@@ -4,15 +4,15 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **4.2.0** (em uso, com pendências) |
-| **Última atualização** | **2026-10-28** |
+| **Versão da spec** | **4.2.2** (em uso, com pendências) |
+| **Última atualização** | **2026-11-04** |
 | Versão do DS | em revisão, ainda sem tag (o `CHANGELOG.md` registra `ds-v3` como a confirmar; a tag é decisão do design) |
 | **Camada** | **1. Átomos (tokens)** |
 | **Depende de** (data da última atualização lida) | Tokens de mesma camada, lidas em 2026-10-28 (ainda sem cabeçalho padrão; última revisão registrada em cada uma): `color-spec-tce.md` (2.1.0, 2026-10-28; cores de texto), `spacing-spec-tce.md` (ds-v1, 2026-10-07; escala, E-1), `grid-layout-spec-tce.md` (ds-v1, 2026-10-07; breakpoints, G-1) |
-| **Usada por** | `button-spec-tce.md`, `padroes-de-interface.md` e, quando existirem, as specs de campo, label, tabela, modal, header, menu lateral e demais componentes com texto |
+| **Usada por** | `button-spec-tce.md`, `snackbar-spec-tce.md`, `modal-spec-tce.md`, `padroes-de-interface.md` e, quando existirem, as specs de campo, label, tabela, header, menu lateral e demais componentes com texto |
 | Arquivo e Figma | `specs/typography-spec-tce.md`; coleção `Typography` e estilos `Spec/*` do arquivo ⭐ Design System TCE (seção 12) |
 
-Pendências abertas: T-3, T-4, T-5, T-12, T-13 e T-15 (`decisoes-em-aberto.md`). O histórico de versões está na seção 13; o formato do cabeçalho é o padrão do DS (`design-system-index.md`, seção 4.1).
+Pendências abertas: T-3, T-4, T-5, T-12, T-13 e T-15 (`decisoes-em-aberto.md`). **Divergência com o Figma (N-2):** os componentes Snackbar, Modal e Button estão com letter-spacing de 0,04 em e o `Spec/body-md` em Atkinson; nesses componentes vale o Figma até o design decidir. O histórico de versões está na seção 13; o formato do cabeçalho é o padrão do DS (`design-system-index.md`, seção 4.1).
 
 > **Família tipográfica (decidido em 2026-10-21, fecha T-1):** a fonte principal do sistema é **Noto Sans**. **Atkinson Hyperlegible Next** é a fonte de **acento** e só entra em **números** e em **labels** (seções 2 e 2.1). Todo o resto da interface usa Noto Sans. Os tokens e o CSS antigos que punham Atkinson em toda a interface estão **errados** e devem ser corrigidos. No Figma, os estilos antigos (nomeados por px, em Plus Jakarta Sans ou Atkinson) **não seguem** esta spec e estão sendo migrados: a referência são os estilos `Spec/*`, que são a **única escala** (os valores do Figma e desta spec devem ser os mesmos; se divergirem, vale esta spec).
 >
@@ -141,6 +141,8 @@ Botão, label, input, helper, cabeçalho e célula de tabela usam tokens da esca
 | Texto corrido, descrições | `body-md` |
 | Abas e itens de menu (ativo/inativo) | `title-sm` |
 | Título de modal | `title-lg` |
+| Descrição de modal e linha de resumo (rótulo e valor) | `body-md` |
+| Mensagem de snackbar | `title-md` (20 / 600); o detalhe, `body-md` |
 | Metadado, legenda | `caption` (16 / 400 / 1.4), `text/secondary` |
 | Selo, status e chip (texto) | `title-sm` (16 / 600); o componente cresce para acomodar o texto. Exceção: chip de identificação ao lado de um nome (cargo ou perfil de usuário) usa `body-md` (16 / 400) em `text/secondary`, para não competir com o nome |
 | Rótulo de par rótulo–valor | `body-md` em `text/secondary` |
@@ -429,6 +431,8 @@ Valores de cada variante: os da seção 3, em `rem` e line-height sem unidade. A
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 4.2.2 | 2026-11-04 | Aviso no cabeçalho sobre N-2 (o Figma dos componentes diverge: 0,04 em e corpo em Atkinson). Valores da spec não mudam |
+| 4.2.1 | 2026-11-04 | Mapa de papéis: descrição de modal, linha de resumo e snackbar |
 | 4.2.0 | 2026-10-28 | Letter-spacing por token com teto 0 e regras de acessibilidade (seção 5.2, fecha T-16); 23 variáveis novas no Figma (102 no total); variáveis CSS `--tcece-<token>-letter-spacing` |
 | 4.1.0 | 2026-10-28 | `display-2xl` e `display-xl` adotados (peso 700) com regras da seção 3.1; seção 5.1 (reflow, quebra de palavras, idioma, listas); mapeamento para o MUI com variantes `tcece*` (T-15); T-6, T-9, T-10, T-11 e T-14 decididos; revisão do tracking aberta (T-16); Figma com 79 variáveis e 14 estilos |
 | 4.0.1 | 2026-10-28 | Nomes dos tokens de cor atualizados conforme `color-spec-tce.md` 2.0.0 (texto) |

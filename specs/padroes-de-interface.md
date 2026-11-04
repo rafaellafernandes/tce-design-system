@@ -4,12 +4,12 @@
 
 | Campo | Valor |
 |---|---|
-| **Versão da spec** | **2.0.0** (rascunho) |
-| **Última atualização** | **2026-10-28** |
+| **Versão da spec** | **2.1.0** (rascunho) |
+| **Última atualização** | **2026-11-04** |
 | Versão do DS | em revisão, ainda sem tag |
 | **Camada** | **2. Moléculas e 3. Organismos (mistura; cada padrão declara a sua)** |
-| **Depende de** (data da última atualização lida) | `typography-spec-tce.md` 4.1.0, `color-spec-tce.md` 2.1.0, `spacing-spec-tce.md` 1.1.0, `grid-layout-spec-tce.md` 1.0.0 e `button-spec-tce.md` 0.7.0 (todas lidas em 2026-10-28) |
-| **Usada por** | Telas dos produtos (Páginas, fora do DS); specs de componente que nascerem destes padrões (tabela, modal, formulário, paginação…) |
+| **Depende de** (data da última atualização lida) | `typography-spec-tce.md` 4.1.0, `color-spec-tce.md` 2.1.0 (2026-10-28), `spacing-spec-tce.md` 1.2.0, `grid-layout-spec-tce.md` 1.0.0 (2026-10-28), `button-spec-tce.md` 0.7.1, `snackbar-spec-tce.md` 0.1.1 e `modal-spec-tce.md` 0.1.1 (as de 2026-11-04 lidas em 2026-11-04) |
+| **Usada por** | Telas dos produtos (Páginas, fora do DS); specs de componente que nascerem destes padrões (tabela, formulário, paginação…); `snackbar-spec-tce.md` e `modal-spec-tce.md` já nasceram |
 | Arquivo e Figma | `specs/padroes-de-interface.md` |
 
 Histórico na última seção. Formato do cabeçalho: `design-system-index.md`, seção 4.1.
@@ -26,8 +26,8 @@ Histórico na última seção. Formato do cabeçalho: `design-system-index.md`, 
 | **Abas** | `title-sm`; ativa em `tcece/link/default` com underline 2px (cor de ação genérica ainda sem token, ver `color-spec-tce.md` seção 9); inativa em `text/secondary` (não `text/disabled`, que fica abaixo de 4,5:1) |
 | **Tabelas** | Cabeçalho `title-sm`; células `body-md`; datas e status destacados com peso 600; alinhamento à esquerda para texto, à direita para números, ao centro para ícones/ações; células numéricas em Atkinson com `tabular-nums` (`.tcece-num`); truncar com tooltip |
 | **Formulários** | label (`title-sm`, **Atkinson**) acima do campo (8px) · texto digitado `body-md` · ajuda `caption` · erro em `caption` + ícone + cor `tcece/text/error` (nunca só cor); placeholder (`tcece/text/placeholder`) nunca substitui label |
-| **Modais** | Título `title-lg`; descrição `body-md`; botão de confirmação (primário) à direita, cancelar (secundário) à esquerda dele; ambos `title-sm` (componente em `button-spec-tce.md`) |
-| **Feedback (alerta, banner, toast)** | Título `title-sm`; mensagem `body-md`; cor semântica em ícone, borda e fundo claro; **texto em `text/primary`**, ou `tcece/text/error`, `tcece/text/success` e `tcece/text/info` em mensagens curtas (todos acima de 4,5:1, ver `color-spec-tce.md`) |
+| **Modais** | Spec própria: `modal-spec-tce.md` (Modal e Modal - Confirmação). Título `title-lg`; descrição `body-md`; botão principal à direita, **Cancelar (`tceceElevated`)** à esquerda dele e, com três ações, a secundária (`outlined`) no meio; todos `title-sm` (componente em `button-spec-tce.md`) |
+| **Feedback (alerta, banner, toast)** | **Snackbar** (resultado de uma ação): spec própria, `snackbar-spec-tce.md` (mensagem `title-md`, detalhe `body-md`). Alerta e banner: título `title-sm`; mensagem `body-md`; cor semântica em ícone, borda e fundo claro; **texto em `text/primary`**, ou `tcece/text/error`, `tcece/text/success` e `tcece/text/info` em mensagens curtas (todos acima de 4,5:1, ver `color-spec-tce.md`) |
 | **Status / badges** | `title-sm` (16/600), `text/primary` sobre fundo claro da cor semântica; texto sempre presente (Aberta, Em revisão, Fechada), cor sozinha não basta |
 | **Estado vazio** | `title-sm` + `body-md` `text/secondary`, centralizados, com um botão primário quando houver ação |
 | **Par rótulo–valor** (detalhes, revisão) | Rótulo `body-md` `text/secondary`; valor `body-md` `text/primary` (a diferença é cor e posição, não tamanho); 4px entre os dois. Família: Noto Sans (T-13); valor numérico em Atkinson |
@@ -40,6 +40,7 @@ Histórico na última seção. Formato do cabeçalho: `design-system-index.md`, 
 
 | Versão | Data | O que mudou |
 |---|---|---|
+| 2.1.0 | 2026-11-04 | Modais e snackbar ganham spec própria (`modal-spec-tce.md`, `snackbar-spec-tce.md`); Cancelar no modal é `tceceElevated` (era `outlined`), como no Figma |
 | 2.0.0 | 2026-10-28 | Tokens de cor com os nomes novos (`color-spec-tce.md` 2.0.0+); classe `.num` → `.tcece-num` (**quebra de nome**); ponteiro para a spec do botão nos modais |
 | 1.2.0 | 2026-10-28 | `ds-v3`: tokens de componente (`button-*`, `form-*`, `table-*`) removidos; padrões usam `title-sm`, `body-md` e `caption` |
 | 1.1.1 | 2026-10-27 | Piso de 16px (badges, toast e rótulo do par rótulo–valor trocam de token) |
