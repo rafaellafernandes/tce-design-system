@@ -44,6 +44,7 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 | E-5 | Prefixo e nomes dos tokens de espaçamento | `--tcece-space-*` ou `--space-*`; alinhar com nomes de tipografia (`title-desk-md` no CSS, `title-md` na spec) | `--tcece-space-*` | Importante | `--tcece-space-*` |
 | E-6 | Padding vertical do chip | 3 está fora da escala | — | Menor | Perguntar |
 | E-7 | Espaço mínimo entre alvos clicáveis | O CSS usa margem de 4 | — | Menor | 4 |
+| E-9 | Padding vertical de 20 no rodapé do modal genérico | 20 está fora da escala (`spacing/16` ou `spacing/24`) | Levar a 16 ou 24 | Menor | Usar 20, como no Figma (`modal-spec-tce.md`) |
 
 ## Botão (`button-spec-tce.md`)
 
@@ -56,7 +57,6 @@ Decidido em 2026-10-27 (sai da lista): **piso de 16px para qualquer texto.** Res
 | B-5 | Botão só com ícone | `IconButton` com spec própria (hoje existe `Btn_icon_primary` no Figma, fora desta spec) | Spec própria | Importante | Perguntar |
 | B-6 | Code Connect do `Button` | Mapear o componente do Figma ao `Button` do MUI | Mapear depois que os nomes estabilizarem | Menor | Handoff descreve as props da seção 2 |
 | B-7 | Specs de fundação que o botão usa e ainda não existem | Criar specs de elevação e sombra, ícones, raio e borda, movimento (ripple e movimento reduzido) | Valores provisórios na `button-spec-tce.md` | Importante | Usar os valores da spec do botão; perguntar antes de reutilizar em outro componente. **Lista de pendência: a Rafaella cria as specs quando os tokens voltarem (2026-10-28)** |
-| E-9 | Padding vertical de 20 no rodapé do modal genérico | 20 está fora da escala (`spacing/16` ou `spacing/24`) | Levar a 16 ou 24 | Menor | Usar 20, como no Figma (`modal-spec-tce.md`) |
 
 ## Grid e layout (`grid-layout-spec-tce.md`)
 
